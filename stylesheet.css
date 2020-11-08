@@ -1,0 +1,15 @@
+.live_chat_button{
+    position: fixed;
+    bottom: 2%;
+    right: 5%;
+}
+.live_chat_button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+.login_button{
+    right: 5%;
+}
+.h2{
+    position: center;
+}
