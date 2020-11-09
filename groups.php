@@ -20,8 +20,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Pagrindinis <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Pagrindinis </span></a>
         </li>
         <li class="nav-item">
             <div class="dropdown show">
@@ -64,8 +64,11 @@
                 </div>
               </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="aboutus.html">Apie mus</a>
+          <li class="nav-item ">
+            <a class="nav-link" href="aboutus.html">Apie mus </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Grupės</a>
           </li>
         <li class="nav-item">
           <div class="text-center">
@@ -108,153 +111,51 @@
     </div>
   </div>
 </div>
-  <div class="jumbotron text-center">
-    <h1>Sveiki atvykę į „Traktoristas aš esu“ vairavymo mokyklos puslapį</h1>
-    <p>er took a gallassages, and more recently with desktop ps of Lorem Ipsum.</p>
-  </div>
-  <center><img class="split_picture_thingy" src="Logo.png"><div><h3>Vairavimo kursai</h3></div></center>
-    <div class="container">
-    <div class="row">
-        <a href="#" class="col-sm-2">
-          
-            <div class="w3-container w3-teal">
-                  <p>AM kategorija</p>
-            </div>
-        
-            <img src="unnamed.png" alt="Car" style="width:100%">
-        
-            <div class="w3-container">
-            <p>Mopedai ir lengvieji keturračiai</p>
-            </div>
-        </a>
-        <a href="#" class="col-sm-2">
-          
-                <div class="w3-container w3-teal">
-                      <p>A1 kategorija</p>
-                </div>
-            
-                <img src="unnamed.png" alt="Car" style="width:100%">
-            
-                <div class="w3-container">
-                <p>Motociklai ir triračiai</p>
-                </div>
-            
-            
-            </a>
-            <a href="#" class="col-sm-2">
-          
-      <div class="w3-container w3-teal">
-            <p>A2 kategorija</p>
-      </div>
-  
-      <img src="unnamed.png" alt="Car" style="width:100%">
-  
-      <div class="w3-container">
-      <p>Motociklai ir triračiai</p>
-      </div>
-  
-  
-    </a>
-    <a href="#" class="col-sm-2">
-        <div class="w3-container w3-teal">
-            <p>A kategorija</p>
-      </div>
-  
-      <img src="unnamed.png" alt="Car" style="width:100%">
-  
-      <div class="w3-container">
-      <p>Motociklai ir triračiai</p>
-      </div>
-  
-    </a>
-    <a href="#" class="col-sm-2">
-        <div class="w3-container w3-teal">
-            <p>B kategorija</p>
-      </div>
-  
-      <img src="unnamed.png" alt="Car" style="width:100%">
-  
-      <div class="w3-container">
-      <p>Lengvieji automobiliai ir keturračiai</p>
-      </div>
-  
-      
-      </div>
-    </a>
-  </div>
-  <div class="container">
-    <div class="row">
-        <a href="#" class="col-sm-2">
-          
-            <div class="w3-container w3-teal">
-                  <p>AM kategorija</p>
-            </div>
-        
-            <img src="unnamed.png" alt="Car" style="width:100%">
-        
-            <div class="w3-container">
-            <p>Mopedai ir lengvieji keturračiai</p>
-            </div>
-        
 
-        
-        </a>
-        <a href="#" class="col-sm-2">
-          
-                <div class="w3-container w3-teal">
-                      <p>A1 kategorija</p>
-                </div>
-            
-                <img src="unnamed.png" alt="Car" style="width:100%">
-            
-                <div class="w3-container">
-                <p>Motociklai ir triračiai</p>
-                </div>
-            
-            
-            </a>
-            <a href="#" class="col-sm-2">
-          
-      <div class="w3-container w3-teal">
-            <p>A2 kategorija</p>
-      </div>
-  
-      <img src="unnamed.png" alt="Car" style="width:100%">
-  
-      <div class="w3-container">
-      <p>Motociklai ir triračiai</p>
-      </div>
-  
-  
-    </a>
-    <a href="#" class="col-sm-2">
-        <div class="w3-container w3-teal">
-            <p>A kategorija</p>
-      </div>
-  
-      <img src="unnamed.png" alt="Car" style="width:100%">
-  
-      <div class="w3-container">
-      <p>Motociklai ir triračiai</p>
-      </div>
-  
-    </a>
-    <a href="#" class="col-sm-2">
-        <div class="w3-container w3-teal">
-            <p>B kategorija</p>
-      </div>
-  
-      <img src="unnamed.png" alt="Car" style="width:100%">
-  
-      <div class="w3-container">
-      <p>Lengvieji automobiliai ir keturračiai</p>
-      </div>
-  
-      
-      </div>
-    </a>
-  </div>
-  </center>
+
+
+<div class="grid-container">
+    <div class="grid-item">Grupė A</div>
+    <div class="grid-item">Grupė B</div>
+    <div class="grid-item">Grupė A</div>
+    <div class="grid-item">Grupė A</div>
+    <div class="grid-item">Grupė A</div>
+    <div class="grid-item">Grupė A</div>
+    <div class="grid-item">Grupė A</div>
+    <div class="grid-item">Grupė A</div>
+    <div class="grid-item">Grupė A</div>
+        </div>
+
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry the Bird</td>
+      <td>Thornton</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
   
   <button type="button" class="btn btn-danger live_chat_button">Live chat</button>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

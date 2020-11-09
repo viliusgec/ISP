@@ -11,5 +11,31 @@
     right: 5%;
 }
 .split_picture_thingy{
-    size: 50px;
+    width: 7%;
+    position: relative;
 }
+.logo{
+    height: 3%;
+    width: 3%;
+    border-radius: 25%;
+}
+.row{
+    justify-content: center;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 10% 10% 10%;
+    background-color: #bdbdbd;
+    padding: 10px;
+   align-self: center;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 10px;
+    outline: 1px;
+  }
+  
