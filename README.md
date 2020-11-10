@@ -1,2 +1,2 @@
-# ISP
-Vilius yra ne mldc
+# Informacinių sistemų pagrindai
+Vairavimo mokyklos informacinė sistema
