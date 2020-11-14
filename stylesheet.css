@@ -38,4 +38,16 @@
     border-radius: 10px;
     outline: 1px;
   }
+a.button {
+    padding: 20px;
+    color: black;
+     border: 1px solid rgba(0, 0, 0, 0.8);
+
+    background-color: #008CBA;;
+   
+   
+    border-radius: 10px;
   
+    font-weight: bold;
+    line-height: 25px;
+}
