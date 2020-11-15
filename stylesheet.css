@@ -51,3 +51,9 @@ a.button {
     font-weight: bold;
     line-height: 25px;
 }
+.shorter {
+    width: 40%;
+}
+.shorterEdit {
+    width: 20%;
+}
