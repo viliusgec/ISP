@@ -149,72 +149,44 @@ input[type=submit]:hover {
       <option value="mercedes">C</option>
       <option value="audi">D</option>
     </select>
-   
 
-  </div>
-  <div class="formArea">
-  <table id="customers">
-  <tr>
-    <th>Laikas</th>
-    <th>Pirmadienis</th>
-    <th>Antradienis</th>
-    <th>Treciadienis</th>
-    <th>Ketvirtadienis</th>
-    <th>Penktadienis</th>
-  </tr>
-  <tr>
-    <td>9:00</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-  </tr>
-  <tr>
-    <td>10:00</td>
-    <td>Teorija</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-  </tr>
-  <tr>
-    <td>11:00</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-  </tr>
-  <tr>
-    <td>11:00</td>
-    <td>Nera</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Nera</td>
-    <td>Teorija</td>
-  </tr>
-  <tr>
-     <td>12:00</td>
-     <td>Nera</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Nera</td>
-    <td>Teorija</td>
-      </tr>
-  <tr>
-    <td>13:00</td>
-     <td>Nera</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Nera</td>
-    <td>Teorija</td>
-  </tr>
- 
-</table>
+  <br><br>    
+  
+  <label for="cars">Pasirinkite savaitės dieną:</label>
 
-<br><a href="CalendarEdit.php"><input type="button" name="submit" value="Redaguoti"></input></a>
+<select name="cars" id="cars">
+  <option value="volvo">Pirmadienis</option>
+  <option value="saab">Antradienis</option>
+  <option value="mercedes">Trečiadienis</option>
+  <option value="audi">Ketvirtadienis</option>
+  <option value="civic">Penktadienis</option>
+</select>
 
+<br><br>  
+
+<label for="cars">Pasirinkite laiką:</label>
+
+<select name="cars" id="cars">
+  <option value="volvo">9:00</option>
+  <option value="saab">10:00</option>
+  <option value="mercedes">11:00</option>
+  <option value="audi">12:00</option>
+  <option value="civic">14:00</option>
+</select>
+
+<br><br>  
+
+<label for="cars">Pasirinkite paskaitą:</label>
+
+<select name="cars" id="cars">
+  <option value="volvo">Nėra</option>
+  <option value="saab">Teorinė</option>
+  <option value="mercedes">Praktinė</option>
+</select>
+<br><br>
+<input type="button" name="yra" value="Patvirtinti"></input>
+
+</div>
 </div>
 
 

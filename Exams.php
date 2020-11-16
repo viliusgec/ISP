@@ -4,73 +4,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-</style>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
-    <link rel="stylesheet" href="stylesheet.css">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>VM</title>
-    <style>
 
-input[type=text], select {
-  width: 20%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
-  width: 20%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-
-  background-color: #45a049;
-}
-
-.formArea {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-</style>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
-  </head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <img src="kissclipart-pixel-art-cars-png-clipart-pixel-car-racer-sports-c97f6477a5e2d075.jpg" class="logo">
@@ -137,88 +82,17 @@ input[type=submit]:hover {
     </div>
   </nav>
  
-  <div class="jumbotron text-center">
-    <h1>Tvarkarastis</h1>
-    <br>
-
-    <label for="cars">Pasirinkite grupę:</label>
-
-    <select name="cars" id="cars">
-      <option value="volvo">A</option>
-      <option value="saab">B</option>
-      <option value="mercedes">C</option>
-      <option value="audi">D</option>
-    </select>
+  <div class="jumbotron text-center animate__animated animate__fadeIn">
+    <h1>Jūsų egzaminai:</h1>
+    <p>Teorinis: data</p>
+    <p>Praktinis: data</p>
+    <h1>Jūsų pamokos:</h1>
+    <p>Teorinė: nėra</p>
+    <p>Praktinė: data</p>
    
 
   </div>
-  <div class="formArea">
-  <table id="customers">
-  <tr>
-    <th>Laikas</th>
-    <th>Pirmadienis</th>
-    <th>Antradienis</th>
-    <th>Treciadienis</th>
-    <th>Ketvirtadienis</th>
-    <th>Penktadienis</th>
-  </tr>
-  <tr>
-    <td>9:00</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-  </tr>
-  <tr>
-    <td>10:00</td>
-    <td>Teorija</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-    <td>Vairavimas</td>
-  </tr>
-  <tr>
-    <td>11:00</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-  </tr>
-  <tr>
-    <td>11:00</td>
-    <td>Nera</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Nera</td>
-    <td>Teorija</td>
-  </tr>
-  <tr>
-     <td>12:00</td>
-     <td>Nera</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Nera</td>
-    <td>Teorija</td>
-      </tr>
-  <tr>
-    <td>13:00</td>
-     <td>Nera</td>
-    <td>Teorija</td>
-    <td>Teorija</td>
-    <td>Nera</td>
-    <td>Teorija</td>
-  </tr>
  
-</table>
-
-<br><a href="CalendarEdit.php"><input type="button" name="submit" value="Redaguoti"></input></a>
-
-</div>
-
-
-
   
   <button type="button" class="btn btn-danger live_chat_button">Live chat</button>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
