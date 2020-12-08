@@ -208,28 +208,48 @@ session_start();
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <!-- Registracija -->
+      <form method="post" action="php_control/register.php">
       <div class="modal-body mx-3">
-        <div class="md-form mb-5">
+        <div class="md-form mb-4">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="defaultForm-email" class="form-control validate">
+          <input type="word" id="defaultForm-word" name="vardas" class="form-control">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Vardas</label>
+        </div>
+        <div class="md-form mb-4">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="word" id="defaultForm-word" name="pavarde" class="form-control">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Pavardė</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="defaultForm-email" name="epastas" class="form-control validate">
           <label data-error="wrong" data-success="right" for="defaultForm-email">Jūsų e.paštas</label>
         </div>
 
         <div class="md-form mb-4">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="number" id="defaultForm-number" name="asmenskodas" class="form-control">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Asmens kodas</label>
+        </div>
+        <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" class="form-control validate">
+          <input type="password" id="defaultForm-pass" name="slaptazodis1" class="form-control validate">
           <label data-error="wrong" data-success="right" for="defaultForm-pass">Jūsų slaptažodis</label>
         </div>
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-pass">Pakartokite slaptažodį</label>
+          <input type="password" id="defaultForm-pass" name="slaptazodis2" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Pakartokite slaptažodį(db sitas nieko nedaro)</label>
         </div>
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-default">Registruotis</button>
+        <button type="submit" class="btn btn-default">Registruotis</button>
       </div>
+      </form>
+
       <div class="modal-footer d-flex justify-content-center">
         <a
                 href=""

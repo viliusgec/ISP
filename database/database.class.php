@@ -16,6 +16,13 @@ class database {
         return $conn;
     }
 
+    public function register($conn, $name, $surname, $id, $email, $pass)
+    {
+        $sql = "  INSERT INTO asmuo (vardas, pavarde, el_pastas, slaptazodis, asmens_kodas, role)
+        VALUES ('$name', '$surname', '$email', '$pass', '$id', 'klientas')";
+        $conn->query($sql);
+    }
+
     
     public function logIn($conn, $user, $pass) {
         $sql = "  SELECT *

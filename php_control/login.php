@@ -5,9 +5,6 @@ if((isset($_POST['epastas'])) && !empty($_POST['epastas']))
 {
     $email = $_POST['epastas'];
     $passw = $_POST['slaptazodis'];
-    echo $email;
-    echo $passw;
-    echo "--------";
     $conn = $databaseObj->connect();
     $data = $databaseObj->logIn($conn, $email, $passw);
     $data = $data->fetch_assoc();
@@ -17,7 +14,6 @@ if((isset($_POST['epastas'])) && !empty($_POST['epastas']))
         $_SESSION['vardas'] = $data['vardas'];
         $_SESSION['role'] = $data['role'];
         $_SESSION['userID'] = $data['asmens_kodas'];
-        echo $_SESSION['role'];
         header('Location: ../index.php');
     }
         
