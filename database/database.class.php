@@ -16,13 +16,30 @@ class database {
         return $conn;
     }
 
-    public function register($conn, $name, $surname, $id, $email, $pass)
+    public function register($conn, $name, $surname, $id, $email, $pass, $hash)
     {
-        $sql = "  INSERT INTO asmuo (vardas, pavarde, el_pastas, slaptazodis, asmens_kodas, role)
-        VALUES ('$name', '$surname', '$email', '$pass', '$id', 'klientas')";
+        $sql = "  INSERT INTO asmuo (vardas, pavarde, el_pastas, slaptazodis, asmens_kodas, role, tokenas)
+        VALUES ('$name', '$surname', '$email', '$pass', '$id', 'klientas', '$hash')";
         $conn->query($sql);
     }
 
+    public function checkToken($conn, $email, $hash)
+    {
+        $sql = "  SELECT *
+            FROM asmuo
+            WHERE el_pastas='$email'
+            AND tokenas='$hash'";
+        $data = $conn->query($sql);
+        return $data;
+    }
+
+    public function verify($conn, $email)
+    {
+        $sql = "  UPDATE asmuo
+            SET Ar_aktyvuotas='1'
+            WHERE el_pastas='$email'";
+        $conn->query($sql);
+    }
     
     public function logIn($conn, $user, $pass) {
         $sql = "  SELECT *

@@ -16,7 +16,6 @@ if((isset($_POST['epastas'])) && !empty($_POST['epastas']))
         $_SESSION['userID'] = $data['asmens_kodas'];
         header('Location: ../index.php');
     }
-        
     else echo "bad loginas - reiktu kazkaip permest atgal login lauka bet nemoku su tuo pop up langu";
 }
 ?>
