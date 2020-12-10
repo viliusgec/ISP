@@ -1,7 +1,5 @@
 <?php 
 session_start();
-// session_unset();
-// $_SESSION["vardas"] = "yra";
  ?>
 <!doctype html>
 <html lang="en">
@@ -137,13 +135,6 @@ session_start();
               echo "<a href='php_control/logOut.php' class='btn btn-default btn-rounded mb-4'>Atsijungti</a>";
             }
             ?>
-              <!-- <a
-                href=""
-                class="btn btn-default btn-rounded mb-4"
-                data-toggle="modal"
-                data-target="#modalLoginForm"
-                >Prisijungti</a
-              > -->
             </div>
           </li>
         </ul>
@@ -178,10 +169,8 @@ session_start();
       <!-- Prisijungimo mygtukas -->
       
       <div class="modal-footer d-flex justify-content-center">
-      <!-- <form method="post" action="php_control/login.php"> -->
         <button type="submit" class="btn btn-default">Prisijungti</button>
       </form>
-        <!-- <button href="php_control/login.php" class="btn btn-default">Prisijungti</button> -->
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <a

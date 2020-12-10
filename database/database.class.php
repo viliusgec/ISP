@@ -40,6 +40,16 @@ class database {
             WHERE el_pastas='$email'";
         $conn->query($sql);
     }
+
+    public function checkEmail($conn, $email)
+    {
+        $sql = "  SELECT *
+            FROM asmuo
+            WHERE el_pastas='$email'";
+        $data = $conn->query($sql);
+        $data = $data->fetch_assoc();
+        return $data;
+    }
     
     public function logIn($conn, $user, $pass) {
         $sql = "  SELECT *
