@@ -5,7 +5,7 @@ include("main_bar.html");
   </nav>
  
   <div class="jumbotron text-center animate__animated animate__fadeIn">
-    <h1>Įveskite naujus profilio duomenis:</h1>
+    <h1>Įkelkite savo nuotrauką</h1>
     
   <?php echo "" . $_SESSION['message_photo']; ?>
     <form action="upload.php" method="post" enctype="multipart/form-data">

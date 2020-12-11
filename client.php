@@ -20,7 +20,7 @@ $_SESSION['message_photo'] = "";
     <br>
 
     <a href="photoUpload.php" class="btn btn-outline-info">Nuotraukos įkėlimas</a>
-    <a href="userdata.html" class="btn btn-outline-info">Jūsų duomenys</a>
+    <a href="userdata.php" class="btn btn-outline-info">Jūsų duomenys</a>
     <a href="userConfirmation.html" class="btn btn-outline-info">Jūsų veikla</a>
     <a href="emailConfirmationUser.html" class="btn btn-outline-info">El. Pašto tvirtinimas</a>
     <a href="Exams.php" class="btn btn-outline-info">Jūsų registracijos</a>
