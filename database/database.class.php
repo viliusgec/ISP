@@ -1,18 +1,24 @@
 <?php
 class database {
-    private $servername = 'localhost';
-    private $username = 'root';
-    private $password = '';
-    private $database = 'vairavimo_kursai';
+    // private $servername = 'localhost';
+    // private $username = 'root';
+    // private $password = '';
+    // private $database = 'vairavimo_kursai';
     
     public function connect()
     {
+        
+    $servername = 'localhost';
+    $username = 'root';
+    $password = '';
+    $database = 'vairavimo_kursai';
+    
         //kazka cia keist reik nes ne taip turi but
-        $conn = new mysqli('localhost', 'root', '', 'vairavimo_kursai');
+        $conn = new mysqli($servername, $username, $password, $database);
         if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
         }
-        echo "Connected successfully";
+        // echo "Connected successfully"; <- neprintinam, nes kitaip išvedinėja į ekraną srr
         return $conn;
     }
 
@@ -58,6 +64,22 @@ class database {
                     AND slaptazodis='$pass'";
         $data = $conn->query($sql);
         return $data;
+    }
+
+    public function checkIfVerified($conn, $email)
+    {
+        $aktyvuotas = 3;
+        $sql = " SELECT *
+            FROM asmuo
+            WHERE el_pastas='$email'";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+        $aktyvuotas = $row['Ar_aktyvuotas'];
+        }
+        if ($aktyvuotas == 0)
+            return 0;
+        else
+            return 1;
     }
 }
 
