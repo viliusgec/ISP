@@ -1,147 +1,9 @@
 <?php 
 session_start();
+include("main_bar.html");
  ?>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>VM</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <img
-        src="kissclipart-pixel-art-cars-png-clipart-pixel-car-racer-sports-c97f6477a5e2d075.jpg"
-        class="logo"
-      />
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >Pagrindinis <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <div class="dropdown show">
-              <a
-                class="btn btn-secondary dropdown-toggle"
-                href="#"
-                role="button"
-                id="dropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Mokymai
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-header">Mūsų siūlomos paslaugos</a>
-                <a class="dropdown-item" href="clientTheoryClass.html"
-                  >Teorines pamokos</a
-                >
-                <a class="dropdown-item" href="clientDrivingClass.html"
-                  >Vairavimo pamokos</a
-                >
-                <a class="dropdown-item" href="clientTheoryExam.html"
-                  >Teorijos egzaminas</a
-                >
-                <a class="dropdown-item" href="clientDrivingExam.html"
-                  >Praktinis egzaminas</a
-                >
-              </div>
-            </div>
-          </li>
-    
-          <li class="nav-item">
-            <a class="nav-link" href="#">Kainos</a>
-          </li>
-          <li class="nav-item">
-            <div class="dropdown show">
-              <a
-                class="btn btn-secondary dropdown-toggle"
-                href="#"
-                role="button"
-                id="dropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Paslaugos
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-header">Papildomos paslaugos</a>
-                <a class="dropdown-item" href="#">Autoserviso paslaugos</a>
-                <a class="dropdown-item" href="#">Ket knygelės pardavimas</a>
-                <a class="dropdown-item" href="#"
-                  >Įgudžių tobūlinimas su simuliatoriumi</a
-                >
-                <a class="dropdown-item" href="#">Mokomosios aikštelės nuoma</a>
-                <a class="dropdown-item" href="#"
-                  >Vairavimo testavimasŽinstruktoriaus dalyvavimas vį "REGITRA"
-                  egzamine</a
-                >
-                <a class="dropdown-item" href="#"
-                  >Transporto nuoma egzaminams vį "REGITRA"</a
-                >
-              </div>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="aboutus.html">Apie mus</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="admin.html">Administratorius</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="worker.html">Darbuotojo profilis</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="client.html">Kliento profilis</a>
-          </li>
-          <li class="nav-item">
-            <div class="text-center">
-            <!-- sutvarkyti kad nebeliktu login prisijungus ir rodytu varda -->
-            <?php 
-            if(empty($_SESSION["vardas"]))
-            {
-              echo "<a
-              class='btn btn-default btn-rounded mb-4'
-              data-toggle='modal'
-              data-target='#modalLoginForm'
-              >Prisijungti</a
-            >";
-            }
-            else 
-            {
-              echo "<a class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
-              echo "<a href='php_control/logOut.php' class='btn btn-default btn-rounded mb-4'>Atsijungti</a>";
-            }
-            ?>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div w3-include-html="navbar.html"></div>
-  <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -151,6 +13,7 @@ session_start();
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
 
       <form method="post" action="php_control/login.php">
       <div class="modal-body mx-3">
