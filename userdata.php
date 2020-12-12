@@ -3,6 +3,13 @@ session_start();
 include("main_bar.html");
 ?>
   </nav>
+
+  <style>
+  #aaa{
+    color: red;
+    text-align: left;
+  }
+  </style>
  
   <div class="jumbotron text-center animate__animated animate__fadeIn">
     <h2>Įveskite duomenis, kuriuos norite redaguoti:</h2>
@@ -20,19 +27,20 @@ include("main_bar.html");
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control" id="slaptazodis" placeholder="Įveskite naują slaptažodį:">
+        <input type="text" class="form-control" id="slaptazodis1" placeholder="Įveskite naują slaptažodį:">
       </div>
-    Šitas neveikia:
       <div class="form-group">
-        <input type="text" class="form-control" id="slaptazodis" placeholder="Pakartokite naują slaptažodį:">
+        <input type="text" class="form-control" id="slaptazodis2" placeholder="Pakartokite naują slaptažodį:">
       </div>
-
+    <p id=aaa></p>
       <div class="form-group">
         <input type="number" class="form-control" id="asmens_kodas" placeholder="Įveskite naują asmens kodą:">
       </div>
-      <input type="submit" class="btn btn-outline-danger" value="Patvirtinti"></input>
+      <input type="submit" class="btn btn-outline-danger" id="submit" value="Patvirtinti"></input>
     </form>
   </div>
+
+  <script src="JavaScripts/PasswordChecker.js"></script>
  
  <?php 
 include("button.html");  
