@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2020 at 09:58 PM
+-- Generation Time: Dec 12, 2020 at 06:30 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -103,10 +103,24 @@ CREATE TABLE `egzaminas` (
 
 CREATE TABLE `grupe` (
   `pavadinimas` varchar(50) NOT NULL,
-  `fk_klientas_id` int(30) NOT NULL,
-  `fk_tvarkarascio_id` int(30) NOT NULL,
-  `fk_kursai_id` int(30) NOT NULL
+  `fk_kursai_id` int(30) NOT NULL,
+  `fk_darbuotojo_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `numatyta_data` int(11) NOT NULL,
+  `vietu_kiekis` int(11) NOT NULL,
+  `numatyta_data_iki` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grupes_nariai`
+--
+
+CREATE TABLE `grupes_nariai` (
+  `fk_klientas` int(11) NOT NULL,
+  `fk_grupes_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -145,9 +159,6 @@ CREATE TABLE `klientas` (
 CREATE TABLE `kursai` (
   `id` int(30) NOT NULL,
   `pavadinimas` varchar(50) NOT NULL,
-  `pradzia` date NOT NULL,
-  `pabaiga` date NOT NULL,
-  `susidare` tinyint(1) NOT NULL,
   `tipas` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -178,14 +189,10 @@ INSERT INTO `nuotraukos` (`location`, `vartotojo_id`, `busena`) VALUES
 
 CREATE TABLE `pamoka` (
   `id` int(20) NOT NULL,
-  `tipas` varchar(20) NOT NULL,
-  `pavadinimas` varchar(20) NOT NULL,
-  `laikas` datetime NOT NULL,
-  `automobilio_nr` varchar(20) DEFAULT NULL,
-  `trukme` datetime DEFAULT NULL,
-  `marsrutas` int(20) DEFAULT NULL,
-  `fk_darbuotojas_tabelio_nr` int(11) NOT NULL,
-  `fk_tvarkarastis_id` int(20) NOT NULL
+  `laikas` varchar(20) NOT NULL,
+  `trukme` varchar(20) DEFAULT NULL,
+  `fk_grupes_id` int(20) NOT NULL,
+  `diena` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -245,26 +252,12 @@ CREATE TABLE `sutarties_busenos` (
 CREATE TABLE `sutartis` (
   `nr` int(11) NOT NULL,
   `sudaryta` datetime NOT NULL,
-  `galioja_iki` datetime NOT NULL,
   `kaina` float NOT NULL,
   `busena` int(11) NOT NULL,
   `fk_klientas` int(11) NOT NULL,
   `fk_darbuotojas` int(11) NOT NULL,
   `fk_kursai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tvarkarastis`
---
-
-CREATE TABLE `tvarkarastis` (
-  `id` int(20) NOT NULL,
-  `savaites_diena` varchar(20) NOT NULL,
-  `data` date NOT NULL,
-  `fk_grupes_id` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -290,6 +283,12 @@ ALTER TABLE `darbuotojas`
   ADD PRIMARY KEY (`tabelio_nr`),
   ADD KEY `fk_pareigos` (`pareigos`),
   ADD KEY `fk_asmuo` (`fk_asmuo`);
+
+--
+-- Indexes for table `grupe`
+--
+ALTER TABLE `grupe`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `klientas`
@@ -343,6 +342,12 @@ ALTER TABLE `sutartis`
 --
 ALTER TABLE `darbuotojas`
   MODIFY `tabelio_nr` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `grupe`
+--
+ALTER TABLE `grupe`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `klientas`
