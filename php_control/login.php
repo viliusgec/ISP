@@ -12,7 +12,9 @@ if((isset($_POST['epastas'])) && !empty($_POST['epastas']))
     {
         session_start();
         $_SESSION['vardas'] = $data['vardas'];
+        $_SESSION['pavarde'] = $data['pavarde'];
         $_SESSION['epastas'] = $data['epastas'];
+        $_SESSION['slaptazodis'] = $data['slaptazodis'];
         $_SESSION['role'] = $data['role'];
         $_SESSION['userID'] = $data['asmens_kodas'];
         header('Location: ../index.php');
