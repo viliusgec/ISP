@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2020 at 06:30 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Generation Time: Dec 14, 2020 at 07:59 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,20 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `vairavimo_kursai`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `administratorius`
---
-
-CREATE TABLE `administratorius` (
-  `vardas` varchar(20) NOT NULL,
-  `pavarde` varchar(20) NOT NULL,
-  `el_pastas` varchar(20) NOT NULL,
-  `slaptazodis` varchar(20) NOT NULL,
-  `asmens_kodas` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -63,7 +49,7 @@ INSERT INTO `asmuo` (`vardas`, `pavarde`, `el_pastas`, `slaptazodis`, `asmens_ko
 ('qwe', 'qwe', 'p@p.t', '123', '1234123', 'klientas', '', 0, 0),
 ('qwe', 'qwe', 'p@ap.t', '123', '12341232', 'klientas', '', 0, 0),
 ('tt', 'rr', 't@t.t', '123', '12345', 'klientas', '', 0, 0),
-('erikas', 'mldc', 'zaidimamms@gmail.com', 'ą23', '32323', 'klientas', '67d96d458abdef21792e6d8e590244e7', 0, 0),
+('erikas', 'mldc', 'zaidimamms@gmail.com', 'ą23', '32323', 'klientas', '67d96d458abdef21792e6d8e590244e7', 1, 1),
 ('Vilius', 'gec', 'gecas97@gmail.com', '123', '5002', 'klientas', '8c7bbbba95c1025975e548cee86dfadc', 1, 0),
 ('Mantas', 'Mantas', 'Mantas@mantas.mantas', '123', '777777', 'klientas', '', 0, 0);
 
@@ -76,7 +62,7 @@ INSERT INTO `asmuo` (`vardas`, `pavarde`, `el_pastas`, `slaptazodis`, `asmens_ko
 CREATE TABLE `darbuotojas` (
   `tabelio_nr` int(11) NOT NULL,
   `dirba_nuo` datetime NOT NULL,
-  `pareigos` int(11) NOT NULL,
+  `pareigos` varchar(50) NOT NULL,
   `fk_asmuo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -159,7 +145,8 @@ CREATE TABLE `klientas` (
 CREATE TABLE `kursai` (
   `id` int(30) NOT NULL,
   `pavadinimas` varchar(50) NOT NULL,
-  `tipas` varchar(20) NOT NULL
+  `tipas` varchar(20) NOT NULL,
+  `kaina` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -179,6 +166,7 @@ CREATE TABLE `nuotraukos` (
 --
 
 INSERT INTO `nuotraukos` (`location`, `vartotojo_id`, `busena`) VALUES
+('./uploads/32323nuostabus-pauksciai-foto-2493.jpg', '32323', 0),
 ('./uploads/32323nuostabus-pauksciai-foto-2493.jpg', '32323', 0);
 
 -- --------------------------------------------------------
@@ -252,7 +240,6 @@ CREATE TABLE `sutarties_busenos` (
 CREATE TABLE `sutartis` (
   `nr` int(11) NOT NULL,
   `sudaryta` datetime NOT NULL,
-  `kaina` float NOT NULL,
   `busena` int(11) NOT NULL,
   `fk_klientas` int(11) NOT NULL,
   `fk_darbuotojas` int(11) NOT NULL,
@@ -262,12 +249,6 @@ CREATE TABLE `sutartis` (
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `administratorius`
---
-ALTER TABLE `administratorius`
-  ADD PRIMARY KEY (`el_pastas`);
 
 --
 -- Indexes for table `asmuo`
@@ -393,8 +374,7 @@ ALTER TABLE `sutartis`
 -- Constraints for table `darbuotojas`
 --
 ALTER TABLE `darbuotojas`
-  ADD CONSTRAINT `darbuotojas_ibfk_1` FOREIGN KEY (`fk_asmuo`) REFERENCES `asmuo` (`asmens_kodas`),
-  ADD CONSTRAINT `darbuotojas_ibfk_2` FOREIGN KEY (`pareigos`) REFERENCES `pareigos` (`id`);
+  ADD CONSTRAINT `darbuotojas_ibfk_1` FOREIGN KEY (`fk_asmuo`) REFERENCES `asmuo` (`asmens_kodas`);
 
 --
 -- Constraints for table `klientas`
