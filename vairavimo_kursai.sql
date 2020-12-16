@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2020 at 07:59 PM
+-- Generation Time: Dec 16, 2020 at 05:00 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -65,6 +65,13 @@ CREATE TABLE `darbuotojas` (
   `pareigos` varchar(50) NOT NULL,
   `fk_asmuo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `darbuotojas`
+--
+
+INSERT INTO `darbuotojas` (`tabelio_nr`, `dirba_nuo`, `pareigos`, `fk_asmuo`) VALUES
+(1, '2020-12-08 17:56:27', 'teorijos', '32323');
 
 -- --------------------------------------------------------
 
@@ -269,7 +276,9 @@ ALTER TABLE `darbuotojas`
 -- Indexes for table `grupe`
 --
 ALTER TABLE `grupe`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_kursai_id` (`fk_kursai_id`),
+  ADD KEY `fk_darbuotojo_id` (`fk_darbuotojo_id`);
 
 --
 -- Indexes for table `klientas`
@@ -277,6 +286,18 @@ ALTER TABLE `grupe`
 ALTER TABLE `klientas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_asmuo` (`fk_asmuo`);
+
+--
+-- Indexes for table `kursai`
+--
+ALTER TABLE `kursai`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pamoka`
+--
+ALTER TABLE `pamoka`
+  ADD KEY `fk_grupes_id` (`fk_grupes_id`);
 
 --
 -- Indexes for table `pareigos`
@@ -322,7 +343,7 @@ ALTER TABLE `sutartis`
 -- AUTO_INCREMENT for table `darbuotojas`
 --
 ALTER TABLE `darbuotojas`
-  MODIFY `tabelio_nr` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tabelio_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `grupe`
@@ -335,6 +356,12 @@ ALTER TABLE `grupe`
 --
 ALTER TABLE `klientas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `kursai`
+--
+ALTER TABLE `kursai`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pareigos`
@@ -377,10 +404,23 @@ ALTER TABLE `darbuotojas`
   ADD CONSTRAINT `darbuotojas_ibfk_1` FOREIGN KEY (`fk_asmuo`) REFERENCES `asmuo` (`asmens_kodas`);
 
 --
+-- Constraints for table `grupe`
+--
+ALTER TABLE `grupe`
+  ADD CONSTRAINT `grupe_ibfk_1` FOREIGN KEY (`fk_kursai_id`) REFERENCES `kursai` (`id`),
+  ADD CONSTRAINT `grupe_ibfk_2` FOREIGN KEY (`fk_darbuotojo_id`) REFERENCES `darbuotojas` (`tabelio_nr`);
+
+--
 -- Constraints for table `klientas`
 --
 ALTER TABLE `klientas`
   ADD CONSTRAINT `klientas_ibfk_1` FOREIGN KEY (`fk_asmuo`) REFERENCES `asmuo` (`asmens_kodas`);
+
+--
+-- Constraints for table `pamoka`
+--
+ALTER TABLE `pamoka`
+  ADD CONSTRAINT `pamoka_ibfk_1` FOREIGN KEY (`fk_grupes_id`) REFERENCES `grupe` (`id`);
 
 --
 -- Constraints for table `rezervacija`
