@@ -13,10 +13,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>VM</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../stylesheet.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+  
     <style>
 
 input[type=text] {
-  width: 5%;
+  width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=number] {
+  width: 10%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -25,6 +40,15 @@ input[type=text] {
   box-sizing: border-box;
 }
 select {
+    width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+data {
     width: 15%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -56,9 +80,14 @@ input[type=submit]:hover {
 }
 </style>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../stylesheet.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+    </script>
   </head>
   <body>
    
@@ -67,32 +96,57 @@ input[type=submit]:hover {
     <h1>Naujos grupes sukurimas</h1>
     <br>
 
-
+<?php 
+  if(isset($_GET['Message'])){
+    echo $_GET['Message'];
+}
+?>
    
 
   </div>
  <div class="formArea">
   
-    
 
- <?php echo "" . $_SESSION['message_photo']; ?>
+
+ 
     <form action="createGroup.php" method="post" enctype="multipart/form-data">
-        <label for="instructor">Vedantis intruktorius</label>
-        <select id="instructor" name="instructor">
-        <option value="tomas">Tomas</option>
-        <option value="ignas">Ignas</option>
-        <option value="jonas">Jonas</option>
-         </select>
-         <br>
-         <label for="group">Kurso tipas</label>
-         <select id="group" name="group">
-        <option value="teorijos">Teorijos</option>
-        <option value="praktikos">Praktikos</option>
-        </select>
+    <label for="name">Grupės pavadinimas</label>
+        <input type="text" id="name" name="name" class="form-control width">
         <br>
-        <label for="defaultForm-word">Grupės dydis</label>
-        <input type="text" id="defaultForm-word" name="vardas" class="form-control width">
-    
+    <?php
+
+       $dataInstructor =  $databaseObj->getTheoryInstructors($conn);
+         echo  "<label for='instructor'>Vedantis intruktorius</label>";
+        echo "<select id = 'instructor' name='instructor'>";
+        while ($row = $dataInstructor->fetch_assoc()) {
+                      unset($asmens_kodas,$name);
+                      $asmens_kodas = $row['tabelio_nr'];
+                      $name = $row['vardas']; 
+                      echo '<option value="'.$asmens_kodas.'">'.$name.'</option>';
+        }
+        echo "</select>";
+        echo "<br>";
+
+        $dataCourse =  $databaseObj->getCourses($conn);
+         echo  "<label for='course'>Kursai</label>";
+        echo "<select id = 'course' name='course'>";
+        while ($row = $dataCourse->fetch_assoc()) {
+                      unset($id,$name,$tipas);
+                      $id = $row['id'];
+                      $name = $row['pavadinimas']; 
+                      $type = $row['tipas'];
+                      echo '<option value="'.$id.'">'.$name.' - '.$type.'</option>';
+        }
+        echo "</select>";
+  
+      
+     
+    ?> 
+        <p>Data: <input type='text' class ='datepicker' name= 'date' id='datepicker'></p>
+      
+        <label for="group">Grupės dydis</label>
+        <input type="number" id="group" name="group" class="form-control width">
+        <br>
         
         <input class="btn btn-outline-dark" type="submit" value="Sukurti grupę" name="submit">
       </form>
@@ -100,9 +154,6 @@ input[type=submit]:hover {
 </div>
 
   
-  <button type="button" class="btn btn-danger live_chat_button">Live chat</button>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
   </body>
 </html>

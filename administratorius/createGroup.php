@@ -1,33 +1,55 @@
 <?php
-
-session_start();
-include("database/database.class.php");
+include '../database/database.class.php';
 $databaseObj = new database();
-$conn = $databaseObj->connect();
+if((isset($_POST['group'])) && !empty($_POST['group']))
+{
+  
+    $name = $_POST['name'];
+    $instructor = $_POST['instructor'];
+    $course = $_POST['course'];
+    $startDate = $_POST['date'];
+    $groupSize = $_POST['group'];
+    if ($groupSize <= 10){
+      header('Location: newGroup.php?Message= Prasome ivesti grupes dydi ivesti didesni nei 10');
+      exit();
+    }
+    $add_date = date("Y-m-d"); 
+    $endDate = new DateTime($startDate);
+     $endDate ->modify("+60 days");
+    $endDate = $endDate ->format("Y-m-d"); 
+   # $hash = md5( rand(0,1000) );
+    $conn = $databaseObj->connect();
+    $data = $databaseObj->makeGroup($conn, $name, $course, $instructor, $startDate, $groupSize, $endDate );
 
-if ($_FILES['fileToUpload']['size']>1048576) {
-  $_SESSION['message_photo'] = "<h3 style='color: red'>Nuotraukos sveria per daug</h3>";
-  header("Location: photoUpload.php");
-  die(); 
-}
-$user = $_SESSION['userID'];
-$photo = "./uploads/" . $user . $_FILES['fileToUpload']['name'];
-
-// galima padaryti, kad neleistų du kart įkelt nuotraukos tam pačiam useriui
-// kol neatmetė senos foto
-// ir dar padaryti, kad neleistų kelti nuotraukos, jeigu jau patvirtinta nuotrauka
-if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $photo)) {
-  $_SESSION['message_photo'] = "<h3 style='color: green'>Nuotrauka įkelta sėkmingai</h3>"; 
-   $sql = "INSERT INTO `nuotraukos` (`location`, `vartotojo_id`, `busena`)
-   VALUES ('$photo', '$user', '0')";
-        if ($conn->query($sql) === TRUE) {
-          echo "New record created successfully";
+    //Get newest group 
+    $latestGroup =  $databaseObj->getLatestGroup($conn);
+    while ($row = $latestGroup->fetch_assoc()) {
+     
+      echo $row['id'];
+      echo $row['tipas'];
+      for ($i = 0; $i < 2; $i++){
+        if ($i == 0){
+          $day = 'Pirmadienis';
         } else {
-          echo "Error: " . $sql . "<br>" . $conn->error;
+          $day = 'Treciadienis';
         }
-  header("Location: photoUpload.php");
-} else {
-  $_SESSION['message_photo'] = "<h3 style='color: red'>Nuotrauka neįkelta</h3>"; 
-}
+        if ($row['tipas'] == 'rytinis'){
+          $time = '09:00';
+        } else {
+          $time = '18:00';
+        }
+        $howLong = '2 Valandas';
+        $data = $databaseObj->makeLesson($conn, $time, $howLong, $row['id'], $day);
+      }
+ 
+  }
 
+    
+    header('Location: newGroup.php?Message=Nauja grupė sekmingai sukurta');
+}
+else {
+
+
+  header('Location: newGroup.php?Message=Prasome pasirinkti pavadinima, data arba grupes dydi');
+}
 ?>
