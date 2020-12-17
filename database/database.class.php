@@ -97,16 +97,64 @@ class database {
             return 1;
     }
 
-
-    public function changePassword($conn, $pass, $email)
+    public function getTheoryInstructors($conn)
     {
-        $sql = "  UPDATE asmuo
-            SET slaptazodis='$pass'
-            WHERE el_pastas='$email'";
-        $conn->query($sql);
+        $sql = " SELECT * FROM darbuotojas
+        LEFT JOIN asmuo 
+        ON darbuotojas.fk_asmuo = asmuo.asmens_kodas 
+        WHERE darbuotojas.pareigos = 'teorijos'
+        ";
+        $data = $conn->query($sql);
+        return $data;
+    }
+
+    public function getCourses($conn)
+    {
+        $sql = " SELECT * FROM kursai
+        ";
+         $data = $conn->query($sql);
+         return $data;
+    }
+
+    public function makeGroup($conn, $name, $course, $instructor, $startDate, $groupSize, $endDate) 
+    {   
+        $dateStartConvert = strtotime($startDate);
+        $dateEndConvert = strtotime($endDate);
+
+        $startDate = date('Y-m-d',$dateStartConvert);
+        $endDate = date('Y-m-d',$dateEndConvert);
+
+        //Sitas current date tai, kad galeciau automatiskai pridet nauja pamoka, bet norint pridet nauja
+        //pamoka tai reikia tureti grupes id tai tiesiog padarysiu, kad kai automatiskai prideda nauja pamoka
+        //tai surikiuoti grupes pagal kada sukurta ir pacia pirma naujausia iterptu i pamokas
+        $currentDate = date('Y-m-d H:i:s');
+ 
+        $sql = "  INSERT INTO grupe (pavadinimas, fk_kursai_id, fk_darbuotojo_id, numatyta_data, vietu_kiekis, numatyta_data_iki, grupe_sukurta)
+        VALUES ('$name', '$course', '$instructor', '$startDate', '$groupSize', '$endDate', '$currentDate')";
+      
+         $conn->query($sql);
+    }
+    
+    public function getLatestGroup($conn)
+    {
+        $sql = "SELECT * FROM kursai
+        RIGHT JOIN grupe
+        ON grupe.fk_kursai_id = kursai.id
+        ORDER BY grupe.grupe_sukurta DESC
+        LIMIT 1";
+
+        $data = $conn->query($sql);
+        
+        return $data;
+    }
+
+    public function makeLesson($conn, $time, $howLong, $groupId, $day)
+    {
+        $sql = "  INSERT INTO pamoka (laikas, trukme, fk_grupes_id, diena)
+        VALUES ('$time', '$howLong', '$groupId', '$day')";
+      
+         $conn->query($sql);
     }
 }
-
-
 
 ?>
