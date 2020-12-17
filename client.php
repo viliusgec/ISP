@@ -6,7 +6,7 @@ $_SESSION['message_photo'] = "";
 
  $databaseObj = new database(); 
  $conn = $databaseObj->connect();
-  if ($databaseObj->checkIfVerified($conn, $_SESSION['epastas']) == 0) {
+  if ($databaseObj->checkIfVerified($conn, $_SESSION['epastas']) == 1) {
       $_SESSION['message_email_confirm'] = "<h6 style='color: green'>Jūsų profilis yra patvirtintas</h6>";
     }
   else {
@@ -21,7 +21,7 @@ $_SESSION['message_photo'] = "";
 
     <a href="photoUpload.php" class="btn btn-outline-info">Nuotraukos įkėlimas</a>
     <a href="userdata.php" class="btn btn-outline-info">Jūsų duomenys</a>
-    <a href="userConfirmation.html" class="btn btn-outline-info">Jūsų veikla</a>
+    <a href="userContract.php" class="btn btn-outline-info">Registracija pamokoms</a>
     <a href="emailConfirmationUser.html" class="btn btn-outline-info">El. Pašto tvirtinimas</a>
     <a href="Exams.php" class="btn btn-outline-info">Jūsų registracijos</a>
   

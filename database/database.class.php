@@ -81,6 +81,21 @@ class database {
         else
             return 1;
     }
+    public function checkIfVerifiedPhoto($conn, $email)
+    {
+        $aktyvuotas = 3;
+        $sql = " SELECT *
+            FROM asmuo
+            WHERE el_pastas='$email'";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+        $aktyvuotas = $row['Ar_aktyvuotas_nuot'];
+        }
+        if ($aktyvuotas == 0)
+            return 0;
+        else
+            return 1;
+    }
 }
 
 ?>
