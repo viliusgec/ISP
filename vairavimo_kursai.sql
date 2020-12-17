@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2020 at 07:46 AM
+-- Generation Time: Dec 17, 2020 at 10:37 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -72,7 +72,8 @@ CREATE TABLE `darbuotojas` (
 --
 
 INSERT INTO `darbuotojas` (`tabelio_nr`, `dirba_nuo`, `pareigos`, `fk_asmuo`) VALUES
-(1, '2020-12-08 17:56:27', 'teorijos', '32323');
+(1, '2020-12-08 17:56:27', 'teorijos', '32323'),
+(3, '2020-12-08 19:42:45', 'teorijos', '777777');
 
 -- --------------------------------------------------------
 
@@ -100,10 +101,19 @@ CREATE TABLE `grupe` (
   `fk_kursai_id` int(30) NOT NULL,
   `fk_darbuotojo_id` int(11) NOT NULL,
   `id` int(11) NOT NULL,
-  `numatyta_data` int(11) NOT NULL,
+  `numatyta_data` date NOT NULL,
   `vietu_kiekis` int(11) NOT NULL,
-  `numatyta_data_iki` datetime NOT NULL
+  `numatyta_data_iki` date NOT NULL,
+  `grupe_sukurta` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `grupe`
+--
+
+INSERT INTO `grupe` (`pavadinimas`, `fk_kursai_id`, `fk_darbuotojo_id`, `id`, `numatyta_data`, `vietu_kiekis`, `numatyta_data_iki`, `grupe_sukurta`) VALUES
+('Mano draugai', 1, 3, 47, '2020-12-31', 44, '2021-03-01', '2020-12-17 22:32:38'),
+('Mano draugai 2', 2, 1, 48, '2020-12-31', 44, '2021-03-01', '2020-12-17 22:33:24');
 
 -- --------------------------------------------------------
 
@@ -199,6 +209,16 @@ CREATE TABLE `pamoka` (
   `fk_grupes_id` int(20) NOT NULL,
   `diena` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pamoka`
+--
+
+INSERT INTO `pamoka` (`id`, `laikas`, `trukme`, `fk_grupes_id`, `diena`) VALUES
+(3, '09:00', '2 Valandas', 47, 'Pirmadienis'),
+(4, '09:00', '2 Valandas', 47, 'Tre?iadienis'),
+(5, '18:00', '2 Valandas', 48, 'Pirmadienis'),
+(6, '18:00', '2 Valandas', 48, 'Treciadienis');
 
 -- --------------------------------------------------------
 
@@ -307,6 +327,7 @@ ALTER TABLE `kursai`
 -- Indexes for table `pamoka`
 --
 ALTER TABLE `pamoka`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_grupes_id` (`fk_grupes_id`);
 
 --
@@ -353,13 +374,13 @@ ALTER TABLE `sutartis`
 -- AUTO_INCREMENT for table `darbuotojas`
 --
 ALTER TABLE `darbuotojas`
-  MODIFY `tabelio_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tabelio_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `grupe`
 --
 ALTER TABLE `grupe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `klientas`
@@ -372,6 +393,12 @@ ALTER TABLE `klientas`
 --
 ALTER TABLE `kursai`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `pamoka`
+--
+ALTER TABLE `pamoka`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pareigos`
