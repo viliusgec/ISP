@@ -7,23 +7,47 @@ $_SESSION['message_photo'] = "";
  $databaseObj = new database(); 
  $conn = $databaseObj->connect();
   if ($databaseObj->checkIfVerified($conn, $_SESSION['epastas']) == 1) {
-      $_SESSION['message_email_confirm'] = "<h6 style='color: green'>Jūsų profilis yra patvirtintas</h6>";
+      // $_SESSION['message_email_confirm'] = "<h6 style='color: green'>Jūsų profilis yra patvirtintas</h6>";
+      $mailver = "";
     }
   else {
-    $_SESSION['message_email_confirm'] = "<h6 style='color: red'>Jūsų profilis yra nepatvirtintas</h6>";
+    $mailver = "<h6 style='color: red'>Jūsų el. paštas yra nepatvirtintas</h6>";
   }
+
+  if ($databaseObj->checkIfVerifiedPhoto($conn, $_SESSION['epastas']) == 1) {
+    // $_SESSION['message_email_confirm'] = "<h6 style='color: green'>Jūsų profilis yra patvirtintas</h6>";
+    $photover = "";
+  }
+else {
+  $photover = "<h6 style='color: red'>Jūsų asmenybė yra nepatvirtinta</h6>";
+}
  
 ?> 
   <div class="jumbotron text-center animate__animated animate__fadeIn">
     <h1>Jūsų profilis</h1>
-    <?php echo "" . $_SESSION['message_email_confirm']?>
+    <?php echo "" . $mailver?>
+    <?php echo "" . $photover?>
     <br>
 
-    <a href="photoUpload.php" class="btn btn-outline-info">Nuotraukos įkėlimas</a>
-    <a href="userdata.php" class="btn btn-outline-info">Jūsų duomenys</a>
-    <a href="userContract.php" class="btn btn-outline-info">Registracija pamokoms</a>
-    <a href="emailConfirmationUser.html" class="btn btn-outline-info">El. Pašto tvirtinimas</a>
-    <a href="Exams.php" class="btn btn-outline-info">Jūsų registracijos</a>
+    <?php 
+    if($mailver == $photover)
+      {
+        echo "<a href='change_pass.php.php' class='btn btn-outline-info'>Keisti slaptažodį</a>";
+        echo "<a href='Exams.php' class='btn btn-outline-info'>Jūsų registracijos</a>";
+        echo "<a href='userContract.php' class='btn btn-outline-info'>Registracija pamokoms</a>";
+      }
+    else 
+    {
+      if($mailver!="")
+      {
+        echo "<a href='new_verify.php' class='btn btn-outline-info'>El. Pašto tvirtinimas</a>";
+      }
+      if($photover!="")
+      {
+        echo "<a href='photoUpload.php' class='btn btn-outline-info'>Nuotraukos įkėlimas</a>";
+      }
+    }
+    ?>  
   
    
   </div>
