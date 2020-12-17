@@ -97,6 +97,15 @@ class database {
             return 1;
     }
 
+
+    public function changePassword($conn, $pass, $email)
+    {
+        $sql = "  UPDATE asmuo
+            SET slaptazodis='$pass'
+            WHERE el_pastas='$email'";
+        $conn->query($sql);
+    }
+
     public function getTheoryInstructors($conn)
     {
         $sql = " SELECT * FROM darbuotojas
