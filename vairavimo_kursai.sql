@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2020 at 05:00 PM
+-- Generation Time: Dec 17, 2020 at 07:46 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -51,6 +51,7 @@ INSERT INTO `asmuo` (`vardas`, `pavarde`, `el_pastas`, `slaptazodis`, `asmens_ko
 ('tt', 'rr', 't@t.t', '123', '12345', 'klientas', '', 0, 0),
 ('erikas', 'mldc', 'zaidimamms@gmail.com', 'ą23', '32323', 'klientas', '67d96d458abdef21792e6d8e590244e7', 1, 1),
 ('Vilius', 'gec', 'gecas97@gmail.com', '123', '5002', 'klientas', '8c7bbbba95c1025975e548cee86dfadc', 1, 0),
+('Tomas', 'Rušas', 'tautis63@gmail.com', '123', '57757', 'administratorius', 'eed5af6add95a9a6f1252739b1ad8c24', 0, 0),
 ('Mantas', 'Mantas', 'Mantas@mantas.mantas', '123', '777777', 'klientas', '', 0, 0);
 
 -- --------------------------------------------------------
@@ -156,6 +157,14 @@ CREATE TABLE `kursai` (
   `kaina` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `kursai`
+--
+
+INSERT INTO `kursai` (`id`, `pavadinimas`, `tipas`, `kaina`) VALUES
+(1, 'A kategorija', 'rytinis', 300),
+(2, 'A kategorija', 'vakarinis', 300);
+
 -- --------------------------------------------------------
 
 --
@@ -174,7 +183,8 @@ CREATE TABLE `nuotraukos` (
 
 INSERT INTO `nuotraukos` (`location`, `vartotojo_id`, `busena`) VALUES
 ('./uploads/32323nuostabus-pauksciai-foto-2493.jpg', '32323', 0),
-('./uploads/32323nuostabus-pauksciai-foto-2493.jpg', '32323', 0);
+('./uploads/32323nuostabus-pauksciai-foto-2493.jpg', '32323', 0),
+('./uploads/57757sh.JPG', '57757', 0);
 
 -- --------------------------------------------------------
 
@@ -361,7 +371,7 @@ ALTER TABLE `klientas`
 -- AUTO_INCREMENT for table `kursai`
 --
 ALTER TABLE `kursai`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pareigos`

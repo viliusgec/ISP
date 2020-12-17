@@ -81,13 +81,14 @@ class database {
         else
             return 1;
     }
-}
-public function getWorkersFk() {
-    $sql = "  SELECT asmens_kodas
-                FROM asmuo
-                WHERE role='darbuotojas':'
-    $data = $conn->query($sql);
-    return $data;
+
+    public function getWorkersFk() {
+        $sql = "  SELECT asmens_kodas
+                    FROM asmuo
+                    WHERE role='darbuotojas'";
+        $data = $conn->query($sql);
+        return $data;
+    }
 }
 
 ?>
