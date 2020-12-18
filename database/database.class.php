@@ -164,6 +164,35 @@ class database {
       
          $conn->query($sql);
     }
+
+    public function getUnconfirmedPhotos($conn)
+    {
+        $sql = "SELECT * FROM nuotraukos
+        RIGHT JOIN asmuo
+        ON nuotraukos.vartotojo_id = asmuo.asmens_kodas
+        WHERE nuotraukos.busena = 0";
+        $data = $conn->query($sql);
+        
+        return $data;
+    }
+    
+    public function updatePhotoStatusApproved($conn, $identityNr)
+    {
+        $sql = "UPDATE nuotraukos 
+        LEFT JOIN asmuo ON nuotraukos.vartotojo_id = asmuo.asmens_kodas
+        SET nuotraukos.busena = 1,
+        asmuo.Ar_aktyvuotas_nuot = 1
+        WHERE asmuo.asmens_kodas = $identityNr";
+        $conn->query($sql);
+    }
+
+    public function updatePhotoStatusDecline($conn, $identityNr)
+    {
+        $sql = "UPDATE nuotraukos 
+        SET nuotraukos.busena = 2
+        WHERE nuotraukos.vartotojo_id = $identityNr";
+        $conn->query($sql);
+    }
 }
 
 ?>
