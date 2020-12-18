@@ -25,7 +25,7 @@ if((isset($_POST['epastas'])) && !empty($_POST['epastas']))
     ------------------------
     
     Please click this link to activate your account:
-    http://localhost/ISP/php_control/verify.php?email='.$email.'&hash='.$hash.'
+    http://localhost/ISP/vartotojas/verify.php?email='.$email.'&hash='.$hash.'
     
     '; 
 

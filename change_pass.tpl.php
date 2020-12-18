@@ -8,7 +8,7 @@
     <h2>Slaptažodžio pakeitimas:</h2>
     <form action="change_pass.php" method="post">
     <div class="form-group">
-        <input type="text" class="form-control" name="slaptazodis" placeholder="Įveskite seną slaptažodį:">
+        <input type="password" class="form-control" name="slaptazodis" placeholder="Įveskite seną slaptažodį:">
       </div>
 
       <div class="form-group">

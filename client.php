@@ -32,7 +32,7 @@ else {
     <?php 
     if($mailver == $photover)
       {
-        echo "<a href='change_pass.php.php' class='btn btn-outline-info'>Keisti slaptažodį</a>";
+        echo "<a href='change_pass.php' class='btn btn-outline-info'>Keisti slaptažodį</a>";
         echo "<a href='Exams.php' class='btn btn-outline-info'>Jūsų registracijos</a>";
         echo "<a href='userContract.php' class='btn btn-outline-info'>Registracija pamokoms</a>";
       }

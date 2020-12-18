@@ -20,7 +20,7 @@ echo "<div class='jumbotron text-center'>
       
       
       Paspauskite ant nuorodos norint aktyvuoti paskyra:
-      http://localhost/ISP/php_control/verify.php?email='.$email.'&hash='.$hash.'
+      http://localhost/ISP/vartotojas/verify.php?email='.$email.'&hash='.$hash.'
       
       '; 
   

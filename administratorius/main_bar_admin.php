@@ -121,7 +121,7 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "administratorius") {
               else 
               {
                 echo "<a href='../client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
-                echo "<a href='../php_control/logOut.php' class='btn btn-default btn-rounded mb-4'>Atsijungti</a>";
+                echo "<a href='../vartotojas/logOut.php' class='btn btn-default btn-rounded mb-4'>Atsijungti</a>";
               }
               ?>
               </div>
@@ -142,7 +142,7 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "administratorius") {
         </div>
         
   
-        <form method="post" action="php_control/login.php">
+        <form method="post" action="vartotojas/login.php">
         <div class="modal-body mx-3">
           <div class="md-form mb-5">
             <i class="fas fa-envelope prefix grey-text"></i>
@@ -188,7 +188,7 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "administratorius") {
           </button>
         </div>
         <!-- Registracija -->
-        <form method="post" action="php_control/register.php">
+        <form method="post" action="vartotojas/register.php">
         <div class="modal-body mx-3">
           <div class="md-form mb-4">
             <i class="fas fa-envelope prefix grey-text"></i>
