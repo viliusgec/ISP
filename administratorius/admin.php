@@ -27,9 +27,9 @@
     
  
   <div class="jumbotron text-center">
-    <h1>Sukurti nauja grupe</h1>
+    <h1>Funkcijos</h1>
     <br>
-
+    <a href="photoConfirmation.php" class="button">Nuotrauku patvirtinimas</a>
     <a href="newGroup.php" class="button">Nauja Grupe</a>
    
 

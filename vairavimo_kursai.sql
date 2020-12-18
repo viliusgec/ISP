@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2020 at 10:37 PM
+-- Generation Time: Dec 18, 2020 at 08:32 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -44,11 +44,13 @@ CREATE TABLE `asmuo` (
 --
 
 INSERT INTO `asmuo` (`vardas`, `pavarde`, `el_pastas`, `slaptazodis`, `asmens_kodas`, `role`, `tokenas`, `Ar_aktyvuotas`, `Ar_aktyvuotas_nuot`) VALUES
-('Testas1', 'Test1', 'test@t.t', '123', '123', 'klientas', '', 0, 0),
+('Tomas', 'Rušas', 'donata199@gmail.com', '123', '1', 'klientas', 'da4fb5c6e93e74d3df8527599fa62642', 0, 0),
+('Testas1', 'Test1', 'test@t.t', '123', '123', 'klientas', '', 0, 1),
 ('vvv', 'vvvvvv', 'vv@v.v', '123', '1234', 'klientas', '', 0, 0),
 ('qwe', 'qwe', 'p@p.t', '123', '1234123', 'klientas', '', 0, 0),
 ('qwe', 'qwe', 'p@ap.t', '123', '12341232', 'klientas', '', 0, 0),
 ('tt', 'rr', 't@t.t', '123', '12345', 'klientas', '', 0, 0),
+('Tautvydas', 'Rušas', 'tadas@gmail.com', '123', '144', 'klientas', 'ea5d2f1c4608232e07d3aa3d998e5135', 0, 1),
 ('erikas', 'mldc', 'zaidimamms@gmail.com', 'ą23', '32323', 'klientas', '67d96d458abdef21792e6d8e590244e7', 1, 1),
 ('Vilius', 'gec', 'gecas97@gmail.com', '123', '5002', 'klientas', '8c7bbbba95c1025975e548cee86dfadc', 1, 0),
 ('Tomas', 'Rušas', 'tautis63@gmail.com', '123', '57757', 'administratorius', 'eed5af6add95a9a6f1252739b1ad8c24', 0, 0),
@@ -113,7 +115,8 @@ CREATE TABLE `grupe` (
 
 INSERT INTO `grupe` (`pavadinimas`, `fk_kursai_id`, `fk_darbuotojo_id`, `id`, `numatyta_data`, `vietu_kiekis`, `numatyta_data_iki`, `grupe_sukurta`) VALUES
 ('Mano draugai', 1, 3, 47, '2020-12-31', 44, '2021-03-01', '2020-12-17 22:32:38'),
-('Mano draugai 2', 2, 1, 48, '2020-12-31', 44, '2021-03-01', '2020-12-17 22:33:24');
+('Mano draugai 2', 2, 1, 48, '2020-12-31', 44, '2021-03-01', '2020-12-17 22:33:24'),
+('Ernesta Daraškien?', 1, 1, 49, '2020-12-16', 44, '2021-02-14', '2020-12-17 22:54:06');
 
 -- --------------------------------------------------------
 
@@ -182,7 +185,7 @@ INSERT INTO `kursai` (`id`, `pavadinimas`, `tipas`, `kaina`) VALUES
 --
 
 CREATE TABLE `nuotraukos` (
-  `location` varchar(50) NOT NULL,
+  `location` varchar(100) NOT NULL,
   `vartotojo_id` varchar(50) NOT NULL,
   `busena` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='0 - laukiama , 1 patvirtinta, 2 - atmesta';
@@ -192,9 +195,7 @@ CREATE TABLE `nuotraukos` (
 --
 
 INSERT INTO `nuotraukos` (`location`, `vartotojo_id`, `busena`) VALUES
-('./uploads/32323nuostabus-pauksciai-foto-2493.jpg', '32323', 0),
-('./uploads/32323nuostabus-pauksciai-foto-2493.jpg', '32323', 0),
-('./uploads/57757sh.JPG', '57757', 0);
+('./uploads/12322538805-2624-4DFD-B3E3-4AA1DF293AD8.jpg', '123', 2);
 
 -- --------------------------------------------------------
 
@@ -218,7 +219,9 @@ INSERT INTO `pamoka` (`id`, `laikas`, `trukme`, `fk_grupes_id`, `diena`) VALUES
 (3, '09:00', '2 Valandas', 47, 'Pirmadienis'),
 (4, '09:00', '2 Valandas', 47, 'Tre?iadienis'),
 (5, '18:00', '2 Valandas', 48, 'Pirmadienis'),
-(6, '18:00', '2 Valandas', 48, 'Treciadienis');
+(6, '18:00', '2 Valandas', 48, 'Treciadienis'),
+(7, '09:00', '2 Valandas', 49, 'Pirmadienis'),
+(8, '09:00', '2 Valandas', 49, 'Treciadienis');
 
 -- --------------------------------------------------------
 
@@ -380,7 +383,7 @@ ALTER TABLE `darbuotojas`
 -- AUTO_INCREMENT for table `grupe`
 --
 ALTER TABLE `grupe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `klientas`
@@ -398,7 +401,7 @@ ALTER TABLE `kursai`
 -- AUTO_INCREMENT for table `pamoka`
 --
 ALTER TABLE `pamoka`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pareigos`
