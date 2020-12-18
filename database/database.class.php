@@ -194,12 +194,28 @@ class database {
         $conn->query($sql);
     }
 
-    
     public function updateLastLogin($conn, $date, $email)
     {
         $sql = "  UPDATE asmuo
             SET paskutinis_prisijungimas='$date'
             WHERE el_pastas='$email'";
+        $conn->query($sql);
+    }
+
+    public function getIdentityIdUser($conn, $identityNr)
+    {
+        $sql = "SELECT * FROM asmuo
+        WHERE asmuo.asmens_kodas = $identityNr";
+
+        $data = $conn->query($sql);
+       
+        return $data;
+    }
+    
+    public function removeUser($conn, $identityNr)
+    {
+        $sql = "DELETE FROM asmuo
+        WHERE asmuo.asmens_kodas = $identityNr";
         $conn->query($sql);
     }
 }

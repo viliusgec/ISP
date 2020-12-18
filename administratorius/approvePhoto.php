@@ -1,4 +1,5 @@
 <?php
+//padaryt kai kai approvina issiunte i pastas
 include '../database/database.class.php';
 $databaseObj = new database();
 if((isset($_POST['approve'])))

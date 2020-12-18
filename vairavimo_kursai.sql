@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2020 at 08:32 PM
+-- Generation Time: Dec 18, 2020 at 11:21 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -36,25 +36,22 @@ CREATE TABLE `asmuo` (
   `role` varchar(60) NOT NULL,
   `tokenas` varchar(50) NOT NULL,
   `Ar_aktyvuotas` tinyint(1) NOT NULL DEFAULT 0,
-  `Ar_aktyvuotas_nuot` tinyint(4) NOT NULL DEFAULT 0
+  `Ar_aktyvuotas_nuot` tinyint(4) NOT NULL DEFAULT 0,
+  `paskutinis_prisijungimas` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `asmuo`
 --
 
-INSERT INTO `asmuo` (`vardas`, `pavarde`, `el_pastas`, `slaptazodis`, `asmens_kodas`, `role`, `tokenas`, `Ar_aktyvuotas`, `Ar_aktyvuotas_nuot`) VALUES
-('Tomas', 'Rušas', 'donata199@gmail.com', '123', '1', 'klientas', 'da4fb5c6e93e74d3df8527599fa62642', 0, 0),
-('Testas1', 'Test1', 'test@t.t', '123', '123', 'klientas', '', 0, 1),
-('vvv', 'vvvvvv', 'vv@v.v', '123', '1234', 'klientas', '', 0, 0),
-('qwe', 'qwe', 'p@p.t', '123', '1234123', 'klientas', '', 0, 0),
-('qwe', 'qwe', 'p@ap.t', '123', '12341232', 'klientas', '', 0, 0),
-('tt', 'rr', 't@t.t', '123', '12345', 'klientas', '', 0, 0),
-('Tautvydas', 'Rušas', 'tadas@gmail.com', '123', '144', 'klientas', 'ea5d2f1c4608232e07d3aa3d998e5135', 0, 1),
-('erikas', 'mldc', 'zaidimamms@gmail.com', 'ą23', '32323', 'klientas', '67d96d458abdef21792e6d8e590244e7', 1, 1),
-('Vilius', 'gec', 'gecas97@gmail.com', '123', '5002', 'klientas', '8c7bbbba95c1025975e548cee86dfadc', 1, 0),
-('Tomas', 'Rušas', 'tautis63@gmail.com', '123', '57757', 'administratorius', 'eed5af6add95a9a6f1252739b1ad8c24', 0, 0),
-('Mantas', 'Mantas', 'Mantas@mantas.mantas', '123', '777777', 'klientas', '', 0, 0);
+INSERT INTO `asmuo` (`vardas`, `pavarde`, `el_pastas`, `slaptazodis`, `asmens_kodas`, `role`, `tokenas`, `Ar_aktyvuotas`, `Ar_aktyvuotas_nuot`, `paskutinis_prisijungimas`) VALUES
+('vvv', 'vvvvvv', 'vv@v.v', '123', '1234', 'klientas', '', 0, 0, NULL),
+('qwe', 'qwe', 'p@p.t', '123', '1234123', 'klientas', '', 0, 0, NULL),
+('qwe', 'qwe', 'p@ap.t', '123', '12341232', 'klientas', '', 0, 0, NULL),
+('tt', 'rr', 't@t.t', '123', '12345', 'klientas', '', 0, 0, NULL),
+('Tautvydas', 'Rušas', 'tadas@gmail.com', '123', '144', 'klientas', 'ea5d2f1c4608232e07d3aa3d998e5135', 0, 1, NULL),
+('Vilius', 'gec', 'gecas97@gmail.com', '123', '5002', 'klientas', '8c7bbbba95c1025975e548cee86dfadc', 1, 0, NULL),
+('Mantas', 'Mantas', 'Mantas@mantas.mantas', '123', '777777', 'klientas', '', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -74,7 +71,6 @@ CREATE TABLE `darbuotojas` (
 --
 
 INSERT INTO `darbuotojas` (`tabelio_nr`, `dirba_nuo`, `pareigos`, `fk_asmuo`) VALUES
-(1, '2020-12-08 17:56:27', 'teorijos', '32323'),
 (3, '2020-12-08 19:42:45', 'teorijos', '777777');
 
 -- --------------------------------------------------------
@@ -441,14 +437,14 @@ ALTER TABLE `sutartis`
 -- Constraints for table `darbuotojas`
 --
 ALTER TABLE `darbuotojas`
-  ADD CONSTRAINT `darbuotojas_ibfk_1` FOREIGN KEY (`fk_asmuo`) REFERENCES `asmuo` (`asmens_kodas`);
+  ADD CONSTRAINT `darbuotojas_ibfk_1` FOREIGN KEY (`fk_asmuo`) REFERENCES `asmuo` (`asmens_kodas`) ON DELETE CASCADE,
+  ADD CONSTRAINT `darbuotojas_ibfk_2` FOREIGN KEY (`tabelio_nr`) REFERENCES `grupe` (`fk_darbuotojo_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `grupe`
 --
 ALTER TABLE `grupe`
-  ADD CONSTRAINT `grupe_ibfk_1` FOREIGN KEY (`fk_kursai_id`) REFERENCES `kursai` (`id`),
-  ADD CONSTRAINT `grupe_ibfk_2` FOREIGN KEY (`fk_darbuotojo_id`) REFERENCES `darbuotojas` (`tabelio_nr`);
+  ADD CONSTRAINT `grupe_ibfk_1` FOREIGN KEY (`fk_kursai_id`) REFERENCES `kursai` (`id`);
 
 --
 -- Constraints for table `klientas`
@@ -473,9 +469,7 @@ ALTER TABLE `rezervacija`
 -- Constraints for table `sutartis`
 --
 ALTER TABLE `sutartis`
-  ADD CONSTRAINT `sutartis_ibfk_1` FOREIGN KEY (`fk_darbuotojas`) REFERENCES `darbuotojas` (`tabelio_nr`),
-  ADD CONSTRAINT `sutartis_ibfk_2` FOREIGN KEY (`busena`) REFERENCES `sutarties_busenos` (`id`),
-  ADD CONSTRAINT `sutartis_ibfk_3` FOREIGN KEY (`fk_klientas`) REFERENCES `klientas` (`id`);
+  ADD CONSTRAINT `sutartis_ibfk_2` FOREIGN KEY (`busena`) REFERENCES `sutarties_busenos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
