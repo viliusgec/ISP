@@ -164,14 +164,14 @@
 
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" name="slaptazodis" class="form-control validate">
+          <input type="password" id="slaptazodis" name="slaptazodis" class="form-control validate">
           <label data-error="wrong" data-success="right" for="defaultForm-pass">Jūsų slaptažodis</label>
         </div>
       </div>
       <!-- Prisijungimo mygtukas -->
       
       <div class="modal-footer d-flex justify-content-center">
-        <button type="submit" class="btn btn-default">Prisijungti</button>
+        <button type="submit" id="submit2" class="btn btn-default">Prisijungti</button>
       </form>
       </div>
       <div class="modal-footer d-flex justify-content-center">
@@ -184,7 +184,7 @@
               >
       </div>
       <div class="modal-footer justify-content-center">
-        <a href="forgotPassword.html">Pamiršau slaptažodį</a>
+        <a href="vartotojas/forgotPassword.php">Pamiršau slaptažodį</a>
       </div>
     </div>
   </div>
@@ -200,12 +200,12 @@
         </button>
       </div>
       <!-- Registracija -->
-      <form method="post" action="vartotojas/register.php">
+      <form method="post" name="form1" action="vartotojas/register.php">
       <div class="modal-body mx-3">
         <div class="md-form mb-4">
           <i class="fas fa-envelope prefix grey-text"></i>
           <input type="word" id="defaultForm-word" name="vardas" class="form-control">
-          <label data-error="wrong" data-success="right" for="defaultForm-email">Vardas</label>
+          <label data-error="wrong" data-success="right" for="defaultForm-email" >Vardas</label>
         </div>
         <div class="md-form mb-4">
           <i class="fas fa-envelope prefix grey-text"></i>
@@ -226,19 +226,49 @@
         </div>
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" name="slaptazodis1" class="form-control validate">
+          <input type="password" id="slaptazodis1" name="slaptazodis1" class="form-control validate">
           <label data-error="wrong" data-success="right" for="defaultForm-pass">Jūsų slaptažodis</label>
         </div>
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" name="slaptazodis2" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-pass">Pakartokite slaptažodį(db sitas nieko nedaro)</label>
+          <input type="password" id="slaptazodis2" name="slaptazodis2" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Pakartokite slaptažodį</label>
         </div>
-
+        <p id="password"></p>
       </div>
+      
       <div class="modal-footer d-flex justify-content-center">
-        <button type="submit" class="btn btn-default">Registruotis</button>
+        <button type="submit" id="submit" class="btn btn-default">Registruotis</button>
       </div>
+          <script>
+            document.getElementById("submit2").disabled = true  ;
+            document.getElementById("submit").disabled = true  ;
+
+            $('#slaptazodis').on('keyup', function(){     
+              document.getElementById("submit2").disabled = false;
+            });
+            $('#slaptazodis2').on('keyup', function(){     
+                if($('#slaptazodis1').val()== $('#slaptazodis2').val()) {
+                    document.getElementById("password").innerHTML = "";
+                    document.getElementById("submit").disabled = false;
+                }
+                else {
+                    document.getElementById("password").innerHTML = "Slaptažodžiai neatitinka";
+                    document.getElementById("submit").disabled = true;
+                }
+            });
+            
+            $('#slaptazodis1').on('keyup', function(){     
+                if($('#slaptazodis1').val()== $('#slaptazodis2').val()) {
+                    document.getElementById("password").innerHTML = "";
+                    document.getElementById("submit").disabled = false;
+                }
+                else {
+                    document.getElementById("password").innerHTML = "Slaptažodžiai neatitinka";
+                    document.getElementById("submit").disabled = true;
+                }
+            });
+          </script>
       </form>
 
       <div class="modal-footer d-flex justify-content-center">
@@ -246,12 +276,12 @@
                 href=""
                 class="btn btn-default btn-rounded mb-4"
                 data-toggle="modal"
-                data-target="#modalLoginForm"
+                data-target="#modalRegisterForm"
                 >Prisijungti</a
               >
       </div>
       <div class="modal-footer justify-content-center">
-        <a href="forgotPassword.html">Pamiršau slaptažodį</a>
+        <a href="vartotojas/forgotPassword.php">Pamiršau slaptažodį</a>
       </div>
     </div>
   </div>

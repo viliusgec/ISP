@@ -10,31 +10,28 @@ if((isset($_POST['epastas'])) && !empty($_POST['epastas']))
     $id = $_POST['asmenskodas'];
     $hash = md5( rand(0,1000) );
     $conn = $databaseObj->connect();
-    $data = $databaseObj->register($conn, $name, $surname, $id, $email, $passw, $hash);
+    $date = date("Y-m-d"); 
+    $data = $databaseObj->register($conn, $name, $surname, $id, $email, $passw, $hash, $date);
 
     $to      = $email; 
-    $subject = 'Signup | Verification'; 
+    $subject = 'Prisijungimas | Patvirtinimas'; 
     $message = '
     
-    Thanks for signing up, '.$name.'!
-    Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+    Ačiū, kad užsiregistravote, '.$name.'!
+    Jūsų paskyra yra sukurta, tačiau norint ją aktyvuoti paspauskite nuorodą apačioje. 
     
     ------------------------
-    ID: '.$id.'
-    Password: '.$passw.'
+    Jūsų ID: '.$id.'
+    Jūsų slaptažodis: '.$passw.'
     ------------------------
     
-    Please click this link to activate your account:
+    Nuoroda paskyros atkyvavimui:
     http://localhost/ISP/vartotojas/verify.php?email='.$email.'&hash='.$hash.'
     
     '; 
 
     $headers = 'From:ispprojektas@gmail.com' . "\r\n"; 
     mail($to, $subject, $message, $headers);
-
-    //Sutvarkyti veliau sita graziai
-    echo "Aktyvuokite paskyra atsiusta nuoroda i elpasta";
-    sleep(5);
     header('Location: ../index.php');
 }
 ?>

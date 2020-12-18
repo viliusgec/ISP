@@ -22,10 +22,10 @@ class database {
         return $conn;
     }
 
-    public function register($conn, $name, $surname, $id, $email, $pass, $hash)
+    public function register($conn, $name, $surname, $id, $email, $pass, $hash, $date)
     {
-        $sql = "  INSERT INTO asmuo (vardas, pavarde, el_pastas, slaptazodis, asmens_kodas, role, tokenas)
-        VALUES ('$name', '$surname', '$email', '$pass', '$id', 'klientas', '$hash')";
+        $sql = "  INSERT INTO asmuo (vardas, pavarde, el_pastas, slaptazodis, asmens_kodas, role, tokenas, paskutinis_prisijungimas)
+        VALUES ('$name', '$surname', '$email', '$pass', '$id', 'klientas', '$hash', '$date')";
         $conn->query($sql);
     }
 
@@ -191,6 +191,15 @@ class database {
         $sql = "UPDATE nuotraukos 
         SET nuotraukos.busena = 2
         WHERE nuotraukos.vartotojo_id = $identityNr";
+        $conn->query($sql);
+    }
+
+    
+    public function updateLastLogin($conn, $date, $email)
+    {
+        $sql = "  UPDATE asmuo
+            SET paskutinis_prisijungimas='$date'
+            WHERE el_pastas='$email'";
         $conn->query($sql);
     }
 }

@@ -1,8 +1,13 @@
 <?php 
 session_start();
 include("main_bar.html");
+if(!empty($_SESSION['loginError']))
+{
+      echo "<div class='jumbotron text-center'>
+      <p style='color:red'>Įvesti neteisingi prisijungimo duomenys</p> </div>";
+}
  ?>
-
+      
 
   <div class="jumbotron text-center">
     <h1>Sveiki atvykę į „Traktoristas aš esu“ vairavymo mokyklos puslapį</h1>

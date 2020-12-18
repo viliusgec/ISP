@@ -11,29 +11,31 @@ if((isset($_POST['epastas'])) && !empty($_POST['epastas']))
     if(!empty($data))
     {
         $to      = $email; 
-        $subject = 'Signup | Verification'; 
+        $subject = 'Slaptažodžio priminimas'; 
         $message = '
         
-        Your password is:
+        Jūsų slaptažodis yra:
         
         ------------------------
-        Password: '.$data['slaptazodis'].'
+        Slaptažodis: '.$data['slaptazodis'].'
         ------------------------
         
         '; 
     
         $headers = 'From:ispprojektas@gmail.com' . "\r\n"; 
         mail($to, $subject, $message, $headers);
-        include '../forgotPassword.html';
+        include 'navbar.php';
         //Sutvarkyti veliau sita graziai
-        echo "Slaptazodis atsiustas nurodytu el pastu";
-        sleep(5);
-        //header('Location: ../index.php');
+        echo "<div class='jumbotron text-center'>
+    <h1>Slaptažodis išsiųstas nurodytų el paštu</h1>
+      </div>";
     }
     else 
     {
-        echo "Toks el pastas neuzregistruotas";
-        include '../forgotPassword.html';
+        include 'forgotPassword.php';
+        echo "<div class='jumbotron text-center'>
+        <h1 style='color:red'>Tokiu el paštu nėra registruotų vartotojų</h1>
+          </div>";
     }
     
 }
