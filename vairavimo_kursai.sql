@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2020 at 11:21 PM
+-- Generation Time: Dec 19, 2020 at 12:48 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -45,11 +45,11 @@ CREATE TABLE `asmuo` (
 --
 
 INSERT INTO `asmuo` (`vardas`, `pavarde`, `el_pastas`, `slaptazodis`, `asmens_kodas`, `role`, `tokenas`, `Ar_aktyvuotas`, `Ar_aktyvuotas_nuot`, `paskutinis_prisijungimas`) VALUES
-('vvv', 'vvvvvv', 'vv@v.v', '123', '1234', 'klientas', '', 0, 0, NULL),
-('qwe', 'qwe', 'p@p.t', '123', '1234123', 'klientas', '', 0, 0, NULL),
+('vvv', 'vvvvvv', 'vv@v.v', '123', '1234', 'darbuotojas', '', 0, 0, NULL),
+('qwe', 'qwe', 'p@p.t', '123', '1234123', 'darbuotojas', '', 0, 0, NULL),
 ('qwe', 'qwe', 'p@ap.t', '123', '12341232', 'klientas', '', 0, 0, NULL),
 ('tt', 'rr', 't@t.t', '123', '12345', 'klientas', '', 0, 0, NULL),
-('Tautvydas', 'Rušas', 'tadas@gmail.com', '123', '144', 'klientas', 'ea5d2f1c4608232e07d3aa3d998e5135', 0, 1, NULL),
+('Tautvydas', 'Rušas', 'tadas@gmail.com', '123', '144', 'administratorius', 'ea5d2f1c4608232e07d3aa3d998e5135', 0, 1, '2020-12-18 00:00:00'),
 ('Vilius', 'gec', 'gecas97@gmail.com', '123', '5002', 'klientas', '8c7bbbba95c1025975e548cee86dfadc', 1, 0, NULL),
 ('Mantas', 'Mantas', 'Mantas@mantas.mantas', '123', '777777', 'klientas', '', 0, 0, NULL);
 
@@ -63,7 +63,7 @@ CREATE TABLE `darbuotojas` (
   `tabelio_nr` int(11) NOT NULL,
   `dirba_nuo` datetime NOT NULL,
   `pareigos` varchar(50) NOT NULL,
-  `fk_asmuo` varchar(50) NOT NULL
+  `fk_asmuo` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -71,7 +71,8 @@ CREATE TABLE `darbuotojas` (
 --
 
 INSERT INTO `darbuotojas` (`tabelio_nr`, `dirba_nuo`, `pareigos`, `fk_asmuo`) VALUES
-(3, '2020-12-08 19:42:45', 'teorijos', '777777');
+(19, '2020-12-19 01:43:14', 'teorijos', '1234'),
+(20, '2020-12-19 00:43:56', 'praktikos', '1234123');
 
 -- --------------------------------------------------------
 
@@ -104,15 +105,6 @@ CREATE TABLE `grupe` (
   `numatyta_data_iki` date NOT NULL,
   `grupe_sukurta` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `grupe`
---
-
-INSERT INTO `grupe` (`pavadinimas`, `fk_kursai_id`, `fk_darbuotojo_id`, `id`, `numatyta_data`, `vietu_kiekis`, `numatyta_data_iki`, `grupe_sukurta`) VALUES
-('Mano draugai', 1, 3, 47, '2020-12-31', 44, '2021-03-01', '2020-12-17 22:32:38'),
-('Mano draugai 2', 2, 1, 48, '2020-12-31', 44, '2021-03-01', '2020-12-17 22:33:24'),
-('Ernesta Daraškien?', 1, 1, 49, '2020-12-16', 44, '2021-02-14', '2020-12-17 22:54:06');
 
 -- --------------------------------------------------------
 
@@ -172,7 +164,8 @@ CREATE TABLE `kursai` (
 
 INSERT INTO `kursai` (`id`, `pavadinimas`, `tipas`, `kaina`) VALUES
 (1, 'A kategorija', 'rytinis', 300),
-(2, 'A kategorija', 'vakarinis', 300);
+(2, 'A kategorija', 'vakarinis', 300),
+(5, 'B Kategorija', 'rytinis', 300);
 
 -- --------------------------------------------------------
 
@@ -206,18 +199,6 @@ CREATE TABLE `pamoka` (
   `fk_grupes_id` int(20) NOT NULL,
   `diena` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pamoka`
---
-
-INSERT INTO `pamoka` (`id`, `laikas`, `trukme`, `fk_grupes_id`, `diena`) VALUES
-(3, '09:00', '2 Valandas', 47, 'Pirmadienis'),
-(4, '09:00', '2 Valandas', 47, 'Tre?iadienis'),
-(5, '18:00', '2 Valandas', 48, 'Pirmadienis'),
-(6, '18:00', '2 Valandas', 48, 'Treciadienis'),
-(7, '09:00', '2 Valandas', 49, 'Pirmadienis'),
-(8, '09:00', '2 Valandas', 49, 'Treciadienis');
 
 -- --------------------------------------------------------
 
@@ -373,7 +354,7 @@ ALTER TABLE `sutartis`
 -- AUTO_INCREMENT for table `darbuotojas`
 --
 ALTER TABLE `darbuotojas`
-  MODIFY `tabelio_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tabelio_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `grupe`
@@ -391,13 +372,13 @@ ALTER TABLE `klientas`
 -- AUTO_INCREMENT for table `kursai`
 --
 ALTER TABLE `kursai`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pamoka`
 --
 ALTER TABLE `pamoka`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pareigos`
@@ -437,14 +418,14 @@ ALTER TABLE `sutartis`
 -- Constraints for table `darbuotojas`
 --
 ALTER TABLE `darbuotojas`
-  ADD CONSTRAINT `darbuotojas_ibfk_1` FOREIGN KEY (`fk_asmuo`) REFERENCES `asmuo` (`asmens_kodas`) ON DELETE CASCADE,
-  ADD CONSTRAINT `darbuotojas_ibfk_2` FOREIGN KEY (`tabelio_nr`) REFERENCES `grupe` (`fk_darbuotojo_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `darbuotojas_ibfk_1` FOREIGN KEY (`fk_asmuo`) REFERENCES `asmuo` (`asmens_kodas`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `grupe`
 --
 ALTER TABLE `grupe`
-  ADD CONSTRAINT `grupe_ibfk_1` FOREIGN KEY (`fk_kursai_id`) REFERENCES `kursai` (`id`);
+  ADD CONSTRAINT `grupe_ibfk_1` FOREIGN KEY (`fk_kursai_id`) REFERENCES `kursai` (`id`),
+  ADD CONSTRAINT `grupe_ibfk_2` FOREIGN KEY (`fk_darbuotojo_id`) REFERENCES `darbuotojas` (`tabelio_nr`);
 
 --
 -- Constraints for table `klientas`

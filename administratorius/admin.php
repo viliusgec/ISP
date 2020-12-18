@@ -34,6 +34,7 @@
     }
   ?>
     <br>
+    <a href="makeWorker.php" class="button">Darbuotoju priskyrimas</a>
     <a href="deleteUser.php" class="button">Paskyros šalinimas</a>
     <a href="photoConfirmation.php" class="button">Nuotrauku patvirtinimas</a>
     <a href="newGroup.php" class="button">Nauja Grupe</a>

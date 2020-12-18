@@ -62,7 +62,7 @@ input[type=number] {
   box-sizing: border-box;
 }
 select {
-    width: 25%;
+    width: 10%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -91,8 +91,8 @@ data {
   margin-right: 10px;
 }
 .buttonDecline {
-  width: 10%;
-  background-color: red;
+  width: 15%;
+  background-color: green;
   color: white;
   padding: 10px 20px;
   margin: 8px 0;
@@ -102,14 +102,14 @@ data {
   margin-right: 10px;
 }
 
-.buttonAdmit:hover {
+.buttonDecline:hover {
 
   background-color: #45a049;
 }
 
 .buttonDecline:hover {
 
-background-color: red;
+background-color: lightgreen;
 }
 
 .formArea {
@@ -132,7 +132,7 @@ background-color: red;
    
  
   <div class="jumbotron text-center">
-    <h1>Nuotrauku patvirtinimas </h1>
+    <h1>Darbuotojo priskyrimas </h1>
     <br>
 
 <?php 
@@ -146,7 +146,7 @@ background-color: red;
  <div class="formArea">
   
 
-    <form action="deleteUser.php" method="post" enctype="multipart/form-data">
+    <form action="makeWorker.php" method="post" enctype="multipart/form-data">
     <h2>Ieškokite žmogaus pagal asmens kodą</h2>
         <input type="number" id="name" name="identityNr" class="form-control width">
         <button name="search" class="btn btn-outline-dark buttonAdmit" type="submit">Patvirtinti</button>
@@ -158,23 +158,20 @@ background-color: red;
             
         $conn = $databaseObj->connect();
         $identityNr = $_POST['identityNr']; 
-        if ($_SESSION['userID'] == $identityNr) {
-            echo 'Negalite istrinti saves';
-            exit();
-        }
+      
         if ($identityNr== ''){
             echo 'Prasome ivesti asmens koda';
             exit();
         }
-        $userDelete =  $databaseObj->getIdentityIdUser($conn, $identityNr);
+        $userWorker =  $databaseObj->getIdentityIdNotWorker($conn, $identityNr);
         $int=0;
-        while ($row = $userDelete->fetch_assoc()) {
+        while ($row = $userWorker->fetch_assoc()) {
             $int = 1;
             unset($name);
             $name = $row['vardas']; 
             $lastName = $row['pavarde'];
             $identity = $row['asmens_kodas'];
-           echo '<form action="deleteUser.php" method="post" enctype="multipart/form-data">';
+           echo '<form action="makeWorker.php" method="post" enctype="multipart/form-data">';
            echo '<table id="customers">';
            echo '<tr>';
            echo '<th>Vardas</th>';
@@ -185,23 +182,34 @@ background-color: red;
            echo '<td>'.$identity.'</td>';
            echo '</tr>';
            echo '</table>';
-        echo '<button name="delete" class="btn btn-outline-dark buttonDecline" type="submit" value='.$identity.'>Istrinti</button>';
+    
+        
+        echo  "<label for='type'>Darbuotojo pareigos</label>";
+        echo "<select id ='type' name='instructor'>";
+        
+         echo '<option value="teorijos">teorijos</option>';
+         echo '<option value="praktikos">praktikos</option>';
+        
+        echo "</select>";
+        echo "<br>";
+         
+        echo '<button name="update" class="btn btn-outline-dark buttonDecline" type="submit" value='.$identity.'>Paversti darbuotoju</button>';
         echo '</form>';
             exit();
         }
-       if (!$row = $userDelete->fetch_assoc() && $int !== 0){
-           echo 'Prasome ivesti esanti asmens koda';
+       if (!$row = $userWorker->fetch_assoc() && $int !== 0){
+           echo 'Prasome ivesti esanti asmens koda arba uztikrinti, kad asmuo jau nera darbuotojas, arba administratorius';
            exit();
        }
           }
 
-          if((isset($_POST['delete'])))
+          if((isset($_POST['update'])))
           {
             $conn = $databaseObj->connect();
-            $identityNr = $_POST['delete']; 
-            
-            $object = $databaseObj->removeUser($conn, $identityNr);
-            echo 'Naudotojas sekmingai istrintas!';
+            $identityNr = $_POST['update']; 
+            $type = $_POST['instructor']; 
+            $object = $databaseObj->updateUserToWorker($conn, $identityNr, $type);
+            echo 'Naudotojas sekmingai paverstas darbuotoju!';
             
            
           }

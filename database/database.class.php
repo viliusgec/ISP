@@ -211,12 +211,39 @@ class database {
        
         return $data;
     }
+
+    public function getIdentityIdNotWorker($conn, $identityNr)
+    {
+        $sql = "SELECT * FROM asmuo
+        WHERE asmuo.asmens_kodas = $identityNr
+        AND asmuo.role != 'darbuotojas' 
+        AND asmuo.role != 'administratorius'";
+
+        $data = $conn->query($sql);
+       
+        return $data;
+    }
     
     public function removeUser($conn, $identityNr)
     {
         $sql = "DELETE FROM asmuo
         WHERE asmuo.asmens_kodas = $identityNr";
         $conn->query($sql);
+    }
+
+    public function updateUserToWorker($conn, $identityNr, $type)
+    {
+        $sql = "UPDATE asmuo 
+        SET asmuo.role = 'darbuotojas'
+        WHERE asmuo.asmens_kodas = $identityNr";
+
+        $conn->query($sql);
+
+        $currentDate = date('Y-m-d H:i:s');
+        $sql2 = "  INSERT INTO darbuotojas (dirba_nuo, pareigos, fk_asmuo)
+        VALUES ('$currentDate', '$type', '$identityNr')";
+      
+        $conn->query($sql2);
     }
 }
 
