@@ -266,8 +266,6 @@ class database {
         return $result;
     }
 
-}
-
     public function checkIfHasContract($conn, $asmkodas)
     {
         $count = 0;
@@ -279,11 +277,11 @@ class database {
             $count++;
         }
         if ($count == 1) {
-            return 1; // jeigu nėra užregistruotas
+            return 1; // jeigu nėra užregistruotas į kursus
         }
         else 
         {
-            return 0; // jeigu yra užregistruotas
+            return 0; // jeigu yra užregistruotas į kursus
         }
     }
 }

@@ -35,6 +35,8 @@ else {
         echo "<a href='change_pass.php' class='btn btn-outline-info'>Keisti slaptažodį</a> ";
         echo "<a href='Exams.php' class='btn btn-outline-info'>Jūsų registracijos</a> ";
         echo "<a href='userContract.php' class='btn btn-outline-info'>Registracija į kursus</a> ";
+        echo "<a href='userPractise.php' class='btn btn-outline-info'>Registracija į praktines pamokas</a> ";
+        echo "<a href='userRegisteredPractise.php' class='btn btn-outline-info'>Jūsų pamokos</a> ";
       }
     else 
     {

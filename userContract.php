@@ -24,7 +24,8 @@ $_SESSION['message_photo'] = "";
    $result = $conn -> query($sql);
    while($row = mysqli_fetch_assoc($result)){
     echo "<tr><td><input type='checkbox' name='id[]' value='". $row["id"]."'></input></td><td>" . $row["pavadinimas"]. "</td><td>"  . $row["tipas"]. "</td><td>"  . $row["kaina"]. "</td></tr>";
-   }?>
+   }
+?>
 </table>
 <input class="btn btn-outline-dark" type="submit" value="Įkelti" name="submit">
 </form>
