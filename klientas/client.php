@@ -1,7 +1,7 @@
 <?php 
 session_start();
 $_SESSION['message_photo'] = "";
- include("../main_bar.html");
+ include("main_bar_klientas.html");
  include("../database/database.class.php");
 
  $databaseObj = new database(); 

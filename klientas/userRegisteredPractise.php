@@ -1,30 +1,60 @@
 <?php 
 session_start();
 $_SESSION['message_photo'] = "";
- include("../main_bar.html");
+include("main_bar_klientas.html");
  include("../database/database.class.php");
 
  $databaseObj = new database(); 
  $conn = $databaseObj->connect();
-
+$userid =$_SESSION["userID"];
 ?> 
   <div class="jumbotron text-center animate__animated animate__fadeIn">
 
-<h3>Prašome pasirinkti instruktorių:</h3>
-<form action="userPractise.php" method="post">
-<select name='tabelis'>
-    <option value='001'>pasirinkti:</option>
+  <h3>Jūsų teorinės pamokos:</h3>
+
 <?php 
-   $sql = "SELECT tabelio_nr, vardas, pavarde FROM `darbuotojas` INNER JOIN `asmuo` 
-   ON `darbuotojas`.fk_asmuo = `asmuo`.asmens_kodas WHERE `pareigos`='praktikos'";
+   $sql = "SELECT * FROM (( `grupes_nariai`";
    $result = $conn -> query($sql);
    while($row = mysqli_fetch_assoc($result)){
-       echo "<option value='". $row["tabelio_nr"] ."'>" . $row["vardas"] . " " . $row["pavarde"] ."</option>";
+       echo "Data: " . $row["data"] . " Laikas: " . $row["laikas"] . " Instruktorius: "
+        . $row["vardas"] . " " . $row["pavarde"] . "";
     }
 ?>
-</select>
-<br><br><input class="btn btn-outline-dark" type="submit" value="Pasirinkti" name="submit"></input>
-</form>
+
+<h3>Jūsų praktinės pamokos:</h3>
+
+<?php 
+   $sql = "SELECT `praktiniu_tvarkarastis`.data, `praktiniu_tvarkarastis`.laikas, `asmuo`.vardas, `asmuo`.pavarde 
+   FROM ((`praktiniu_tvarkarastis` INNER JOIN `darbuotojas`
+     ON `praktiniu_tvarkarastis`.fk_darbuotojas_tabelio_nr=`darbuotojas`.tabelio_nr)
+    INNER JOIN `asmuo` ON `darbuotojas`.fk_asmuo = `asmuo`.asmens_kodas)  WHERE `fk_asmuo_id`='$userid'";
+   $result = $conn -> query($sql);
+   while($row = mysqli_fetch_assoc($result)){
+     if ($row["data"] != null) {
+       echo "Data: " . $row["data"] . " Laikas: " . $row["laikas"] . " Instruktorius: "
+        . $row["vardas"] . " " . $row["pavarde"] . "";
+     }
+     else {
+       echo "nėra";
+     }
+    }
+?>
+
+<h3>Jūsų egzaminai:</h3>
+
+<?php 
+   $sql = "SELECT `praktiniu_tvarkarastis`.data, `praktiniu_tvarkarastis`.laikas, `asmuo`.vardas, `asmuo`.pavarde 
+   FROM ((`praktiniu_tvarkarastis` INNER JOIN `darbuotojas`
+     ON `praktiniu_tvarkarastis`.fk_darbuotojas_tabelio_nr=`darbuotojas`.tabelio_nr)
+    INNER JOIN `asmuo` ON `darbuotojas`.fk_asmuo = `asmuo`.asmens_kodas)  WHERE `fk_asmuo_id`='$userid'";
+   $result = $conn -> query($sql);
+   while($row = mysqli_fetch_assoc($result)){
+       echo "Data: " . $row["data"] . " Laikas: " . $row["laikas"] . " Instruktorius: "
+        . $row["vardas"] . " " . $row["pavarde"] . "";
+    }
+?>
+
+
 
 </div>
 <?php include("../button.html");?>

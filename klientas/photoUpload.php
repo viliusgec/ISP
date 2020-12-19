@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../main_bar.html");
+include("main_bar_klientas.html");
 ?>
   </nav>
  
