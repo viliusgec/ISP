@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2020 at 06:59 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Dec 19, 2020 at 11:10 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -47,10 +46,11 @@ CREATE TABLE `asmuo` (
 
 INSERT INTO `asmuo` (`vardas`, `pavarde`, `el_pastas`, `slaptazodis`, `asmens_kodas`, `role`, `tokenas`, `Ar_aktyvuotas`, `Ar_aktyvuotas_nuot`, `paskutinis_prisijungimas`) VALUES
 ('vvv', 'vvvvvv', 'vv@v.v', '123', '1234', 'darbuotojas', '', 0, 0, NULL),
-('qwe', 'qwe', 'p@p.t', '123', '1234123', 'darbuotojas', '', 0, 0, NULL),
+('qwe', 'qwe', 'p@p.t', '123', '1234123', 'darbuotojas', '', 0, 0, '2020-12-19 00:00:00'),
 ('qwe', 'qwe', 'p@ap.t', '123', '12341232', 'klientas', '', 0, 0, NULL),
-('tt', 'rr', 't@t.t', '123', '12345', 'klientas', '', 0, 0, NULL),
-('Tautvydas', 'Rušas', 'tadas@gmail.com', '123', '144', 'administratorius', 'ea5d2f1c4608232e07d3aa3d998e5135', 0, 1, '2020-12-18 00:00:00'),
+('tautvis', 'bestas', 't@t.t', '123', '12345', 'klientas', '', 0, 0, NULL),
+('Tautvydas', 'Rušas', 'tadas@gmail.com', '123', '144', 'administratorius', 'ea5d2f1c4608232e07d3aa3d998e5135', 0, 1, '2020-12-19 00:00:00'),
+('er', 'asd', 'zaidimamms@gmail.com', 'ąčę', '323232', 'klientas', 'e57c6b956a6521b28495f2886ca0977a', 1, 1, '2020-12-19 00:00:00'),
 ('Vilius', 'gec', 'gecas97@gmail.com', '123', '5002', 'klientas', '8c7bbbba95c1025975e548cee86dfadc', 1, 0, NULL),
 ('Mantas', 'Mantas', 'Mantas@mantas.mantas', '123', '777777', 'klientas', '', 0, 0, NULL);
 
@@ -72,8 +72,8 @@ CREATE TABLE `darbuotojas` (
 --
 
 INSERT INTO `darbuotojas` (`tabelio_nr`, `dirba_nuo`, `pareigos`, `fk_asmuo`) VALUES
-(19, '2020-12-19 01:43:14', 'teorijos', '1234'),
-(20, '2020-12-19 00:43:56', 'praktikos', '1234123');
+(21, '2020-12-14 16:31:13', 'teorijos', '144'),
+(22, '2020-12-06 16:42:05', 'praktikos', '12345');
 
 -- --------------------------------------------------------
 
@@ -83,12 +83,28 @@ INSERT INTO `darbuotojas` (`tabelio_nr`, `dirba_nuo`, `pareigos`, `fk_asmuo`) VA
 
 CREATE TABLE `egzaminas` (
   `id` int(20) NOT NULL,
-  `tipas` varchar(20) NOT NULL,
   `laikas` datetime NOT NULL,
-  `fk_kursai_id` int(20) NOT NULL,
-  `fk_darbuotojas_tabelio_nr` int(20) NOT NULL,
-  `fk_rezervacija_id` int(20) NOT NULL
+  `vietu_kiekis` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `egzaminas`
+--
+
+INSERT INTO `egzaminas` (`id`, `laikas`, `vietu_kiekis`) VALUES
+(1, '2020-12-08 09:00:00', 28);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `egzamino_nariai`
+--
+
+CREATE TABLE `egzamino_nariai` (
+  `fk_klientas` varchar(50) NOT NULL,
+  `fk_egzamino_id` int(11) NOT NULL,
+  `busena` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='0 - laukiama , 1 patvirtinta, 2 - neišlaikė';
 
 -- --------------------------------------------------------
 
@@ -107,6 +123,13 @@ CREATE TABLE `grupe` (
   `grupe_sukurta` datetime DEFAULT NULL,
   `busena` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `grupe`
+--
+
+INSERT INTO `grupe` (`pavadinimas`, `fk_kursai_id`, `fk_darbuotojo_id`, `id`, `numatyta_data`, `vietu_kiekis`, `numatyta_data_iki`, `grupe_sukurta`, `busena`) VALUES
+('Grup?1', 1, 21, 51, '2020-12-16', 30, '2021-02-14', '2020-12-19 21:45:49', 'registracija');
 
 -- --------------------------------------------------------
 
@@ -202,6 +225,14 @@ CREATE TABLE `pamoka` (
   `diena` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pamoka`
+--
+
+INSERT INTO `pamoka` (`id`, `laikas`, `trukme`, `fk_grupes_id`, `diena`) VALUES
+(1, '09:00', '2 Valandas', 51, 'Pirmadienis'),
+(2, '09:00', '2 Valandas', 51, 'Treciadienis');
+
 -- --------------------------------------------------------
 
 --
@@ -224,6 +255,30 @@ CREATE TABLE `paslaugos` (
   `pavadinimas` varchar(32) NOT NULL,
   `kaina` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `praktiniu_tvarkarastis`
+--
+
+CREATE TABLE `praktiniu_tvarkarastis` (
+  `data` date NOT NULL,
+  `laikas` time NOT NULL,
+  `fk_darbuotojas_tabelio_nr` int(11) NOT NULL,
+  `ar_uzimta` int(11) NOT NULL,
+  `fk_asmuo_id` varchar(50) NOT NULL,
+  `id` int(11) NOT NULL,
+  `ar_egzaminas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `praktiniu_tvarkarastis`
+--
+
+INSERT INTO `praktiniu_tvarkarastis` (`data`, `laikas`, `fk_darbuotojas_tabelio_nr`, `ar_uzimta`, `fk_asmuo_id`, `id`, `ar_egzaminas`) VALUES
+('2020-12-07', '09:00:00', 22, 1, '323232', 1, 0),
+('2020-12-07', '10:30:00', 22, 0, 'nera', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -259,11 +314,16 @@ CREATE TABLE `sutarties_busenos` (
 CREATE TABLE `sutartis` (
   `nr` int(11) NOT NULL,
   `sudaryta` datetime NOT NULL,
-  `busena` int(11) NOT NULL,
-  `fk_klientas` int(11) NOT NULL,
-  `fk_darbuotojas` int(11) NOT NULL,
+  `fk_klientas` varchar(50) NOT NULL,
   `fk_kursai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sutartis`
+--
+
+INSERT INTO `sutartis` (`nr`, `sudaryta`, `fk_klientas`, `fk_kursai`) VALUES
+(8, '2020-12-19 00:00:00', '323232', 1);
 
 --
 -- Indexes for dumped tables
@@ -283,6 +343,12 @@ ALTER TABLE `darbuotojas`
   ADD PRIMARY KEY (`tabelio_nr`),
   ADD KEY `fk_pareigos` (`pareigos`),
   ADD KEY `fk_asmuo` (`fk_asmuo`);
+
+--
+-- Indexes for table `egzaminas`
+--
+ALTER TABLE `egzaminas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `grupe`
@@ -325,6 +391,12 @@ ALTER TABLE `paslaugos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `praktiniu_tvarkarastis`
+--
+ALTER TABLE `praktiniu_tvarkarastis`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `rezervacija`
 --
 ALTER TABLE `rezervacija`
@@ -343,9 +415,7 @@ ALTER TABLE `sutarties_busenos`
 --
 ALTER TABLE `sutartis`
   ADD PRIMARY KEY (`nr`),
-  ADD KEY `fk_busena` (`busena`),
   ADD KEY `fk_klientas` (`fk_klientas`),
-  ADD KEY `fk_darbuotojas` (`fk_darbuotojas`),
   ADD KEY `fk_kursai` (`fk_kursai`);
 
 --
@@ -356,13 +426,19 @@ ALTER TABLE `sutartis`
 -- AUTO_INCREMENT for table `darbuotojas`
 --
 ALTER TABLE `darbuotojas`
-  MODIFY `tabelio_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `tabelio_nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `egzaminas`
+--
+ALTER TABLE `egzaminas`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `grupe`
 --
 ALTER TABLE `grupe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `klientas`
@@ -380,7 +456,7 @@ ALTER TABLE `kursai`
 -- AUTO_INCREMENT for table `pamoka`
 --
 ALTER TABLE `pamoka`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pareigos`
@@ -393,6 +469,12 @@ ALTER TABLE `pareigos`
 --
 ALTER TABLE `paslaugos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `praktiniu_tvarkarastis`
+--
+ALTER TABLE `praktiniu_tvarkarastis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `rezervacija`
@@ -410,7 +492,7 @@ ALTER TABLE `sutarties_busenos`
 -- AUTO_INCREMENT for table `sutartis`
 --
 ALTER TABLE `sutartis`
-  MODIFY `nr` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `nr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -447,12 +529,6 @@ ALTER TABLE `pamoka`
 ALTER TABLE `rezervacija`
   ADD CONSTRAINT `rezervacija_ibfk_1` FOREIGN KEY (`fk_paslauga`) REFERENCES `paslaugos` (`id`),
   ADD CONSTRAINT `rezervacija_ibfk_2` FOREIGN KEY (`fk_sutartis`) REFERENCES `sutartis` (`nr`);
-
---
--- Constraints for table `sutartis`
---
-ALTER TABLE `sutartis`
-  ADD CONSTRAINT `sutartis_ibfk_2` FOREIGN KEY (`busena`) REFERENCES `sutarties_busenos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

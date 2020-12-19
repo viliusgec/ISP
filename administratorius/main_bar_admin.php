@@ -7,7 +7,7 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "administratorius") {
 ?>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <img
-          src="../kissclipart-pixel-art-cars-png-clipart-pixel-car-racer-sports-c97f6477a5e2d075.jpg"
+          src="../musulogo.jpg"
           class="logo">
         <button
           class="navbar-toggler"
@@ -99,14 +99,14 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "administratorius") {
             if(!empty($_SESSION["role"])){
               if($_SESSION["role"] == "administratorius"){
                 echo"<li class='nav-item'>";
-                echo "<a class='nav-link' href='administratorius/admin.php'>Administratorius</a>";
+                echo "<a class='nav-link' href='admin.php'>Administratorius</a>";
                 echo "</li>";
                  } 
             }
             if(!empty($_SESSION["role"])){
               if($_SESSION["role"] == "darbuotojas"){
                 echo"<li class='nav-item'>";
-                echo "<a class='nav-link' href='worker.php'>Darbuotojo profilis</a>";
+                echo "<a class='nav-link' href='../darbuotojas/worker.php'>Darbuotojo profilis</a>";
                 echo "</li>";
                  } 
             }
@@ -124,7 +124,7 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "administratorius") {
               }
               else 
               {
-                echo "<a href='../client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
+                echo "<a href='../klientas/client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
                 echo "<a href='../vartotojas/logOut.php' class='btn btn-default btn-rounded mb-4'>Atsijungti</a>";
               }
               ?>
