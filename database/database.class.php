@@ -138,8 +138,8 @@ class database {
         //tai surikiuoti grupes pagal kada sukurta ir pacia pirma naujausia iterptu i pamokas
         $currentDate = date('Y-m-d H:i:s');
  
-        $sql = "  INSERT INTO grupe (pavadinimas, fk_kursai_id, fk_darbuotojo_id, numatyta_data, vietu_kiekis, numatyta_data_iki, grupe_sukurta)
-        VALUES ('$name', '$course', '$instructor', '$startDate', '$groupSize', '$endDate', '$currentDate')";
+        $sql = "  INSERT INTO grupe (pavadinimas, fk_kursai_id, fk_darbuotojo_id, numatyta_data, vietu_kiekis, numatyta_data_iki, grupe_sukurta, busena)
+        VALUES ('$name', '$course', '$instructor', '$startDate', '$groupSize', '$endDate', '$currentDate', 'registracija')";
       
          $conn->query($sql);
     }
