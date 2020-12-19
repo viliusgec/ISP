@@ -1,8 +1,8 @@
 <?php 
 session_start();
 $_SESSION['message_photo'] = "";
- include("main_bar.html");
- include("database/database.class.php");
+ include("../main_bar.html");
+ include("../database/database.class.php");
 
  $databaseObj = new database(); 
  $conn = $databaseObj->connect();
@@ -19,7 +19,7 @@ $_SESSION['message_photo'] = "";
     $photover = "";
   }
 else {
-  $photover = "<h6 style='color: red'>Jūsų asmenybė yra nepatvirtinta</h6>";
+  $photover = "<h6 style='color: red'>Jūsų tapatybė yra nepatvirtinta</h6>";
 }
  
 ?> 
@@ -54,6 +54,6 @@ else {
    
   </div>
  
-<?php include("button.html");?>
+<?php include("../button.html");?>
   </body>
 </html>

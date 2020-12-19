@@ -1,8 +1,8 @@
 
 <?php
 session_start();
-include("main_bar.html");
-include 'database/database.class.php';
+include("../main_bar.html");
+include '../database/database.class.php';
 $databaseObj = new database();
 $conn = $databaseObj->connect();
 
@@ -32,7 +32,7 @@ else
   <script src="JavaScripts/PasswordChecker.js"></script>
  
  <?php 
-include("button.html");  
+include("../button.html");  
 ?>
 </body>
 </html>

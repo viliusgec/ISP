@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("main_bar.html");
+include("../main_bar.html");
 ?>
   </nav>
  
@@ -19,7 +19,7 @@ include("main_bar.html");
   </div>
  
  <?php 
-include("button.html");  
+include("../button.html");  
 ?>
 </body>
 </html>

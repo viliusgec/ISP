@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include("main_bar.html"); ?>
+include("../main_bar.html"); ?>
 
 <div class="jumbotron text-center animate__animated animate__fadeIn">
 <?php 
@@ -27,4 +27,5 @@ echo "<div class='jumbotron text-center'>
       $headers = 'From:ispprojektas@gmail.com' . "\r\n"; 
       mail($to, $subject, $message, $headers);
       
+      include("../button.html");
 ?>

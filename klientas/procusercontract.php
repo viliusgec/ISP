@@ -1,8 +1,8 @@
 <?php 
 session_start();
 $_SESSION['message_photo'] = "";
-include("main_bar.html");
-include("database/database.class.php");
+include("../main_bar.html");
+include("../database/database.class.php");
 
 $databaseObj = new database();  
 $conn = $databaseObj->connect();
@@ -33,5 +33,7 @@ if (($databaseObj->checkIfHasContract($conn, $_SESSION['userID'])) == 1)
          } else {
            echo "Nepavyko užsiregistruoti į kursus";
          }
+
+         include("../button.html");
 
 ?> 

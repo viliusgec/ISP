@@ -2,7 +2,7 @@
 <?php
 
 session_start();
-include("database/database.class.php");
+include("../database/database.class.php");
 $databaseObj = new database();
 $conn = $databaseObj->connect();
 

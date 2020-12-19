@@ -1,8 +1,8 @@
 <?php 
 session_start();
 $_SESSION['message_photo'] = "";
-include("main_bar.html");
-include("database/database.class.php");
+include("../main_bar.html");
+include("../database/database.class.php");
 
 
 

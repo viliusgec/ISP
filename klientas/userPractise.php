@@ -1,8 +1,8 @@
 <?php 
 session_start();
 $_SESSION['message_photo'] = "";
- include("main_bar.html");
- include("database/database.class.php");
+ include("../main_bar.html");
+ include("../database/database.class.php");
 
  $databaseObj = new database(); 
  $conn = $databaseObj->connect();
@@ -44,7 +44,7 @@ $_SESSION['message_photo'] = "";
     </form>
 
 </div>
-<?php include("button.html");?>
+<?php include("../button.html");?>
 
   </body>
 </html>
