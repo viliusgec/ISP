@@ -97,6 +97,16 @@ class database {
             return 1;
     }
 
+    public function checkAccount($conn, $email, $id)
+    {
+        $sql = " SELECT *
+            FROM asmuo
+            WHERE el_pastas='$email'
+            OR asmens_kodas = '$id'";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
 
     public function changePassword($conn, $pass, $email)
     {

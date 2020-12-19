@@ -6,6 +6,7 @@ if((isset($_POST['epastas'])) && !empty($_POST['epastas']))
     session_start();
     $email = $_POST['epastas'];
     $passw = $_POST['slaptazodis'];
+    $passw = hash('ripemd160', $passw);
     $conn = $databaseObj->connect();
     $data = $databaseObj->logIn($conn, $email, $passw);
     $data = $data->fetch_assoc();

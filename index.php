@@ -4,7 +4,7 @@ include("main_bar.html");
 if(!empty($_SESSION['loginError']))
 {
       echo "<div class='jumbotron text-center'>
-      <p style='color:red'>Įvesti neteisingi prisijungimo duomenys</p> </div>";
+      <p style='color:red'>".$_SESSION['loginError']."</p> </div>";
 }
  ?>
       
