@@ -32,19 +32,19 @@ else {
     <?php 
     if($mailver == $photover)
       {
-        echo "<a href='change_pass.php' class='btn btn-outline-info'>Keisti slaptažodį</a>";
-        echo "<a href='Exams.php' class='btn btn-outline-info'>Jūsų registracijos</a>";
-        echo "<a href='userContract.php' class='btn btn-outline-info'>Registracija pamokoms</a>";
+        echo "<a href='change_pass.php' class='btn btn-outline-info'>Keisti slaptažodį</a> ";
+        echo "<a href='Exams.php' class='btn btn-outline-info'>Jūsų registracijos</a> ";
+        echo "<a href='userContract.php' class='btn btn-outline-info'>Registracija į kursus</a> ";
       }
     else 
     {
       if($mailver!="")
       {
-        echo "<a href='new_verify.php' class='btn btn-outline-info'>El. Pašto tvirtinimas</a>";
+        echo "<a href='new_verify.php' class='btn btn-outline-info'>El. Pašto tvirtinimas</a> ";
       }
       if($photover!="")
       {
-        echo "<a href='photoUpload.php' class='btn btn-outline-info'>Nuotraukos įkėlimas</a>";
+        echo "<a href='photoUpload.php' class='btn btn-outline-info'>Nuotraukos įkėlimas</a> ";
       }
     }
     ?>  

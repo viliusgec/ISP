@@ -11,7 +11,7 @@ include("main_bar.html");
     <form action="upload.php" method="post" enctype="multipart/form-data">
         Pasirinkite nuotrauką įkėlimui:
         <input type="file" name="fileToUpload" id="fileToUpload" value="Ieškoti..."></br>
-        <input class="btn btn-outline-dark" type="submit" value="Įkelkiti" name="submit">
+        <input class="btn btn-outline-dark" type="submit" value="Įkelti" name="submit">
       </form>
   
    

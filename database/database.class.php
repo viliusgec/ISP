@@ -245,6 +245,24 @@ class database {
       
         $conn->query($sql2);
     }
-}
 
+    public function checkIfHasContract($conn, $asmkodas)
+    {
+        $count = 0;
+        $sql = " SELECT *
+            FROM sutartis
+            WHERE fk_klientas='$asmkodas'";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $count++;
+        }
+        if ($count == 1) {
+            return 1; // jeigu nėra užregistruotas
+        }
+        else 
+        {
+            return 0; // jeigu yra užregistruotas
+        }
+    }
+}
 ?>
