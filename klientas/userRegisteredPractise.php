@@ -13,11 +13,12 @@ $userid =$_SESSION["userID"];
   <h3>Jūsų teorinės pamokos:</h3>
 
 <?php 
-   $sql = "SELECT * FROM (( `grupes_nariai`";
+   $sql = "SELECT * FROM 
+   ( `pamoka` INNER JOIN `grupes_nariai` ON `pamoka`.fk_grupes_id=`grupes_nariai`.fk_grupes_id) 
+   WHERE fk_klientas = '$userid'";
    $result = $conn -> query($sql);
    while($row = mysqli_fetch_assoc($result)){
-       echo "Data: " . $row["data"] . " Laikas: " . $row["laikas"] . " Instruktorius: "
-        . $row["vardas"] . " " . $row["pavarde"] . "";
+       echo "Diena: " . $row["diena"] . " Laikas: " . $row["laikas"] . "";
     }
 ?>
 
@@ -30,28 +31,19 @@ $userid =$_SESSION["userID"];
     INNER JOIN `asmuo` ON `darbuotojas`.fk_asmuo = `asmuo`.asmens_kodas)  WHERE `fk_asmuo_id`='$userid'";
    $result = $conn -> query($sql);
    while($row = mysqli_fetch_assoc($result)){
-     if ($row["data"] != null) {
        echo "Data: " . $row["data"] . " Laikas: " . $row["laikas"] . " Instruktorius: "
         . $row["vardas"] . " " . $row["pavarde"] . "";
-     }
-     else {
-       echo "nėra";
-     }
     }
 ?>
 
 <h3>Jūsų egzaminai:</h3>
 
 <?php 
-   $sql = "SELECT `praktiniu_tvarkarastis`.data, `praktiniu_tvarkarastis`.laikas, `asmuo`.vardas, `asmuo`.pavarde 
-   FROM ((`praktiniu_tvarkarastis` INNER JOIN `darbuotojas`
-     ON `praktiniu_tvarkarastis`.fk_darbuotojas_tabelio_nr=`darbuotojas`.tabelio_nr)
-    INNER JOIN `asmuo` ON `darbuotojas`.fk_asmuo = `asmuo`.asmens_kodas)  WHERE `fk_asmuo_id`='$userid'";
+   $sql = "SELECT * FROM `asmuo`";
    $result = $conn -> query($sql);
    while($row = mysqli_fetch_assoc($result)){
-       echo "Data: " . $row["data"] . " Laikas: " . $row["laikas"] . " Instruktorius: "
-        . $row["vardas"] . " " . $row["pavarde"] . "";
-    }
+       echo "" .$row['vardas'] ."";
+  }
 ?>
 
 
