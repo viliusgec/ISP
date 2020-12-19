@@ -1,0 +1,3 @@
+per xampp shell'ą paleidžiat šitą, pasitikrinkit kelius iki failų tik, dar ir pačiam background_task.php pasižiūrėkit ar tikslus kelias iki database.class.php
+Sukuria taską, kuris įvykdomas kad 10 min, ištrina klientus, kurie buvo neaktyvūs metus
+schtasks /create /tn "deleteOldUsersCron" /tr "C:\xampp\php\php.exe C:\xampp\htdocs\ISP\background_tasks\background_task.php" /sc minute /mo 10

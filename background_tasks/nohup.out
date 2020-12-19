@@ -1,0 +1,14 @@
+PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function database::deleteOldUsers(), 0 passed in C:\xampp\htdocs\ISP\background_tasks\background_task.php on line 8 and exactly 1 expected in C:\xampp\htdocs\ISP\database\database.class.php:249
+Stack trace:
+#0 C:\xampp\htdocs\ISP\background_tasks\background_task.php(8): database->deleteOldUsers()
+#1 {main}
+  thrown in C:\xampp\htdocs\ISP\database\database.class.php on line 249
+
+Fatal error: Uncaught ArgumentCountError: Too few arguments to function database::deleteOldUsers(), 0 passed in C:\xampp\htdocs\ISP\background_tasks\background_task.php on line 8 and exactly 1 expected in C:\xampp\htdocs\ISP\database\database.class.php on line 249
+
+ArgumentCountError: Too few arguments to function database::deleteOldUsers(), 0 passed in C:\xampp\htdocs\ISP\background_tasks\background_task.php on line 8 and exactly 1 expected in C:\xampp\htdocs\ISP\database\database.class.php on line 249
+
+Call Stack:
+    0.0002     402776   1. {main}() C:\xampp\htdocs\ISP\background_tasks\background_task.php:0
+   28.6163     483592   2. database->deleteOldUsers() C:\xampp\htdocs\ISP\background_tasks\background_task.php:8
+

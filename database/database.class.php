@@ -245,6 +245,27 @@ class database {
       
         $conn->query($sql2);
     }
+
+    public function deleteOldUsers($conn){
+        $sql = "DELETE FROM asmuo 
+                WHERE asmuo.asmens_kodas 
+                IN 
+                    (SELECT asmuo.asmens_kodas 
+                    FROM `asmuo` 
+                    WHERE DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) <= now())";
+        $conn->query($sql);
+    }
+    public function informForDeletion($conn){
+        $sql = "SELECT asmuo.el_pastas
+                FROM `asmuo` 
+                WHERE DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) <= DATE_ADD(now(), INTERVAL 7 DAY) 
+                AND DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) >= now()";
+        $conn->query($sql);
+        //Cia galima siust kad bus istrintas po 7 dienu
+        $result = $conn->fetch_array(MYSQLI_NUM);
+        return $result;
+    }
+
 }
 
 ?>
