@@ -327,12 +327,12 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
-            return 1; // jeigu nėra užregistruotas į kursus
+        if ($count >= 1) {
+            return 1; // jeigu yra užregistruotas į kursus
         }
         else
         {
-            return 0; // jeigu yra užregistruotas į kursus
+            return 0; // jeigu nėra užregistruotas į kursus
         }
     }
 
@@ -372,7 +372,7 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
+        if ($count >= 1) {
             return 1; // jeigu yra užregistruotas į egzaminą
         }
         else
@@ -390,7 +390,7 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
+        if ($count >= 1) {
             return 1; // jeigu yra užregistruotas į egzaminą
         }
         else
@@ -408,7 +408,7 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
+        if ($count >= 1) {
             return 1; // jeigu yra užregistruotas į egzaminą
         }
         else 
@@ -426,13 +426,50 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
+        if ($count >= 1) {
             return 1; // jeigu turi sutartį
         }
         else 
         {
             return 0; // jeigu neturi sutarties
         }
+    }
+    public function getLessonList($conn, $asmkodas)
+    {
+        //$sql = "SELECT * FROM pamoka WHERE fk_grupes_id IN (SELECT id FROM grupe WHERE fk_darbuotojo_id IN (SELECT tabelio_nr FROM darbuotojas WHERE fk_asmuo = $asmkodas))";
+        $sql = "SELECT pamoka.id as pamid, laikas, trukme, fk_grupes_id, diena, pavadinimas, fk_kursai_id, fk_darbuotojo_id, grupe.id as grupid, numatyta_data, vietu_kiekis, numatyta_data, numatyta_data_iki, grupe_sukurta, busena FROM pamoka INNER JOIN grupe ON grupe.id = pamoka.fk_grupes_id WHERE fk_darbuotojo_id IN (SELECT tabelio_nr FROM darbuotojas WHERE fk_asmuo = $asmkodas) ORDER BY grupe.pavadinimas";
+        $data = $conn->query($sql);
+        return $data;
+    }
+    public function updateLesson($conn, $laik, $truk, $dien, $id)
+    {
+        $sql = "UPDATE pamoka SET laikas='$laik', trukme='$truk', diena='$dien' 
+        WHERE id='$id'";
+        $data = $conn->query($sql);
+    }
+    public function getTheoryExamList($conn)
+    {
+        $sql = "SELECT * FROM egzamino_nariai INNER JOIN egzaminas ON egzamino_nariai.fk_egzamino_id = egzaminas.id";
+        $data = $conn->query($sql);
+        return $data;
+    }
+    public function updateTheoryExam($conn, $id, $bus)
+    {
+        $sql = "UPDATE egzamino_nariai SET busena='$bus'
+        WHERE fk_klientas='$id'";
+        $data = $conn->query($sql);
+    }
+    public function getPracticeExamList($conn)
+    {
+        $sql = "SELECT * FROM praktiniu_tvarkarastis";
+        $data = $conn->query($sql);
+        return $data;
+    }
+    public function updatePracticeExam($conn, $id, $bus)
+    {
+        $sql = "UPDATE praktiniu_tvarkarastis SET ar_egzaminas='$bus'
+        WHERE fk_asmuo_id='$id'";
+        $data = $conn->query($sql);
     }
 }
 ?>

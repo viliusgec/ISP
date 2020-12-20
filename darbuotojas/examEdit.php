@@ -3,6 +3,14 @@
 include("../database/database.class.php");
 $databaseObj = new database(); 
 $conn = $databaseObj->connect();
+
+if(isset($_POST['submit'])){
+  $bus = $_POST['bus'];
+
+  $databaseObj->updateTheoryExam($conn, $_GET['id'], $bus);
+  header("Location: ./exam.php");
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -24,34 +32,23 @@ include("main_bar_worker.php");
 ?>
  
   <div class="jumbotron text-center">
-    <h1>Mano Grupių Pamokos</h1>
+    <h1>Kliento <u><?php echo $_GET['klid'];?></u> Teorijos Tgzamino Vertinimas</h1>
     <br>
-    <table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Grupės pavadinimas</th>
-      <th scope="col">Laikas</th>
-      <th scope="col">Trukmė</th>
-      <th scope="col">Diena</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    
+    <form action="" method="post">
     <?php
-     $duom = $databaseObj->getLessonList($conn, $_SESSION['userID']);
-     while($row = $duom->fetch_assoc()) {
-         echo "<tr>";
-         echo "<td>".$row['pavadinimas']."</td>";
-         echo "<td>".$row['laikas']."</td>";
-         echo "<td>".$row['trukme']."</td>";
-         echo "<td>".$row['diena']."</td>";
-         echo "<td><a href=\"workerTheoryEdit.php?laik=".$row['laikas']."&truk='".$row['trukme']."'&dien=".$row['diena']."&id=".$row['pamid']."&pav=".$row['pavadinimas']."\" class=\"btn btn-outline-primary\">Redaguoti</a></td>";
-         echo "</tr>";
-       }
+     
+     echo "<div class=\"form-group\">";
+     echo "<select name =\"bus\" class=\"form-control\" >";
+     echo " <option value=".$_GET['bus']." selected>Nieko nekeisti</option>";
+     echo "<option value='0'>Laukiama</option>";
+     echo "<option value='1'>Išlaikė</option>";
+     echo "<option value='2'>Neišlaikė</option>";
+     echo "</select>";
+     echo "</div>";
+     echo "<input type=\"submit\" name=\"submit\" value=\"Išsaugoti pakeitimus\" class=\"btn btn-primary\">";
+   
     ?>
-    </tbody>
-</table>
+    </form>
   
    
 

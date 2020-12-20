@@ -9,8 +9,9 @@ if(isset($_POST['submit'])){
   $vk = $_POST['vk'];
   $nd = $_POST['nd'];
   $ndk = $_POST['ndk'];
+  $bus = $_POST['bus'];
 
-  $databaseObj->updateGroup($conn, $pav, $vk, $nd, $ndk, $_GET['id']);
+  $databaseObj->updateGroup($conn, $pav, $vk, $nd, $ndk, $_GET['id'], $bus);
   header("Location: ./workerGroup.php");
 }
 
@@ -49,6 +50,13 @@ include("main_bar_worker.php");
      echo " <input type=\"date\" class=\"form-control\" name=\"nd\" aria-describedby=\"pav\" value=".$_GET['nd'].">";
      echo " <label for=\"ndk\">Numatyta data iki</label>";
      echo " <input type=\"date\" class=\"form-control\" name=\"ndk\" aria-describedby=\"pav\" value=".$_GET['ndk'].">";
+     echo " <label for=\"bus\">Būsena</label>";
+     echo "<select name =\"bus\" class=\"form-control\" >";
+     echo " <option value=".$_GET['bus']." selected>Nepasikeitus</option>";
+     echo "<option value=\"registracija\">registracija</option>";
+     echo "<option value=\"neuzpildyta\">neuzpildyta</option>";
+     echo "<option value=\"susidare\">susidare</option>";
+     echo "</select>";
      echo "</div>";
      echo "<input type=\"submit\" name=\"submit\" value=\"Išsaugoti pakeitimus\" class=\"btn btn-primary\">";
    

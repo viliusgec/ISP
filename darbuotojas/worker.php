@@ -24,9 +24,7 @@ include("main_bar_worker.php");
 
     <a href="workerMessage.php" class="btn btn-outline-info">Žinučių siuntimas</a>
     <a href="workerGroup.php" class="btn btn-outline-info">Grupių redagavimas</a>
-    <a href="workerTheoryEdit.php" class="btn btn-outline-info">Teorijos pamokų redagavimas</a>
-    <a href="workerDrivingEdit.php" class="btn btn-outline-info">Vairavimu pamokų redagavimas</a>
-    <a href="calendar.php" class="btn btn-outline-info">Tvarkaraščio redagavimas</a>
+    <a href="workerTheory.php" class="btn btn-outline-info">Pamokų redagavimas</a>
     <a href="exam.php" class="btn btn-outline-info">Egzaminų vertinimas</a>
   
    

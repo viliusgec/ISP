@@ -33,6 +33,7 @@ include("main_bar_worker.php");
       <th scope="col">Vietų kiekis</th>
       <th scope="col">Numatyta data</th>
       <th scope="col">Numatyta data iki</th>
+      <th scope="col">Būsena</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -46,7 +47,8 @@ include("main_bar_worker.php");
          echo "<td>".$row['vietu_kiekis']."</td>";
          echo "<td>".$row['numatyta_data']."</td>";
          echo "<td>".$row['numatyta_data_iki']."</td>";
-         echo "<td><a href=\"workerGroupEdit.php?pav=".$row['pavadinimas']."&vk=".$row['vietu_kiekis']."&nd=".$row['numatyta_data']."&ndk=".$row['numatyta_data_iki']."&id=".$row['id']."\" class=\"btn btn-outline-primary\">Redaguoti</a></td>";
+         echo "<td>".$row['busena']."</td>";
+         echo "<td><a href=\"workerGroupEdit.php?pav=".$row['pavadinimas']."&vk=".$row['vietu_kiekis']."&nd=".$row['numatyta_data']."&ndk=".$row['numatyta_data_iki']."&id=".$row['id']."&bus=".$row['busena']."&id=".$row['id']."\" class=\"btn btn-outline-primary\">Redaguoti</a></td>";
          echo "</tr>";
        }
     ?>

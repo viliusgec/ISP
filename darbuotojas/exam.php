@@ -1,3 +1,9 @@
+<?php
+
+include("../database/database.class.php");
+$databaseObj = new database(); 
+$conn = $databaseObj->connect();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,22 +25,93 @@ include("main_bar_worker.php");
  ?>
  
   <div class="jumbotron text-center">
-    <h1>Egzaminų vertinimas</h1>
+    <h1>Egzaminai</h1>
     <br>
-    <div class="jumbotron text-center animate__animated animate__fadeIn">
-    <h1>Jūsų egzaminai:</h1>
-    <p>Teorinis: data</p>
-    <p>Praktinis: data</p>
-    <h1>Jūsų pamokos:</h1>
-    <p>Teorinė: nėra</p>
-    <p>Praktinė: data</p>
-   
-
-  </div>
+    <h2>Teorijos</h2>
+    <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Kliento ID</th>
+      <th scope="col">Egzamino id</th>
+      <th scope="col">Laikas</th>
+      <th scope="col">Būsena</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <?php
+     $duom = $databaseObj->getTheoryExamList($conn);
+     while($row = $duom->fetch_assoc()) {
+         echo "<tr>";
+         echo "<td>".$row['fk_klientas']."</td>";
+         echo "<td>".$row['fk_egzamino_id']."</td>";
+         echo "<td>".$row['laikas']."</td>";
+         switch($row['busena']){
+           case 0:
+            echo "<td>Laukiama</td>";
+            break;
+            case 1:
+            echo "<td>Išlaikė</td>";
+            break;
+            case 2;
+            echo "<td>Neišlaikė</td>";
+            break;
+          
+         }
+         echo "<td><a href=\"examEdit.php?bus=".$row['busena']."&id=".$row['fk_klientas']."&klid=".$row['fk_klientas']."\" class=\"btn btn-outline-primary\">Įvertinti</a></td>";
+         echo "</tr>";
+       }
+    ?>
+    </tbody>
+</table>
+  
+<br>
+    <h2>Praktikos</h2>
+    <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Kliento ID</th>
+      <th scope="col">Egzamino id</th>
+      <th scope="col">Laikas</th>
+      <th scope="col">Būsena</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <?php
+     $duom = $databaseObj->getPracticeExamList($conn);
+     while($row = $duom->fetch_assoc()) {
+      if($row['ar_egzaminas'] != 0){
+         echo "<tr>";
+         echo "<td>".$row['fk_asmuo_id']."</td>";
+         echo "<td>".$row['id']."</td>";
+         echo "<td>".$row['laikas']."</td>";
+         
+         switch($row['ar_egzaminas']){
+           case 1:
+            echo "<td>Egzaminas</td>";
+            break;
+            case 2:
+            echo "<td>Išlaikė</td>";
+            break;
+            case 3;
+            echo "<td>Neišlaikė</td>";
+            break;
+          
+         }
+         echo "<td><a href=\"examEditPractice.php?bus=".$row['ar_egzaminas']."&id=".$row['fk_asmuo_id']."&klid=".$row['fk_asmuo_id']."\" class=\"btn btn-outline-primary\">Įvertinti</a></td>";
+         echo "</tr>";
+        }
+       }
+    ?>
+    </tbody>
+</table>
 
   </div>
  
   
-  <?php include("../button.html");?>
+  <?php include("workerButton.html");?>
   </body>
 </html>
