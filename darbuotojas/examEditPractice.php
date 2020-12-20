@@ -1,15 +1,14 @@
 <?php
-session_start();
+
 include("../database/database.class.php");
 $databaseObj = new database(); 
 $conn = $databaseObj->connect();
 
 if(isset($_POST['submit'])){
-  $laik = $_POST['pav'];
-  $truk = $_POST['vk'];
-  $dien = $_POST['nd'];
-  $databaseObj->updateLesson($conn, $laik, $truk, $dien, $_GET['id']);
-  header("Location: ./workerTheory.php");
+  $bus = $_POST['bus'];
+
+  $databaseObj->updatePracticeExam($conn, $_GET['id'], $bus);
+  header("Location: ./exam.php");
 }
 
 ?>
@@ -29,32 +28,22 @@ if(isset($_POST['submit'])){
   </head>
 <body>
 <?php 
-include("main_bar_worker.html");
+include("main_bar_worker.php");
 ?>
  
   <div class="jumbotron text-center">
-    <h1>Grupės <?php echo $_GET['pav'];?> pamoka</h1>
+    <h1>Kliento <u><?php echo $_GET['klid'];?></u> Teorijos Tgzamino Vertinimas</h1>
     <br>
     <form action="" method="post">
     <?php
      
      echo "<div class=\"form-group\">";
-     echo " <label for=\"pav\">Laikas</label>";
-     echo " <input type=\"text\" class=\"form-control\" name=\"pav\" aria-describedby=\"pav\" value=".$_GET['laik'].">";
-     echo " <label for=\"vk\">Trukmė</label>";
-     echo " <input type=\"text\" class=\"form-control\" name=\"vk\" aria-describedby=\"pav\" value=".$_GET['truk'].">";
-     echo " <label for=\"nd\">Numatyta data</label>";
-     echo "<select name =\"nd\" class=\"form-control\" >";
-     echo " <option value=".$_GET['dien']." selected>Nepasikeitus diena</option>";
-     echo "<option value=\"Pirmadienis\">Pirmadienis</option>";
-     echo "<option value=\"Antradienis\">Antradienis</option>";
-     echo "<option value=\"Trečiadienis\">Trečiadienis</option>";
-     echo "<option value=\"Ketvirtadienis\">Ketvirtadienis</option>";
-     echo "<option value=\"Penktadienis\">Penktadienis</option>";
+     echo "<select name =\"bus\" class=\"form-control\" >";
+     echo " <option value=".$_GET['bus']." selected>Nieko nekeisti</option>";
+     echo "<option value='1'>Egzaminas</option>";
+     echo "<option value='2'>Išlaikė</option>";
+     echo "<option value='3'>Neišlaikė</option>";
      echo "</select>";
-
-     
-    //  echo " <input type=\"text\" class=\"form-control\" name=\"nd\" aria-describedby=\"pav\" value=".$_GET['dien'].">";
      echo "</div>";
      echo "<input type=\"submit\" name=\"submit\" value=\"Išsaugoti pakeitimus\" class=\"btn btn-primary\">";
    

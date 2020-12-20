@@ -11,3 +11,6 @@
 <span>Svečias</span>s 
 <span>Svečias</span>s 
 <span>Darbuotojas Dievas</span>s 
+<span>Tautvis</span>Sveiki 
+<span>Darbuotojas Tautvis</span>ei namo 
+<span>Darbuotojas Tautvis</span>sv 

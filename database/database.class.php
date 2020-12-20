@@ -97,6 +97,16 @@ class database {
             return 1;
     }
 
+    public function checkAccount($conn, $email, $id)
+    {
+        $sql = " SELECT *
+            FROM asmuo
+            WHERE el_pastas='$email'
+            OR asmens_kodas = '$id'";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
 
     public function changePassword($conn, $pass, $email)
     {
@@ -138,8 +148,8 @@ class database {
         //tai surikiuoti grupes pagal kada sukurta ir pacia pirma naujausia iterptu i pamokas
         $currentDate = date('Y-m-d H:i:s');
  
-        $sql = "  INSERT INTO grupe (pavadinimas, fk_kursai_id, fk_darbuotojo_id, numatyta_data, vietu_kiekis, numatyta_data_iki, grupe_sukurta)
-        VALUES ('$name', '$course', '$instructor', '$startDate', '$groupSize', '$endDate', '$currentDate')";
+        $sql = "  INSERT INTO grupe (pavadinimas, fk_kursai_id, fk_darbuotojo_id, numatyta_data, vietu_kiekis, numatyta_data_iki, grupe_sukurta, busena)
+        VALUES ('$name', '$course', '$instructor', '$startDate', '$groupSize', '$endDate', '$currentDate', 'registracija')";
       
          $conn->query($sql);
     }
@@ -247,6 +257,10 @@ class database {
     }
 
     public function deleteOldUsers($conn){
+        $sql = "SELECT asmuo.el_pastas
+                    FROM `asmuo` 
+                    WHERE DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) <= now()";
+        $result = $conn->query($sql);
         $sql = "DELETE FROM asmuo 
                 WHERE asmuo.asmens_kodas 
                 IN 
@@ -254,19 +268,54 @@ class database {
                     FROM `asmuo` 
                     WHERE DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) <= now())";
         $conn->query($sql);
+        return $result;
     }
+
     public function informForDeletion($conn){
         $sql = "SELECT asmuo.el_pastas
                 FROM `asmuo` 
                 WHERE DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) <= DATE_ADD(now(), INTERVAL 7 DAY) 
                 AND DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) >= now()";
-        $conn->query($sql);
-        //Cia galima siust kad bus istrintas po 7 dienu
-        $result = $conn->fetch_array(MYSQLI_NUM);
+        $result = $conn->query($sql);
         return $result;
     }
 
+    public function getGroupMemberCount($conn){
+        $sql = "SELECT 
+                COUNT(grupes_nariai.fk_klientas) as klientu_skaicius, 
+                grupes_nariai.fk_grupes_id 
+                FROM `grupes_nariai` 
+                GROUP BY grupes_nariai.fk_grupes_id";
+        $result = $conn->query($sql);
+        return $result;
+    }
 
+    public function getGroupByID($conn, $id){
+        $sql = "SELECT * 
+                FROM grupe
+                WHERE grupe.id = ". $id;
+        $result = $conn->query($sql);
+        return $result->fetch_assoc();
+    }
+
+    public function setGroupState($conn, $id, $busena){
+        $sql = "UPDATE `grupe` 
+                SET `busena` = '".$busena."' 
+                WHERE `grupe`.`id` = ". $id;
+        $conn->query($sql);
+    }
+
+    public function getClientMailByGroupId($conn, $id){
+        $sql = "SELECT asmuo.el_pastas 
+                FROM asmuo 
+                WHERE asmuo.asmens_kodas IN 
+                    (SELECT grupes_nariai.fk_klientas 
+                    FROM grupes_nariai 
+                    WHERE grupes_nariai.fk_grupes_id = ".$id.")";
+        $result = $conn->query($sql);
+        return $result;
+
+    }
 
     public function checkIfHasContract($conn, $asmkodas)
     {
@@ -279,13 +328,14 @@ class database {
             $count++;
         }
         if ($count == 1) {
-            return 1; // jeigu nėra užregistruotas
+            return 1; // jeigu nėra užregistruotas į kursus
         }
-        else 
+        else
         {
-            return 0; // jeigu yra užregistruotas
+            return 0; // jeigu yra užregistruotas į kursus
         }
     }
+
     public function getUserEmails($conn, $role)
     {
         $sql = " SELECT * FROM asmuo WHERE role='$role'";
@@ -302,6 +352,123 @@ class database {
     {
         $sql = "UPDATE grupe SET pavadinimas='$pav', vietu_kiekis='$vk', numatyta_data='$nd', numatyta_data_iki='$ndk'
         WHERE id='$id'";
+        $data = $conn->query($sql);
+    }
+
+    public function getPhotoRecipient($conn, $identityNr)
+    {
+        $sql = " SELECT * FROM asmuo WHERE asmuo.asmens_kodas ='$identityNr'";
+        $data = $conn->query($sql);
+        return $data;
+    }
+
+    public function getPractiseExam($conn, $asmkodas)
+    {
+        $count = 0;
+        $sql = " SELECT *
+            FROM `praktiniu_tvarkarastis`
+            WHERE fk_asmuo_id='$asmkodas' AND `ar_egzaminas`=1";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $count++;
+        }
+        if ($count == 1) {
+            return 1; // jeigu yra užregistruotas į egzaminą
+        }
+        else
+        {
+            return 0; // jeigu nėra užregistruotas į egzaminą
+        }
+    }
+    public function getTheoryExam($conn, $asmkodas)
+    {
+        $count = 0;
+        $sql = " SELECT *
+            FROM `egzamino_nariai`
+            WHERE fk_klientas='$asmkodas' AND `busena`=0 OR `busena`=2";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $count++;
+        }
+        if ($count == 1) {
+            return 1; // jeigu yra užregistruotas į egzaminą
+        }
+        else
+        {
+            return 0; // jeigu nėra užregistruotas į egzaminą
+        }
+    }
+    public function getGroup($conn, $asmkodas)
+    {
+        $count = 0;
+        $sql = " SELECT *
+            FROM `grupes_nariai`
+            WHERE fk_klientas='$asmkodas'";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $count++;
+        }
+        if ($count == 1) {
+            return 1; // jeigu yra užregistruotas į egzaminą
+        }
+        else 
+        {
+            return 0; // jeigu nėra užregistruotas į egzaminą
+        }
+    }
+    public function getContract($conn, $asmkodas)
+    {
+        $count = 0;
+        $sql = " SELECT *
+            FROM `sutartis`
+            WHERE fk_klientas='$asmkodas'";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $count++;
+        }
+        if ($count == 1) {
+            return 1; // jeigu turi sutartį
+        }
+        else 
+        {
+            return 0; // jeigu neturi sutarties
+        }
+    }
+    public function getLessonList($conn, $asmkodas)
+    {
+        //$sql = "SELECT * FROM pamoka WHERE fk_grupes_id IN (SELECT id FROM grupe WHERE fk_darbuotojo_id IN (SELECT tabelio_nr FROM darbuotojas WHERE fk_asmuo = $asmkodas))";
+        $sql = "SELECT pamoka.id as pamid, laikas, trukme, fk_grupes_id, diena, pavadinimas, fk_kursai_id, fk_darbuotojo_id, grupe.id as grupid, numatyta_data, vietu_kiekis, numatyta_data, numatyta_data_iki, grupe_sukurta, busena FROM pamoka INNER JOIN grupe ON grupe.id = pamoka.fk_grupes_id WHERE fk_darbuotojo_id IN (SELECT tabelio_nr FROM darbuotojas WHERE fk_asmuo = $asmkodas) ORDER BY grupe.pavadinimas";
+        $data = $conn->query($sql);
+        return $data;
+    }
+    public function updateLesson($conn, $laik, $truk, $dien, $id)
+    {
+        $sql = "UPDATE pamoka SET laikas='$laik', trukme='$truk', diena='$dien' 
+        WHERE id='$id'";
+        $data = $conn->query($sql);
+    }
+    public function getTheoryExamList($conn)
+    {
+        $sql = "SELECT * FROM egzamino_nariai INNER JOIN egzaminas ON egzamino_nariai.fk_egzamino_id = egzaminas.id";
+        $data = $conn->query($sql);
+        return $data;
+    }
+    public function updateTheoryExam($conn, $id, $bus)
+    {
+        $sql = "UPDATE egzamino_nariai SET busena='$bus'
+        WHERE fk_klientas='$id'";
+        $data = $conn->query($sql);
+    }
+    public function getPracticeExamList($conn)
+    {
+        $sql = "SELECT * FROM praktiniu_tvarkarastis";
+        $data = $conn->query($sql);
+        return $data;
+    }
+    public function updatePracticeExam($conn, $id, $bus)
+    {
+        $sql = "UPDATE praktiniu_tvarkarastis SET ar_egzaminas='$bus'
+        WHERE fk_asmuo_id='$id'";
         $data = $conn->query($sql);
     }
 }

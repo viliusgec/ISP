@@ -24,29 +24,29 @@ include("main_bar_worker.html");
 ?>
  
   <div class="jumbotron text-center">
-    <h1>Mano grupės</h1>
+    <h1>Mano Grupių Pamokos</h1>
     <br>
     <table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Pavadinimas</th>
-      <th scope="col">Vietų kiekis</th>
-      <th scope="col">Numatyta data</th>
-      <th scope="col">Numatyta data iki</th>
+      <th scope="col">Grupės pavadinimas</th>
+      <th scope="col">Laikas</th>
+      <th scope="col">Trukmė</th>
+      <th scope="col">Diena</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     
     <?php
-     $duom = $databaseObj->getGroupList($conn, $_SESSION['userID']);
+     $duom = $databaseObj->getLessonList($conn, $_SESSION['userID']);
      while($row = $duom->fetch_assoc()) {
          echo "<tr>";
          echo "<td>".$row['pavadinimas']."</td>";
-         echo "<td>".$row['vietu_kiekis']."</td>";
-         echo "<td>".$row['numatyta_data']."</td>";
-         echo "<td>".$row['numatyta_data_iki']."</td>";
-         echo "<td><a href=\"workerGroupEdit.php?pav=".$row['pavadinimas']."&vk=".$row['vietu_kiekis']."&nd=".$row['numatyta_data']."&ndk=".$row['numatyta_data_iki']."&id=".$row['id']."\" class=\"btn btn-outline-primary\">Redaguoti</a></td>";
+         echo "<td>".$row['laikas']."</td>";
+         echo "<td>".$row['trukme']."</td>";
+         echo "<td>".$row['diena']."</td>";
+         echo "<td><a href=\"workerTheoryEdit.php?laik=".$row['laikas']."&truk='".$row['trukme']."'&dien=".$row['diena']."&id=".$row['pamid']."&pav=".$row['pavadinimas']."\" class=\"btn btn-outline-primary\">Redaguoti</a></td>";
          echo "</tr>";
        }
     ?>

@@ -1,3 +1,17 @@
+<?php
+
+include("../database/database.class.php");
+$databaseObj = new database(); 
+$conn = $databaseObj->connect();
+
+if(isset($_POST['submit'])){
+  $bus = $_POST['bus'];
+
+  $databaseObj->updateTheoryExam($conn, $_GET['id'], $bus);
+  header("Location: ./exam.php");
+}
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,18 +28,27 @@
   </head>
 <body>
 <?php 
-session_start();
-include("main_bar_worker.html");
- ?>
+include("main_bar_worker.php");
+?>
  
   <div class="jumbotron text-center">
-    <h1>Darbuotojo nustatymai</h1>
+    <h1>Kliento <u><?php echo $_GET['klid'];?></u> Teorijos Tgzamino Vertinimas</h1>
     <br>
-
-    <a href="workerMessage.php" class="btn btn-outline-info">Žinučių siuntimas</a>
-    <a href="workerGroup.php" class="btn btn-outline-info">Grupių redagavimas</a>
-    <a href="workerTheory.php" class="btn btn-outline-info">Pamokų redagavimas</a>
-    <a href="exam.php" class="btn btn-outline-info">Egzaminų vertinimas</a>
+    <form action="" method="post">
+    <?php
+     
+     echo "<div class=\"form-group\">";
+     echo "<select name =\"bus\" class=\"form-control\" >";
+     echo " <option value=".$_GET['bus']." selected>Nieko nekeisti</option>";
+     echo "<option value='0'>Laukiama</option>";
+     echo "<option value='1'>Išlaikė</option>";
+     echo "<option value='2'>Neišlaikė</option>";
+     echo "</select>";
+     echo "</div>";
+     echo "<input type=\"submit\" name=\"submit\" value=\"Išsaugoti pakeitimus\" class=\"btn btn-primary\">";
+   
+    ?>
+    </form>
   
    
 
