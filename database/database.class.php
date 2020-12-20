@@ -127,6 +127,17 @@ class database {
         return $data;
     }
 
+    public function getPracticeInstructors($conn)
+    {
+        $sql = " SELECT * FROM darbuotojas
+        LEFT JOIN asmuo 
+        ON darbuotojas.fk_asmuo = asmuo.asmens_kodas 
+        WHERE darbuotojas.pareigos = 'praktikos'
+        ";
+        $data = $conn->query($sql);
+        return $data;
+    }
+
     public function getCourses($conn)
     {
         $sql = " SELECT * FROM kursai
@@ -311,7 +322,7 @@ class database {
                 WHERE asmuo.asmens_kodas IN 
                     (SELECT grupes_nariai.fk_klientas 
                     FROM grupes_nariai 
-                    WHERE grupes_nariai.fk_grupes_id = ".$id.")";
+                    WHERE grupes_nariai.fk_grupes_id = '$id')";
         $result = $conn->query($sql);
         return $result;
 

@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <img
-        src="../kissclipart-pixel-art-cars-png-clipart-pixel-car-racer-sports-c97f6477a5e2d075.jpg"
+        src="../musulogo.jpg"
         class="logo">
       <button
         class="navbar-toggler"
@@ -50,24 +50,14 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-header">Mūsų siūlomos paslaugos</a>
-                <a class="dropdown-item" href="clientTheoryClass.html"
+                <a class="dropdown-item" href="TeorijosPamokos.php"
                   >Teorines pamokos</a
                 >
-                <a class="dropdown-item" href="clientDrivingClass.html"
+                <a class="dropdown-item" href="VairavimoPamokos.php"
                   >Vairavimo pamokos</a
-                >
-                <a class="dropdown-item" href="clientTheoryExam.html"
-                  >Teorijos egzaminas</a
-                >
-                <a class="dropdown-item" href="clientDrivingExam.html"
-                  >Praktinis egzaminas</a
                 >
               </div>
             </div>
-          </li>
-    
-          <li class="nav-item">
-            <a class="nav-link" href="#">Kainos</a>
           </li>
           <li class="nav-item">
             <div class="dropdown show">
@@ -83,20 +73,9 @@
                 Paslaugos
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-header">Papildomos paslaugos</a>
-                <a class="dropdown-item" href="#">Autoserviso paslaugos</a>
-                <a class="dropdown-item" href="#">Ket knygelės pardavimas</a>
-                <a class="dropdown-item" href="#"
-                  >Įgudžių tobūlinimas su simuliatoriumi</a
-                >
-                <a class="dropdown-item" href="#">Mokomosios aikštelės nuoma</a>
-                <a class="dropdown-item" href="#"
-                  >Vairavimo testavimasŽinstruktoriaus dalyvavimas vį "REGITRA"
-                  egzamine</a
-                >
-                <a class="dropdown-item" href="#"
-                  >Transporto nuoma egzaminams vį "REGITRA"</a
-                >
+              <a class="dropdown-item" href="VairavimoPamokos.php">Papildoma praktinė pamoka</a>
+                <a class="dropdown-item" href="https://www.ketbilietai.lt/">KET knygelės pardavimas</a>
+                <a class="dropdown-item" href="https://www.ketbilietai.lt/">KET bilietai</a>
               </div>
             </div>
           </li>
@@ -114,7 +93,7 @@
           if(!empty($_SESSION["role"])){
             if($_SESSION["role"] == "darbuotojas"){
               echo"<li class='nav-item'>";
-              echo "<a class='nav-link' href='../worker.php'>Darbuotojo profilis</a>";
+              echo "<a class='nav-link' href='../darbuotojas/worker.php'>Darbuotojo profilis</a>";
               echo "</li>";
                } 
           }
@@ -132,7 +111,7 @@
             }
             else 
             {
-              echo "<a href='client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
+              echo "<a href='../klientas/client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
               echo "<a href='../vartotojas/logOut.php' class='btn btn-default btn-rounded mb-4'>Atsijungti</a>";
             }
             ?>

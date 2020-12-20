@@ -57,25 +57,15 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "klientas") {
                 Mokymai
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-header">Mūsų siūlomos paslaugos</a>
-                <a class="dropdown-item" href="clientTheoryClass.html"
+                <a class="dropdown-header">Mūsų siūlomos paslaugos:</a>
+                <a class="dropdown-item" href="../vartotojas/TeorijosPamokos.php"
                   >Teorines pamokos</a
                 >
-                <a class="dropdown-item" href="clientDrivingClass.html"
+                <a class="dropdown-item" href="../vartotojas/VairavimoPamokos.php"
                   >Vairavimo pamokos</a
-                >
-                <a class="dropdown-item" href="clientTheoryExam.html"
-                  >Teorijos egzaminas</a
-                >
-                <a class="dropdown-item" href="clientDrivingExam.html"
-                  >Praktinis egzaminas</a
                 >
               </div>
             </div>
-          </li>
-    
-          <li class="nav-item">
-            <a class="nav-link" href="#">Kainos</a>
           </li>
           <li class="nav-item">
             <div class="dropdown show">
@@ -86,26 +76,15 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "klientas") {
                 id="dropdownMenuLink"
                 data-toggle="dropdown"
                 aria-haspopup="true"
-                aria-expanded="false"
-              >
+                aria-expanded="false">
                 Paslaugos
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-header">Papildomos paslaugos</a>
-                <a class="dropdown-item" href="#">Autoserviso paslaugos</a>
-                <a class="dropdown-item" href="#">Ket knygelės pardavimas</a>
-                <a class="dropdown-item" href="#"
-                  >Įgudžių tobūlinimas su simuliatoriumi</a
-                >
-                <a class="dropdown-item" href="#">Mokomosios aikštelės nuoma</a>
-                <a class="dropdown-item" href="#"
-                  >Vairavimo testavimasŽinstruktoriaus dalyvavimas vį "REGITRA"
-                  egzamine</a
-                >
-                <a class="dropdown-item" href="#"
-                  >Transporto nuoma egzaminams vį "REGITRA"</a
-                >
-              </div>
+                <a class="dropdown-item" href="../vartotojas/VairavimoPamokos.php">Papildoma praktinė pamoka</a>
+                <a class="dropdown-item" href="https://www.ketbilietai.lt/">KET knygelės pardavimas</a>
+                <a class="dropdown-item" href="https://www.ketbilietai.lt/">KET bilietai</a>
+            </div>
             </div>
           </li>
           <li class="nav-item">

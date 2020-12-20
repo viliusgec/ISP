@@ -43,7 +43,7 @@ while($row = $members->fetch_assoc()){
             //siunciam emaila visiems useriams, kad susidare
             $mails = $databaseObj->getClientMailByGroupId($conn, $row["fk_grupes_id"]);
             while($row2 = $mails->fetch_assoc()){
-                $to      = $row["el_pastas"];
+                $to      = $row2["el_pastas"];
                 $subject = 'Paskyros ištrynimas';
                 $message = '
     
@@ -59,9 +59,10 @@ while($row = $members->fetch_assoc()){
         elseif ($row["klientu_skaicius"] < $group["vietu_kiekis"]*0.7 && $group["busena"] == "registracija"){
             $databaseObj->setGroupState($conn, $row["fk_grupes_id"], "neuzpildyta");
             //siunciam emaila visiems useriams, kad nesusidare
+                
             $mails = $databaseObj->getClientMailByGroupId($conn, $row["fk_grupes_id"]);
             while($row2 = $mails->fetch_assoc()){
-                $to      = $row["el_pastas"];
+                $to      = $row2["el_pastas"];
                 $subject = 'Paskyros ištrynimas';
                 $message = '
     

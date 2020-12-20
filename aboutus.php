@@ -4,8 +4,12 @@ include("main_bar.html");
  ?>
 </div>
   <div class="jumbotron text-center">
-    <h1>Mes esam mldc</h1>
-    <p>Mūsų gyvenimo tikslas yra uždirbt 10k per sekundę ir kapot raketas visą dieną.</p>
+    <h1>Darbą atliko IFF8-9 grupės nariai:</h1>
+    <p>Vilius Gečas</p>
+    <p>Erikas Masaitis</p>
+    <p>Mantas Matijošaitis</p>
+    <p>Audrius Žalnaravičius</p>
+    <p>Tautvydas Rušas</p>
   </div>
     
   

@@ -1,7 +1,19 @@
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>VM</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../stylesheet.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+  </head>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <img
-      src="kissclipart-pixel-art-cars-png-clipart-pixel-car-racer-sports-c97f6477a5e2d075.jpg"
+      src="../musulogo.jpg"
       class="logo">
       <button
         class="navbar-toggler"
@@ -35,25 +47,15 @@
                 Mokymai
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-header">Mūsų siūlomos paslaugos</a>
-                <a class="dropdown-item" href="../clientTheoryClass.html"
+                <a class="dropdown-header">Mūsų siūlomos paslaugos:</a>
+                <a class="dropdown-item" href="../vartotojas/TeorijosPamokos.php"
                   >Teorines pamokos</a
                 >
-                <a class="dropdown-item" href="../clientDrivingClass.html"
+                <a class="dropdown-item" href="../vartotojas/VairavimoPamokos.php"
                   >Vairavimo pamokos</a
-                >
-                <a class="dropdown-item" href="../clientTheoryExam.html"
-                  >Teorijos egzaminas</a
-                >
-                <a class="dropdown-item" href="../clientDrivingExam.html"
-                  >Praktinis egzaminas</a
                 >
               </div>
             </div>
-          </li>
-    
-          <li class="nav-item">
-            <a class="nav-link" href="#">Kainos</a>
           </li>
           <li class="nav-item">
             <div class="dropdown show">
@@ -64,26 +66,14 @@
                 id="dropdownMenuLink"
                 data-toggle="dropdown"
                 aria-haspopup="true"
-                aria-expanded="false"
-              >
+                aria-expanded="false">
                 Paslaugos
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-header">Papildomos paslaugos</a>
-                <a class="dropdown-item" href="#">Autoserviso paslaugos</a>
-                <a class="dropdown-item" href="#">Ket knygelės pardavimas</a>
-                <a class="dropdown-item" href="#"
-                  >Įgudžių tobūlinimas su simuliatoriumi</a
-                >
-                <a class="dropdown-item" href="#">Mokomosios aikštelės nuoma</a>
-                <a class="dropdown-item" href="#"
-                  >Vairavimo testavimasŽinstruktoriaus dalyvavimas vį "REGITRA"
-                  egzamine</a
-                >
-                <a class="dropdown-item" href="#"
-                  >Transporto nuoma egzaminams vį "REGITRA"</a
-                >
-              </div>
+                <a class="dropdown-item" href="../vartotojas/VairavimoPamokos.php">Papildoma praktinė pamoka</a>
+                <a class="dropdown-item" href="https://www.ketbilietai.lt/">KET knygelės pardavimas</a>
+                <a class="dropdown-item" href="https://www.ketbilietai.lt/">KET bilietai</a>
             </div>
           </li>
           <li class="nav-item">
@@ -111,7 +101,7 @@
             }
             else 
             {
-              echo "<a href='../client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
+              echo "<a href='../klientas/client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
               echo "<a href='../vartotojas/logOut.php' class='btn btn-default btn-rounded mb-4'>Atsijungti</a>";
             }
             ?>
