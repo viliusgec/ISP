@@ -27,7 +27,7 @@ include("main_bar_klientas.html");
    }
 ?>
 </table>
-<input class="btn btn-outline-dark" type="submit" value="Įkelti" name="submit">
+<input class="btn btn-outline-dark" type="submit" value="Patvirtinti" name="submit">
 </form>
 
 </div>

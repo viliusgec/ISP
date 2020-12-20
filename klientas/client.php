@@ -39,6 +39,7 @@ else {
         echo "<a href='PractiseExam.php' class='btn btn-outline-info'>Praktikos egzaminas</a> ";
         echo "<a href='TheoryExam.php' class='btn btn-outline-info'>Teorijos egzaminas</a> ";
         echo "<a href='ExamCancel.php' class='btn btn-outline-info'>Egzaminų atšaukimas</a> ";
+        echo "<a href='ContractPdf.php' class='btn btn-outline-info'>Sutarties pdf</a> ";
       }
     else 
     {

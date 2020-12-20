@@ -8,6 +8,18 @@ if(!empty($_SESSION['loginError']))
 }
  ?>
       
+<style>
+img {
+      -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+      transition-duration: 1s;
+      filter: grayscale(100%);
+      }
+img:hover{
+      -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+      transition-duration: 1s;
+      filter: grayscale(0%);
+      }
+</style>
 
   <div class="jumbotron text-center">
     <h1>Sveiki atvykę į „Traktoristas aš esu“ vairavymo mokyklos puslapį</h1>
@@ -88,13 +100,13 @@ if(!empty($_SESSION['loginError']))
         <a href="#" class="col-sm-2">
           
             <div class="w3-container w3-teal">
-                  <p>AM kategorija</p>
+                  <p>BE kategorija</p>
             </div>
         
             <img src="unnamed.png" alt="Car" style="width:100%">
         
             <div class="w3-container">
-            <p>Mopedai ir lengvieji keturračiai</p>
+            <p>Lengvieji automobiliai su priekaba</p>
             </div>
         
 
@@ -103,13 +115,13 @@ if(!empty($_SESSION['loginError']))
         <a href="#" class="col-sm-2">
           
                 <div class="w3-container w3-teal">
-                      <p>A1 kategorija</p>
+                      <p>C kategorija</p>
                 </div>
             
                 <img src="unnamed.png" alt="Car" style="width:100%">
             
                 <div class="w3-container">
-                <p>Motociklai ir triračiai</p>
+                <p>Krovininiai automobiliai</p>
                 </div>
             
             
@@ -117,41 +129,39 @@ if(!empty($_SESSION['loginError']))
             <a href="#" class="col-sm-2">
           
       <div class="w3-container w3-teal">
-            <p>A2 kategorija</p>
+            <p>CE kategorija</p>
       </div>
   
       <img src="unnamed.png" alt="Car" style="width:100%">
   
       <div class="w3-container">
-      <p>Motociklai ir triračiai</p>
+      <p>Krovininiai automobiliai su priekaba</p>
       </div>
   
   
     </a>
     <a href="#" class="col-sm-2">
         <div class="w3-container w3-teal">
-            <p>A kategorija</p>
+            <p>D kategorija</p>
       </div>
   
       <img src="unnamed.png" alt="Car" style="width:100%">
   
       <div class="w3-container">
-      <p>Motociklai ir triračiai</p>
+      <p>Autobusai</p>
       </div>
   
     </a>
     <a href="#" class="col-sm-2">
         <div class="w3-container w3-teal">
-            <p>B kategorija</p>
+            <p>DE kategorija</p>
       </div>
   
       <img src="unnamed.png" alt="Car" style="width:100%">
   
       <div class="w3-container">
-      <p>Lengvieji automobiliai ir keturračiai</p>
+      <p>Autobusai su priekaba</p>
       </div>
-  
-      
       </div>
     </a>
   </div>
