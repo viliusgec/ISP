@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include("main_bar_klientas.html");
+include("main_bar_klientas.php");
  ?>
 
 <div class="jumbotron text-center animate__animated animate__fadeIn">

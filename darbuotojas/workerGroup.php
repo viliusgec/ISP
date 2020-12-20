@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include("../database/database.class.php");
 $databaseObj = new database(); 
 $conn = $databaseObj->connect();
@@ -20,7 +20,7 @@ $conn = $databaseObj->connect();
   </head>
 <body>
 <?php 
-include("main_bar_worker.html");
+include("main_bar_worker.php");
 ?>
  
   <div class="jumbotron text-center">

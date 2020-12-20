@@ -132,7 +132,7 @@ background-color: red;
    
  
   <div class="jumbotron text-center">
-    <h1>Nuotrauku patvirtinimas </h1>
+    <h1>Paskyros trynimas </h1>
     <br>
 
 <?php 
