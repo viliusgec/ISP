@@ -21,6 +21,7 @@ $_SESSION['message_photo'] = "";
 else {
   $photover = "<h6 style='color: red'>Jūsų tapatybė yra nepatvirtinta</h6>";
 }
+$_SESSION['message_usercontract'] = "";
  
 ?> 
   <div class="jumbotron text-center animate__animated animate__fadeIn">

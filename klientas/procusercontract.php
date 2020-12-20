@@ -1,15 +1,15 @@
 <?php 
-$_SESSION['message_photo'] = "";
 include("main_bar_klientas.php");
 include("../database/database.class.php");
+$_SESSION['message_photo'] = "";
 
 $databaseObj = new database();  
 $conn = $databaseObj->connect();
 
 if (($databaseObj->checkIfHasContract($conn, $_SESSION['userID'])) == 1)
 {
-    print_r("Jūs jau esate užsiregistravęs į kursus");
-    die();
+  echo "Jūs jau esate užsiregistravęs į kursus";
+  die();
 }
 
     if(empty($_POST['id'])) {

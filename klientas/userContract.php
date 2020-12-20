@@ -10,6 +10,7 @@ include("main_bar_klientas.php");
   <div class="jumbotron text-center animate__animated animate__fadeIn">
 
 <h3>Prašome pasirinkti kursų tipą:</h3>
+
 <form action="procusercontract.php" method="post">
 <table class="table table-hover">
   <tr>

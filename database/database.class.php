@@ -327,12 +327,12 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
-            return 1; // jeigu nėra užregistruotas į kursus
+        if ($count >= 1) {
+            return 1; // jeigu yra užregistruotas į kursus
         }
         else
         {
-            return 0; // jeigu yra užregistruotas į kursus
+            return 0; // jeigu nėra užregistruotas į kursus
         }
     }
 
@@ -372,7 +372,7 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
+        if ($count >= 1) {
             return 1; // jeigu yra užregistruotas į egzaminą
         }
         else
@@ -390,7 +390,7 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
+        if ($count >= 1) {
             return 1; // jeigu yra užregistruotas į egzaminą
         }
         else
@@ -408,7 +408,7 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
+        if ($count >= 1) {
             return 1; // jeigu yra užregistruotas į egzaminą
         }
         else 
@@ -426,7 +426,7 @@ class database {
         while($row = $result->fetch_assoc()) {
             $count++;
         }
-        if ($count == 1) {
+        if ($count >= 1) {
             return 1; // jeigu turi sutartį
         }
         else 
