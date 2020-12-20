@@ -9,12 +9,20 @@ $userid = $_SESSION['userID'];
 $sql = "SELECT DATE_FORMAT(sudaryta, '%Y-%m-%d') as data, pavadinimas, tipas, kaina FROM `sutartis`
 INNER JOIN `kursai` ON `sutartis`.fk_kursai = `kursai`.id WHERE `sutartis`.fk_klientas = '$userid'";
    $result = $conn -> query($sql);
-
+   $sudaryta = 0;
+   $pavadinimas = 0;
+   $tipas = 0;
+   $kaina = 0;
    while($row = mysqli_fetch_assoc($result)){
        $sudaryta = $row["data"];
        $pavadinimas = $row["pavadinimas"];
        $tipas = $row["tipas"];
        $kaina = $row["kaina"];
+    }
+    if ($sudaryta == 0)
+    {
+        echo "neturite sudarę sutarties";
+        die();
     }
 $pdf = new FPDF();
 $pdf->AddPage();

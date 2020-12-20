@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include("main_bar_klientas.php");
  ?>
 

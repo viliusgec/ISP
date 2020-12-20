@@ -1,5 +1,4 @@
 <?php 
-session_start();
 $_SESSION['message_photo'] = "";
 include("main_bar_klientas.php");
 include("../database/database.class.php");

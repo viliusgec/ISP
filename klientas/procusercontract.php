@@ -1,5 +1,4 @@
 <?php 
-session_start();
 $_SESSION['message_photo'] = "";
 include("main_bar_klientas.php");
 include("../database/database.class.php");
@@ -29,7 +28,7 @@ if (($databaseObj->checkIfHasContract($conn, $_SESSION['userID'])) == 1)
     $sql = "INSERT INTO `sutartis` (`sudaryta`, `fk_klientas`, `fk_kursai`)
     VALUES ('$data', '$userid','$ids[0]')";
          if ($conn->query($sql) === TRUE) {
-           echo "Užsiregistravote į kursus!";
+           echo "Užsiregistravote į kursus! Dabar pasirinkite grupę!";
          } else {
            echo "Nepavyko užsiregistruoti į kursus";
          }

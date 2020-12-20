@@ -1,6 +1,5 @@
 
 <?php
-
 session_start();
 include("../database/database.class.php");
 $databaseObj = new database();

@@ -41,6 +41,7 @@ else {
         echo "<a href='ExamCancel.php' class='btn btn-outline-info'>Egzaminų atšaukimas</a> ";
         echo "<a href='userRegisteredExams.php' class='btn btn-outline-info'>Jūsų pamokos</a><br><br>";
         echo "<a href='Services.php' class='btn btn-outline-info'>Papildomos paslaugos</a> ";
+        echo "<a href='Groups.php' class='btn btn-outline-info'>Grupės pasirinkimas</a> ";
       }
     else 
     {

@@ -1,6 +1,5 @@
 
 <?php
-session_start();
 include("main_bar_klientas.html");
 include '../database/database.class.php';
 $databaseObj = new database();
