@@ -35,11 +35,12 @@ else {
         echo "<a href='change_pass.php' class='btn btn-outline-info'>Keisti slaptažodį</a> ";
         echo "<a href='userContract.php' class='btn btn-outline-info'>Registracija į kursus</a> ";
         echo "<a href='userPractise.php' class='btn btn-outline-info'>Registracija į praktines pamokas</a> ";
-        echo "<a href='userRegisteredExams.php' class='btn btn-outline-info'>Jūsų pamokos</a><br><br>";
+        echo "<a href='ContractPdf.php' class='btn btn-outline-info'>Sutarties pdf</a><br><br> ";
         echo "<a href='PractiseExam.php' class='btn btn-outline-info'>Praktikos egzaminas</a> ";
         echo "<a href='TheoryExam.php' class='btn btn-outline-info'>Teorijos egzaminas</a> ";
         echo "<a href='ExamCancel.php' class='btn btn-outline-info'>Egzaminų atšaukimas</a> ";
-        echo "<a href='ContractPdf.php' class='btn btn-outline-info'>Sutarties pdf</a> ";
+        echo "<a href='userRegisteredExams.php' class='btn btn-outline-info'>Jūsų pamokos</a><br><br>";
+        echo "<a href='Services.php' class='btn btn-outline-info'>Papildomos paslaugos</a> ";
       }
     else 
     {

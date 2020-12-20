@@ -287,11 +287,11 @@ class database {
             $count++;
         }
         if ($count == 1) {
-            return 1; // jeigu nėra užregistruotas į kursus
+            return 1; // jeigu yra užregistruotas į kursus
         }
         else 
         {
-            return 0; // jeigu yra užregistruotas į kursus
+            return 0; // jeigu nėra užregistruotas į kursus
         }
     }
 	
@@ -319,6 +319,42 @@ class database {
         $sql = " SELECT * FROM asmuo WHERE asmuo.asmens_kodas ='$identityNr'";
         $data = $conn->query($sql);
         return $data;
+    }
+    public function getPractiseExam($conn, $asmkodas)
+    {
+        $count = 0;
+        $sql = " SELECT *
+            FROM `praktiniu_tvarkarastis`
+            WHERE fk_asmuo_id='$asmkodas' AND `ar_egzaminas`=1";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $count++;
+        }
+        if ($count == 1) {
+            return 1; // jeigu yra užregistruotas į egzaminą
+        }
+        else 
+        {
+            return 0; // jeigu nėra užregistruotas į egzaminą
+        }
+    }
+    public function getTheoryExam($conn, $asmkodas)
+    {
+        $count = 0;
+        $sql = " SELECT *
+            FROM `egzamino_nariai`
+            WHERE fk_klientas='$asmkodas' AND `busena`=0 OR `busena`=2";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $count++;
+        }
+        if ($count == 1) {
+            return 1; // jeigu yra užregistruotas į egzaminą
+        }
+        else 
+        {
+            return 0; // jeigu nėra užregistruotas į egzaminą
+        }
     }
 }
 ?>

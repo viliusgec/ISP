@@ -11,9 +11,15 @@ $conn = $databaseObj->connect();
         echo("Jūs nepasirinkote jokio laiko");
         die();
     }
-    
-$userid = $_SESSION["userID"];
-$egzaminoid = $_POST["teorija"];
+    $userid = $_SESSION["userID"];
+    echo ($databaseObj->getTheoryExam($conn, $userid));
+    if ($databaseObj->getTheoryExam($conn, $userid) == 1)
+    {
+      echo "Jūs jau esate užsiregistravęs į egzaminą.";
+      die();
+    }
+
+    $egzaminoid = $_POST["teorija"];
     $sql = "INSERT INTO `egzamino_nariai`
     VALUES ('$userid', '$egzaminoid', '0')";
          if ($conn->query($sql) === TRUE) {

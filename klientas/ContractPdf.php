@@ -27,13 +27,12 @@ $pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Jūsų vardas: " . $_SESSIO
 $pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Jūsų pavardė: " . $_SESSION['pavarde']),0,1,'L');
 $pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Jūsų asmens kodas: " . $_SESSION['userID']),0,1,'L');
 $pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Susisiekimo duomenys: " . $_SESSION['epastas']),0,1,'L');
-$pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Jūsų vardas: " . $_SESSION['vardas']),0,1,'L');
 $pdf->SetFont('arial','B',12);
 $pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Kursų duomenys: "),0,1,'L');
 $pdf->SetFont('arial','',10);
 $pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Pasirinkti kursai: " . $pavadinimas),0,1,'L');
 $pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Pasirinkti kursų laikas: " . $tipas),0,1,'L');
-$pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Kursų kaina: " . $kaina),0,1,'L');
+$pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Kursų kaina: " . $kaina . "$"),0,1,'L');
 $pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", "Sutartis sudaryta: " . $sudaryta),0,1,'L');
 
 $pdf->Cell(10,10,iconv("UTF-8", "CP1252//TRANSLIT", ""),0,1,'L');

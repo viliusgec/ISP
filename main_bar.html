@@ -125,7 +125,7 @@
             }
             else 
             {
-              if($_SESSION["vardas"] == "klientas")
+              if($_SESSION["role"] == "klientas")
                 {
                   echo "<a href='klientas/client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
                 }
