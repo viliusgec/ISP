@@ -1,7 +1,13 @@
 <?php 
 session_start();
+include("../database/database.class.php");
+$databaseObj = new database(); 
+$conn = $databaseObj->connect();
+
+
+
 if(isset($_POST['submit'])){
-    $to = $_POST['email'];
+    $to = $_POST['emails'];
     $from = "ispprojektas@gmail.com"; 
     $first_name = $_SESSION['vardas'];
     $last_name = $_SESSION['pavarde'];
@@ -15,6 +21,9 @@ if(isset($_POST['submit'])){
     mail($to,$subject,$message,$headers);
     //mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
     }
+    
+
+  
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,8 +40,7 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
   </head>
 <body>
-<?php 
-
+<?php
 include("main_bar_worker.html");
  ?>
  
@@ -54,7 +62,19 @@ include("main_bar_worker.html");
     <label for="last_name">Pavardė</label>
     <input type="text" name="last_name" class="form-control"><br> -->
       <label for="exampleInputEmail1">Gavėjo el. paštas</label>
-      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name@example.com">
+      <select class="form-control" name="emails">
+      <?php
+      //$inform = $databaseObj->getUserEmails($conn, "klientas");
+
+      
+      
+      $duom = $databaseObj->getUserEmails($conn, "klientas");
+      while($row = $duom->fetch_assoc()) {
+          echo "<option value=".$row['el_pastas'].">".$row['el_pastas']."</option>";
+        }
+      ?>
+      </select>
+      <!-- <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name@example.com"> -->
     </div>
     <div class="form-group col-md-3">
       <label for="exampleInputPassword1">Žinutė</label>
@@ -69,9 +89,6 @@ include("main_bar_worker.html");
 
 
   
-  <button type="button" class="btn btn-danger live_chat_button">Live chat</button>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <?php include("../button.html");?>
   </body>
 </html>

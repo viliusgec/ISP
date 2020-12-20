@@ -101,7 +101,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="aboutus.html">Apie mus</a>
+            <a class="nav-link" href="aboutus.php">Apie mus</a>
           </li>
           <?php
           if(!empty($_SESSION["role"])){
@@ -114,7 +114,7 @@
           if(!empty($_SESSION["role"])){
             if($_SESSION["role"] == "darbuotojas"){
               echo"<li class='nav-item'>";
-              echo "<a class='nav-link' href='worker.php'>Darbuotojo profilis</a>";
+              echo "<a class='nav-link' href='darbuotojas/worker.php'>Darbuotojo profilis</a>";
               echo "</li>";
                } 
           }

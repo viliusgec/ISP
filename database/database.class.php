@@ -266,7 +266,7 @@ class database {
         return $result;
     }
 
-}
+
 
     public function checkIfHasContract($conn, $asmkodas)
     {
@@ -285,6 +285,24 @@ class database {
         {
             return 0; // jeigu yra užregistruotas
         }
+    }
+    public function getUserEmails($conn, $role)
+    {
+        $sql = " SELECT * FROM asmuo WHERE role='$role'";
+        $data = $conn->query($sql);
+        return $data;
+    }
+    public function getGroupList($conn, $asmkodas)
+    {
+        $sql = "SELECT * FROM grupe WHERE fk_darbuotojo_id IN (SELECT tabelio_nr FROM darbuotojas WHERE fk_asmuo = $asmkodas)";
+        $data = $conn->query($sql);
+        return $data;
+    }
+    public function updateGroup($conn, $pav, $vk, $nd, $ndk, $id)
+    {
+        $sql = "UPDATE grupe SET pavadinimas='$pav', vietu_kiekis='$vk', numatyta_data='$nd', numatyta_data_iki='$ndk'
+        WHERE id='$id'";
+        $data = $conn->query($sql);
     }
 }
 ?>
