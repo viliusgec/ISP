@@ -12,7 +12,7 @@ if ($_FILES['fileToUpload']['size']>1048576) {
   die(); 
 }
 $user = $_SESSION['userID'];
-$photo = "./uploads/" . $user . $_FILES['fileToUpload']['name'];
+$photo = "../uploads/" . $user . $_FILES['fileToUpload']['name'];
 
 // galima padaryti, kad neleistų du kart įkelt nuotraukos tam pačiam useriui
 // kol neatmetė senos foto
