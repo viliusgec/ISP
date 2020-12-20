@@ -257,6 +257,10 @@ class database {
     }
 
     public function deleteOldUsers($conn){
+        $sql = "SELECT asmuo.el_pastas
+                    FROM `asmuo` 
+                    WHERE DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) <= now()";
+        $result = $conn->query($sql);
         $sql = "DELETE FROM asmuo 
                 WHERE asmuo.asmens_kodas 
                 IN 
@@ -264,16 +268,53 @@ class database {
                     FROM `asmuo` 
                     WHERE DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) <= now())";
         $conn->query($sql);
+        return $result;
     }
+
     public function informForDeletion($conn){
         $sql = "SELECT asmuo.el_pastas
                 FROM `asmuo` 
                 WHERE DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) <= DATE_ADD(now(), INTERVAL 7 DAY) 
                 AND DATE_ADD(asmuo.paskutinis_prisijungimas, INTERVAL 1 YEAR) >= now()";
-        $conn->query($sql);
-        //Cia galima siust kad bus istrintas po 7 dienu
-        $result = $conn->fetch_array(MYSQLI_NUM);
+        $result = $conn->query($sql);
         return $result;
+    }
+
+    public function getGroupMemberCount($conn){
+        $sql = "SELECT 
+                COUNT(grupes_nariai.fk_klientas) as klientu_skaicius, 
+                grupes_nariai.fk_grupes_id 
+                FROM `grupes_nariai` 
+                GROUP BY grupes_nariai.fk_grupes_id";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
+    public function getGroupByID($conn, $id){
+        $sql = "SELECT * 
+                FROM grupe
+                WHERE grupe.id = ". $id;
+        $result = $conn->query($sql);
+        return $result->fetch_assoc();
+    }
+
+    public function setGroupState($conn, $id, $busena){
+        $sql = "UPDATE `grupe` 
+                SET `busena` = '".$busena."' 
+                WHERE `grupe`.`id` = ". $id;
+        $conn->query($sql);
+    }
+
+    public function getClientMailByGroupId($conn, $id){
+        $sql = "SELECT asmuo.el_pastas 
+                FROM asmuo 
+                WHERE asmuo.asmens_kodas IN 
+                    (SELECT grupes_nariai.fk_klientas 
+                    FROM grupes_nariai 
+                    WHERE grupes_nariai.fk_grupes_id = ".$id.")";
+        $result = $conn->query($sql);
+        return $result;
+
     }
 
     public function checkIfHasContract($conn, $asmkodas)
@@ -287,14 +328,14 @@ class database {
             $count++;
         }
         if ($count == 1) {
-            return 1; // jeigu yra užregistruotas į kursus
+            return 1; // jeigu nėra užregistruotas į kursus
         }
-        else 
+        else
         {
-            return 0; // jeigu nėra užregistruotas į kursus
+            return 0; // jeigu yra užregistruotas į kursus
         }
     }
-	
+
     public function getUserEmails($conn, $role)
     {
         $sql = " SELECT * FROM asmuo WHERE role='$role'";
@@ -320,6 +361,7 @@ class database {
         $data = $conn->query($sql);
         return $data;
     }
+
     public function getPractiseExam($conn, $asmkodas)
     {
         $count = 0;
@@ -333,7 +375,7 @@ class database {
         if ($count == 1) {
             return 1; // jeigu yra užregistruotas į egzaminą
         }
-        else 
+        else
         {
             return 0; // jeigu nėra užregistruotas į egzaminą
         }
@@ -351,7 +393,7 @@ class database {
         if ($count == 1) {
             return 1; // jeigu yra užregistruotas į egzaminą
         }
-        else 
+        else
         {
             return 0; // jeigu nėra užregistruotas į egzaminą
         }
