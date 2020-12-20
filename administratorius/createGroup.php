@@ -13,6 +13,13 @@ if((isset($_POST['group'])) && !empty($_POST['group']))
       header('Location: newGroup.php?Message= Prasome ivesti grupes dydi ivesti didesni nei 10');
       exit();
     }
+    $dateStartConvert = strtotime($startDate);
+    $startDateCompare = date('Y-m-d',$dateStartConvert);
+   
+    if ($startDateCompare < date("Y-m-d")) {
+      header('Location: newGroup.php?Message= Prasome ivesti ateities data');
+      exit();
+    }
     $add_date = date("Y-m-d"); 
     $endDate = new DateTime($startDate);
      $endDate ->modify("+60 days");

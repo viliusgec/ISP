@@ -124,7 +124,6 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "administratorius") {
               }
               else 
               {
-                echo "<a href='../klientas/client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
                 echo "<a href='../vartotojas/logOut.php' class='btn btn-default btn-rounded mb-4'>Atsijungti</a>";
               }
               ?>
