@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2020 at 11:10 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Generation Time: Dec 20, 2020 at 04:23 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -101,7 +102,7 @@ INSERT INTO `egzaminas` (`id`, `laikas`, `vietu_kiekis`) VALUES
 --
 
 CREATE TABLE `egzamino_nariai` (
-  `fk_klientas` varchar(50) NOT NULL,
+  `fk_klientas` varchar(50) DEFAULT NULL,
   `fk_egzamino_id` int(11) NOT NULL,
   `busena` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='0 - laukiama , 1 patvirtinta, 2 - neišlaikė';
@@ -138,7 +139,7 @@ INSERT INTO `grupe` (`pavadinimas`, `fk_kursai_id`, `fk_darbuotojo_id`, `id`, `n
 --
 
 CREATE TABLE `grupes_nariai` (
-  `fk_klientas` int(11) NOT NULL,
+  `fk_klientas` varchar(50) DEFAULT NULL,
   `fk_grupes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -351,12 +352,26 @@ ALTER TABLE `egzaminas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `egzamino_nariai`
+--
+ALTER TABLE `egzamino_nariai`
+  ADD KEY `fk_klientas` (`fk_klientas`,`fk_egzamino_id`),
+  ADD KEY `fk_egzamino_id` (`fk_egzamino_id`);
+
+--
 -- Indexes for table `grupe`
 --
 ALTER TABLE `grupe`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_kursai_id` (`fk_kursai_id`),
   ADD KEY `fk_darbuotojo_id` (`fk_darbuotojo_id`);
+
+--
+-- Indexes for table `grupes_nariai`
+--
+ALTER TABLE `grupes_nariai`
+  ADD KEY `fk_klientas` (`fk_klientas`,`fk_grupes_id`),
+  ADD KEY `fk_grupes_id` (`fk_grupes_id`);
 
 --
 -- Indexes for table `klientas`
@@ -505,11 +520,25 @@ ALTER TABLE `darbuotojas`
   ADD CONSTRAINT `darbuotojas_ibfk_1` FOREIGN KEY (`fk_asmuo`) REFERENCES `asmuo` (`asmens_kodas`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `egzamino_nariai`
+--
+ALTER TABLE `egzamino_nariai`
+  ADD CONSTRAINT `egzamino_nariai_ibfk_1` FOREIGN KEY (`fk_klientas`) REFERENCES `asmuo` (`asmens_kodas`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  ADD CONSTRAINT `egzamino_nariai_ibfk_2` FOREIGN KEY (`fk_egzamino_id`) REFERENCES `egzaminas` (`id`);
+
+--
 -- Constraints for table `grupe`
 --
 ALTER TABLE `grupe`
   ADD CONSTRAINT `grupe_ibfk_1` FOREIGN KEY (`fk_kursai_id`) REFERENCES `kursai` (`id`),
   ADD CONSTRAINT `grupe_ibfk_2` FOREIGN KEY (`fk_darbuotojo_id`) REFERENCES `darbuotojas` (`tabelio_nr`);
+
+--
+-- Constraints for table `grupes_nariai`
+--
+ALTER TABLE `grupes_nariai`
+  ADD CONSTRAINT `grupes_nariai_ibfk_1` FOREIGN KEY (`fk_klientas`) REFERENCES `asmuo` (`asmens_kodas`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  ADD CONSTRAINT `grupes_nariai_ibfk_2` FOREIGN KEY (`fk_grupes_id`) REFERENCES `grupe` (`id`);
 
 --
 -- Constraints for table `klientas`
