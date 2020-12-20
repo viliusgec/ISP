@@ -313,5 +313,12 @@ class database {
         WHERE id='$id'";
         $data = $conn->query($sql);
     }
+
+    public function getPhotoRecipient($conn, $identityNr)
+    {
+        $sql = " SELECT * FROM asmuo WHERE asmuo.asmens_kodas ='$identityNr'";
+        $data = $conn->query($sql);
+        return $data;
+    }
 }
 ?>
