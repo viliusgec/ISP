@@ -9,7 +9,7 @@ include("main_bar_klientas.php");
  $userid = $_SESSION["userID"];
 ?> 
   <div class="jumbotron text-center animate__animated animate__fadeIn">
-
+<h3>Pasirinkite grupę ir kada norite pradėti:</h3>
 <form action="procGroups.php" method="post"><br>
 <select name='grupe'>
     <option value='001'>pasirinkti:</option>

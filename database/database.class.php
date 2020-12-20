@@ -415,6 +415,24 @@ class database {
         {
             return 0; // jeigu nėra užregistruotas į egzaminą
         }
-}
+    }
+    public function getContract($conn, $asmkodas)
+    {
+        $count = 0;
+        $sql = " SELECT *
+            FROM `sutartis`
+            WHERE fk_klientas='$asmkodas'";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $count++;
+        }
+        if ($count == 1) {
+            return 1; // jeigu turi sutartį
+        }
+        else 
+        {
+            return 0; // jeigu neturi sutarties
+        }
+    }
 }
 ?>

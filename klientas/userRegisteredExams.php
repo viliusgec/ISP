@@ -17,7 +17,7 @@ $userid =$_SESSION["userID"];
    WHERE fk_klientas = '$userid'";
    $result = $conn -> query($sql);
    while($row = mysqli_fetch_assoc($result)){
-       echo "Diena: " . $row["diena"] . " Laikas: " . $row["laikas"] . "";
+       echo "Diena: " . $row["diena"] . " Laikas: " . $row["laikas"] . "<br>";
     }
 ?>
 
