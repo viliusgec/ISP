@@ -167,6 +167,6 @@ img:hover{
   </div>
   </center>
   
-  <?php include("button.html");?>
+  <?php include("buttonMain.html");?>
   </body>
 </html>

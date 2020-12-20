@@ -6,9 +6,9 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "darbuotojas") {
 }
 ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <img
-      src="kissclipart-pixel-art-cars-png-clipart-pixel-car-racer-sports-c97f6477a5e2d075.jpg"
-      class="logo">
+    <img
+        src="../musulogo.jpg"
+        class="logo">
       <button
         class="navbar-toggler"
         type="button"

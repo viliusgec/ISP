@@ -29,6 +29,7 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <link rel="stylesheet" href="../stylesheet.css">
   </head>
 <body>
 <?php 
@@ -68,6 +69,6 @@ include("main_bar_worker.php");
   </div>
  
   
-  <?php include("workerButton.html");?>
+  <?php include("../button.html");?>
   </body>
 </html>
