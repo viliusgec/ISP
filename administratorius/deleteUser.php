@@ -201,7 +201,7 @@ background-color: red;
             $identityNr = $_POST['delete']; 
 
             $toWho = $databaseObj->getPhotoRecipient($conn, $identityNr);
-            while ($row = $unconfirmedPhotos->fetch_assoc()) {
+            while ($row = $toWho->fetch_assoc()) {
                             
               $email = $row['el_pastas'];
               $name = $row['vardas']; 
@@ -223,7 +223,7 @@ background-color: red;
             $headers = 'From:ispprojektas@gmail.com' . "\r\n"; 
             mail($to, $subject, $message, $headers);
             
-            $object = $databaseObj->removeUser($conn, $identityNr);
+            $databaseObj->removeUser($conn, $identityNr);
             echo 'Naudotojas sekmingai istrintas!';
             
            
