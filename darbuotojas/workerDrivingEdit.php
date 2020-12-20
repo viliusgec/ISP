@@ -14,8 +14,7 @@
   </head>
 <body>
 <?php 
-session_start();
-include("main_bar_worker.html");
+include("main_bar_worker.php");
  ?>
  
   <div class="jumbotron text-center">
