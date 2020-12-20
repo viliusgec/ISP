@@ -199,6 +199,29 @@ background-color: red;
           {
             $conn = $databaseObj->connect();
             $identityNr = $_POST['delete']; 
+
+            $toWho = $databaseObj->getPhotoRecipient($conn, $identityNr);
+            while ($row = $unconfirmedPhotos->fetch_assoc()) {
+                            
+              $email = $row['el_pastas'];
+              $name = $row['vardas']; 
+              $lastName = $row['pavarde'];
+
+            
+            }
+            $to      = $email; 
+            $subject = 'Paskyra ištrinta'; 
+            $message = '
+            
+            '.$name.' '.$lastName.',
+            Jūsų paskyra susieta su '.$email.' buvo ištrinta
+            
+            
+            Pradinis puslapis:
+            http://localhost/ISP'; 
+
+            $headers = 'From:ispprojektas@gmail.com' . "\r\n"; 
+            mail($to, $subject, $message, $headers);
             
             $object = $databaseObj->removeUser($conn, $identityNr);
             echo 'Naudotojas sekmingai istrintas!';

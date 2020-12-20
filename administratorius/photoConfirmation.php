@@ -141,7 +141,7 @@ background-color: red;
                       echo '<ul>';
                       echo '<li>'.$name.' '.$lastName.'</li>';
                       #echo '<li>'.$asmens_kodas.'</li>';
-                      echo '<li><img src=".'.$location.'" width="200" height="200"></li>';
+                      echo '<li><img src="'.$location.'" width="200" height="200"></li>';
                       echo '</ul>';
                       echo '<div>';
                       
