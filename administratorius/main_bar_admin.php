@@ -93,7 +93,7 @@ if (empty($_SESSION["role"]) || $_SESSION["role"] != "administratorius") {
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../aboutus.html">Apie mus</a>
+              <a class="nav-link" href="../aboutus.php">Apie mus</a>
             </li>
             <?php
             if(!empty($_SESSION["role"])){
