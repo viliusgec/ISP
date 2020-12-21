@@ -201,11 +201,16 @@ background-color: red;
             $identityNr = $_POST['delete']; 
 
             $toWho = $databaseObj->getPhotoRecipient($conn, $identityNr);
+            $email;
+            $name;
+            $lastName;
+            $role;
             while ($row = $toWho->fetch_assoc()) {
                             
               $email = $row['el_pastas'];
               $name = $row['vardas']; 
               $lastName = $row['pavarde'];
+              $role = $row['role'];
 
             
             }
@@ -223,8 +228,34 @@ background-color: red;
             $headers = 'From:ispprojektas@gmail.com' . "\r\n"; 
             mail($to, $subject, $message, $headers);
             
-            $databaseObj->removeUser($conn, $identityNr);
-            echo 'Naudotojas sekmingai istrintas!';
+            //padaryt, kad pafetchintu zmogu ir tada patikrintu ar role yra lygu darbuotojas
+            //jei jo tada padaryt, kad update left join on  darbuotojas.tablelio_nr 
+            //grupe.darbuotojo_id on kai tie lygus id grupe.busena = neuzpildyta
+           
+            if ($role == 'darbuotojas') {
+              $workeris = $databaseObj->getWorker($conn, $identityNr);
+              $foreignKey;
+              while ($row = $workeris->fetch_assoc()) {
+                            
+                $foreignKey = $row['tabelio_nr'];
+              
+              }
+        
+              $databaseObj->removeWorker($conn, $identityNr, $foreignKey);
+              echo 'Darbuotojas sekmingai istrintas!';
+              exit();
+            }
+            if ($role == 'klientas') {
+              
+              $databaseObj->removeUser($conn, $identityNr);
+              echo 'Naudotojas sekmingai istrintas!';
+              exit();
+            }
+            if( $role == 'administratorius') {
+              echo 'Administratoriaus istrinti negalima';
+              exit();
+            }
+
             
            
           }

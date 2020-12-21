@@ -56,7 +56,7 @@ if((isset($_POST['approve'])))
     $name;
     $lastName;
     $toWho = $databaseObj->getPhotoRecipient($conn, $identityNr);
-      while ($row = $unconfirmedPhotos->fetch_assoc()) {
+      while ($row = $toWho->fetch_assoc()) {
                        
         $email = $row['el_pastas'];
         $name = $row['vardas']; 
@@ -79,7 +79,7 @@ if((isset($_POST['approve'])))
       $headers = 'From:ispprojektas@gmail.com' . "\r\n"; 
       mail($to, $subject, $message, $headers);
 
-    header('Location: photoConfirmation.php?Message=Nuotrauka atsaukta');
+    header('Location: photoConfirmation.php?Message=Nuotrauka atsaukta ir išsiųsta į paštą');
   }
     
 
