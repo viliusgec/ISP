@@ -33,7 +33,7 @@ include("main_bar_worker.php");
 ?>
  
   <div class="jumbotron text-center">
-    <h1>Kliento <u><?php echo $_GET['klid'];?></u> Teorijos Egzamino Vertinimas</h1>
+    <h1><?php echo $_GET['klid'];?> Praktikos Egzamino Vertinimas</h1>
     <br>
     <form action="" method="post">
     <?php

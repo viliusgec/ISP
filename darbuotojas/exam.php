@@ -44,7 +44,7 @@ include("main_bar_worker.php");
     <?php
      $duom = $databaseObj->getTheoryExamList($conn);
      while($row = $duom->fetch_assoc()) {
-      if($row['busena'] != 1 || $row['busena'] != 2){
+      if($row['busena'] != 1 && $row['busena'] != 2){
          echo "<tr>";
          echo "<td>".$row['fk_klientas']."</td>";
          echo "<td>".$row['fk_egzamino_id']."</td>";
@@ -86,7 +86,7 @@ include("main_bar_worker.php");
     <?php
      $duom = $databaseObj->getPracticeExamList($conn);
      while($row = $duom->fetch_assoc()) {
-      if($row['ar_egzaminas'] != 0 || $row['ar_egzaminas'] != 2 || $row['ar_egzaminas'] != 3){
+      if($row['ar_egzaminas'] != 0 && $row['ar_egzaminas'] != 2 && $row['ar_egzaminas'] != 3){
          echo "<tr>";
          echo "<td>".$row['fk_asmuo_id']."</td>";
          echo "<td>".$row['id']."</td>";
