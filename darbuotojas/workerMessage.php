@@ -29,19 +29,19 @@ if(isset($_POST['submit'])){
     $first_name = $_SESSION['vardas'];
     $last_name = $_SESSION['pavarde'];
     $subject = "Traktoristas aš esu Vairavimo mokykla";
-    $subject2 = "Kopija ".$first_name;
-    $message = "Sveiki ".$first_name . " " . $last_name . " ." . "\n\n" . $_POST['message'];
-    $message2 = "Kopija " . $first_name . "\n\n" . $_POST['message'];
-
+    //$subject2 = "Kopija ".$first_name;
+    $message = "Sveiki mielas kliente.\n\n" . $_POST['message']. "\n\n Pagarbiai ".$first_name." ".$last_name;
+    //$message2 = "Kopija " . $first_name . "\n\n" . $_POST['message'];
     $headers = "Nuo:" . $from;
-    $headers2 = "Nuo:" . $to;
+    echo $to,$subject,$message,$headers;
+    //$headers2 = "Nuo:" . $to;
     mail($to,$subject,$message,$headers);
     //mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
     }
  ?>
  
   <div class="jumbotron text-center">
-    <h1>Zinutes siuntimas</h1>
+    <h1>Žinutės siuntimas</h1>
     <br>
 
 
