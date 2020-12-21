@@ -252,6 +252,29 @@ class database {
         $conn->query($sql);
     }
 
+    public function removeWorker($conn, $identityNr, $foreignKey){
+        
+        $sql3 = "DELETE FROM grupe
+        WHERE grupe.fk_darbuotojo_id=$foreignKey";
+
+        $conn->query($sql3);
+
+        $sql2 = "DELETE FROM asmuo
+        WHERE asmuo.asmens_kodas = $identityNr";
+
+        $conn->query($sql2);
+
+    }
+
+    public function getWorker($conn, $identityNr)
+    {
+        $sql = "SELECT * FROM darbuotojas
+        WHERE darbuotojas.fk_asmuo = $identityNr";
+
+        $data = $conn->query($sql);
+       
+        return $data;
+    }
     public function updateUserToWorker($conn, $identityNr, $type)
     {
         $sql = "UPDATE asmuo 
