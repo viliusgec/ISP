@@ -26,9 +26,9 @@ img:hover{
   <div class="jumbotron text-center">
     <h1>Sveiki atvykę į „Traktoristas aš esu“ vairavymo mokyklos</h1>
     <h1>teorinių pamokų informacijos puslapį</h1>
-    <p>Pateikti visi galimi teorinių pamokų instruktoriai</p>
+    <p>Pateikti visi galimi teorinių pamokų mokytojai</p>
   </div>
-  <center><img class="split_picture_thingy" src="../Logo.png"><div><h3>Teorinių pamokų instruktoriai:   </h3></div></center>
+  <center><img class="split_picture_thingy" src="../Logo.png"><div><h3>Teorinių pamokų mokytojai:   </h3></div></center>
     <div class="container">
     <div class="row">
     <?php 

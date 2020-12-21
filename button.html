@@ -1,4 +1,11 @@
-<a href="../Chat/index.php" class="btn btn-danger live_chat_button"
+<?php 
+if (file_exists("Chat"))
+$chat = "Chat/index.php";
+else
+$chat = "../Chat/index.php";
+?>
+
+<a href="<?php echo "$chat"?>" class="btn btn-danger live_chat_button"
   >Live chat</a
 >
 <script
