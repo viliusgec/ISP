@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2020 at 06:14 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Generation Time: Dec 21, 2020 at 02:09 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -50,8 +51,10 @@ INSERT INTO `asmuo` (`vardas`, `pavarde`, `el_pastas`, `slaptazodis`, `asmens_ko
 ('qwe', 'qwe', 'p@ap.t', '123', '12341232', 'klientas', '', 0, 0, NULL),
 ('tautvis', 'bestas', 't@t.t', '123', '12345', 'klientas', '', 0, 0, NULL),
 ('Tautvydas', 'Rušas', 'tadas@gmail.com', '123', '144', 'administratorius', 'ea5d2f1c4608232e07d3aa3d998e5135', 0, 1, '2020-12-19 00:00:00'),
+('Matas', 'Darbuotojas', 'darb@gmail.com', 'f34df71f04037b27cfd7bf13958970adf876d5b9', '163', 'darbuotojas', 'f61d6947467ccd3aa5af24db320235dd', 1, 1, '2020-12-20 00:00:00'),
 ('er', 'asd', 'zaidimamms@gmail.com', 'ąčę', '323232', 'klientas', 'e57c6b956a6521b28495f2886ca0977a', 1, 1, '2020-12-19 00:00:00'),
 ('erikas', 'masiris', 'zaidi@gmail.com', '869bb05863f7b336ce65ab981433d38d4e9d97dd', '33331111', 'klientas', 'e2c0be24560d78c5e599c2a9c9d0bbd2', 1, 1, '2020-12-20 00:00:00'),
+('Mantas', 'Matijosaitis', 'mantik78@gmail.com', 'b5410e807b7b2073446788ce8f3e48f019fae20c', '369020472', 'klientas', '31839b036f63806cba3f47b93af8ccb5', 1, 1, '2020-12-20 00:00:00'),
 ('Vilius', 'gec', 'gecas97@gmail.com', '123', '5002', 'klientas', '8c7bbbba95c1025975e548cee86dfadc', 1, 0, NULL),
 ('Mantas', 'Mantas', 'Mantas@mantas.mantas', '123', '777777', 'klientas', '', 0, 0, NULL);
 
@@ -225,17 +228,6 @@ INSERT INTO `pamoka` (`id`, `laikas`, `trukme`, `fk_grupes_id`, `diena`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pareigos`
---
-
-CREATE TABLE `pareigos` (
-  `id` int(11) NOT NULL,
-  `pareiga` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `paslaugos`
 --
 
@@ -265,18 +257,10 @@ CREATE TABLE `praktiniu_tvarkarastis` (
   `laikas` time NOT NULL,
   `fk_darbuotojas_tabelio_nr` int(11) NOT NULL,
   `ar_uzimta` int(11) NOT NULL,
-  `fk_asmuo_id` varchar(50) NOT NULL,
+  `fk_asmuo_id` varchar(50) DEFAULT NULL,
   `id` int(11) NOT NULL,
   `ar_egzaminas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `praktiniu_tvarkarastis`
---
-
-INSERT INTO `praktiniu_tvarkarastis` (`data`, `laikas`, `fk_darbuotojas_tabelio_nr`, `ar_uzimta`, `fk_asmuo_id`, `id`, `ar_egzaminas`) VALUES
-('2020-12-07', '09:00:00', 22, 1, '323232', 1, 0),
-('2020-12-07', '10:30:00', 22, 0, 'nera', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -287,7 +271,7 @@ INSERT INTO `praktiniu_tvarkarastis` (`data`, `laikas`, `fk_darbuotojas_tabelio_
 CREATE TABLE `sutartis` (
   `nr` int(11) NOT NULL,
   `sudaryta` datetime NOT NULL,
-  `fk_klientas` varchar(50) NOT NULL,
+  `fk_klientas` varchar(50) DEFAULT NULL,
   `fk_kursai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -360,12 +344,6 @@ ALTER TABLE `pamoka`
   ADD KEY `fk_grupes_id` (`fk_grupes_id`);
 
 --
--- Indexes for table `pareigos`
---
-ALTER TABLE `pareigos`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `paslaugos`
 --
 ALTER TABLE `paslaugos`
@@ -375,7 +353,9 @@ ALTER TABLE `paslaugos`
 -- Indexes for table `praktiniu_tvarkarastis`
 --
 ALTER TABLE `praktiniu_tvarkarastis`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_darbuotojas_tabelio_nr` (`fk_darbuotojas_tabelio_nr`,`fk_asmuo_id`),
+  ADD KEY `fk_asmuo_id` (`fk_asmuo_id`);
 
 --
 -- Indexes for table `sutartis`
@@ -418,12 +398,6 @@ ALTER TABLE `kursai`
 --
 ALTER TABLE `pamoka`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `pareigos`
---
-ALTER TABLE `pareigos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `paslaugos`
@@ -479,6 +453,20 @@ ALTER TABLE `grupes_nariai`
 --
 ALTER TABLE `pamoka`
   ADD CONSTRAINT `pamoka_ibfk_1` FOREIGN KEY (`fk_grupes_id`) REFERENCES `grupe` (`id`);
+
+--
+-- Constraints for table `praktiniu_tvarkarastis`
+--
+ALTER TABLE `praktiniu_tvarkarastis`
+  ADD CONSTRAINT `praktiniu_tvarkarastis_ibfk_1` FOREIGN KEY (`fk_darbuotojas_tabelio_nr`) REFERENCES `darbuotojas` (`tabelio_nr`),
+  ADD CONSTRAINT `praktiniu_tvarkarastis_ibfk_2` FOREIGN KEY (`fk_asmuo_id`) REFERENCES `asmuo` (`asmens_kodas`) ON DELETE SET NULL ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `sutartis`
+--
+ALTER TABLE `sutartis`
+  ADD CONSTRAINT `sutartis_ibfk_1` FOREIGN KEY (`fk_klientas`) REFERENCES `asmuo` (`asmens_kodas`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  ADD CONSTRAINT `sutartis_ibfk_2` FOREIGN KEY (`fk_kursai`) REFERENCES `kursai` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
