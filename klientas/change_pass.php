@@ -10,10 +10,12 @@ if(empty($_POST['submit'])) {
 }
 else
 {
+  $_POST['slaptazodis'] = hash('ripemd160', $_POST['slaptazodis']);
   if($_SESSION['slaptazodis'] == $_POST['slaptazodis'])
   {
-    $databaseObj->changePassword($conn, $_POST['slaptazodis1'], $_SESSION['epastas']);
-    $_SESSION['slaptazodis'] = $_POST['slaptazodis1'];
+    $newpass = hash('ripemd160', $_POST['slaptazodis1']);
+    $databaseObj->changePassword($conn, $newpass, $_SESSION['epastas']);
+    $_SESSION['slaptazodis'] = $newpass;
     echo "<div class='jumbotron text-center'>
     <h1>Slaptažodis sėkmingai pakeistas</h1>
       </div>";

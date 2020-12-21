@@ -13,6 +13,6 @@ include("main_bar.html");
   </div>
     
   
-  <?php include("button.html");?>
+  <?php include("buttonMain.html");?>
   </body>
 </html>
