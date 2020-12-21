@@ -22,7 +22,7 @@ include("main_bar_klientas.php");
     ON sutartis.fk_kursai = kursai.id
     LEFT JOIN grupe
     ON kursai.id = grupe.fk_kursai_id
-    WHERE asmuo.asmens_kodas = '$userid' AND grupe.vietu_kiekis >= 1";
+    WHERE asmuo.asmens_kodas = '$userid' AND grupe.vietu_kiekis >= 1 AND grupe.busena = 'registracija'";
     $result = $conn -> query($sql);
     while($row = mysqli_fetch_assoc($result)){
         echo "<option value='". $row["id"] ."'>" . $row["pavadinimas"] . " " . $row["numatyta_data"] ."</option>";
