@@ -80,7 +80,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="aboutus.html">Apie mus</a>
+            <a class="nav-link" href="../aboutus.php">Apie mus</a>
           </li>
           <?php
           if(!empty($_SESSION["role"])){
@@ -111,7 +111,11 @@
             }
             else 
             {
-              echo "<a href='../klientas/client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
+
+              if($_SESSION["role"] == "klientas")
+                {
+                  echo "<a href='../klientas/client.php' class='btn btn-default btn-rounded mb-4'>".$_SESSION['vardas']."</a>";
+                }
               echo "<a href='../vartotojas/logOut.php' class='btn btn-default btn-rounded mb-4'>Atsijungti</a>";
             }
             ?>
